@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- mybatis-generator的核心配置文件 -->
+<generatorConfiguration>
+    <classPathEntry location="D:\android\repository\mysql\mysql-connector-java\8.0.15\mysql-connector-java-8.0.15.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--
+            是否去除所有自动生成的文件的时间戳：
+            是否去除所有自动生成文件的注释：
+         -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/vpn?serverTimezone=GMT%2B8"
+                        userId="vpn"
+                        password="123456">
+        </jdbcConnection>
+
+        <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--自动生成的实体的存放包路径 -->
+        <javaModelGenerator targetPackage="com.asiainfo.vpn.bean" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--自动生成的*Mapper.xml文件存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--自动生成的*Mapper.java存放路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.asiainfo.vpn.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- 映射配置 -->
+        <table tableName="vpn_dial_persons" domainObjectName="VpnDialPersons">
+            <columnOverride column="DEPARTMENT_ID" property="department"/>
+        </table>
+        <table tableName="VPN_DIAL_PERSONS_HISTORY" domainObjectName="VpnDialPersonsHis">
+            <columnOverride column="OLD_DEPARTMENT_ID" property="oldDepartment"/>
+            <columnOverride column="DEPARTMENT_ID" property="department"/>
+        </table>
+        <table tableName="VPN_DIAL_RECORD" domainObjectName="VpnDialRecord">
+            <columnOverride column="DEPARTMENT_ID" property="department"/>
+        </table>
+        <table tableName="VPN_OA_DIAL_PERSONS" domainObjectName="VpnOADialPersons">
+            <columnOverride column="VPN_TYPE_ID" property="vpnTypeName" />
+            <columnOverride column="DEPARTMENT_ID" property="department"/>
+        </table>
+        <table tableName="VPN_OA_DIAL_PERSONS_HISTORY" domainObjectName="VpnOADialPersonsHis">
+            <columnOverride column="VPN_TYPE_ID" property="vpnTypeName" />
+            <columnOverride column="DEPARTMENT_ID" property="department"/>
+            <columnOverride column="OLD_DEPARTMENT_ID" property="oldDepartment"/>
+            <columnOverride column="OLD_VPN_TYPE_ID" property="oldVpnTypeName" />
+        </table>
+        <table tableName="common_rd_organization" domainObjectName="organization"></table>
+        <table tableName="enumeration" domainObjectName="enumeration"></table>
+
+    </context>
+</generatorConfiguration>
