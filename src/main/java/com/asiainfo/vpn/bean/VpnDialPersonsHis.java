@@ -61,7 +61,7 @@ public class VpnDialPersonsHis {
 
     private Date createdTxStamp;
 
-    private Date effectiveDate;
+    private String effectiveDate;
 
     public String getHistoryId() {
         return historyId;
@@ -295,11 +295,11 @@ public class VpnDialPersonsHis {
         this.createdTxStamp = createdTxStamp;
     }
 
-    public Date getEffectiveDate() {
+    public String getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(Date effectiveDate) {
+    public void setEffectiveDate(String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 }

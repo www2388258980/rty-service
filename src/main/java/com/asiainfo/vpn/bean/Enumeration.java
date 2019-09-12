@@ -2,7 +2,7 @@ package com.asiainfo.vpn.bean;
 
 import java.util.Date;
 
-public class enumeration {
+public class Enumeration {
     private String enumId;
 
     private String enumTypeId;

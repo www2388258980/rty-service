@@ -1,6 +1,6 @@
 package com.asiainfo.vpn.bean;
 
-public class organization {
+public class Organization {
     private String id;
 
     private String name;

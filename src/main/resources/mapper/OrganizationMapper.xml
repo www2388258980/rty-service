@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.asiainfo.vpn.mapper.organizationMapper">
-  <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.organization">
+<mapper namespace="com.asiainfo.vpn.mapper.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Organization">
     <result column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     ID, NAME, PARENTID, STATUS, SORTNUM, REMARK
   </sql>
-  <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.organizationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -84,13 +84,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.organizationExample">
+  <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample">
     delete from common_rd_organization
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.asiainfo.vpn.bean.organization">
+  <insert id="insert" parameterType="com.asiainfo.vpn.bean.Organization">
     insert into common_rd_organization (ID, NAME, PARENTID, 
       STATUS, SORTNUM, REMARK
       )
@@ -98,7 +98,7 @@
       #{status,jdbcType=INTEGER}, #{sortnum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.organization">
+  <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Organization">
     insert into common_rd_organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.asiainfo.vpn.bean.organizationExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample" resultType="java.lang.Long">
     select count(*) from common_rd_organization
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

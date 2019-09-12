@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class enumerationExample {
+public class EnumerationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public enumerationExample() {
+    public EnumerationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

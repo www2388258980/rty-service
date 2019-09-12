@@ -66,8 +66,9 @@
             <columnOverride column="OLD_DEPARTMENT_ID" property="oldDepartment"/>
             <columnOverride column="OLD_VPN_TYPE_ID" property="oldVpnTypeName" />
         </table>
-        <table tableName="common_rd_organization" domainObjectName="organization"></table>
-        <table tableName="enumeration" domainObjectName="enumeration"></table>
+        <table tableName="common_rd_organization" domainObjectName="Organization"></table>
+        <table tableName="enumeration" domainObjectName="Enumeration"></table>
+        <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>
 
     </context>
 </generatorConfiguration>

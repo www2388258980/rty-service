@@ -3,14 +3,14 @@ package com.asiainfo.vpn.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class organizationExample {
+public class OrganizationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public organizationExample() {
+    public OrganizationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
