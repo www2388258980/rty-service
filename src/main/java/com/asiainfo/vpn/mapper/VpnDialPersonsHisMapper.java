@@ -3,6 +3,8 @@ package com.asiainfo.vpn.mapper;
 import com.asiainfo.vpn.bean.VpnDialPersonsHis;
 import com.asiainfo.vpn.bean.VpnDialPersonsHisExample;
 import java.util.List;
+
+
 import org.apache.ibatis.annotations.Param;
 
 public interface VpnDialPersonsHisMapper {

@@ -4,6 +4,7 @@ import com.asiainfo.vpn.bean.VpnDialPersons;
 import com.asiainfo.vpn.bean.VpnDialPersonsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 public interface VpnDialPersonsMapper {
     long countByExample(VpnDialPersonsExample example);

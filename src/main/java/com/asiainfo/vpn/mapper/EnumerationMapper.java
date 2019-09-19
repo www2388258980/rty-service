@@ -5,6 +5,8 @@ import com.asiainfo.vpn.bean.EnumerationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+
+
 public interface EnumerationMapper {
     long countByExample(EnumerationExample example);
 

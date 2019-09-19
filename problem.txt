@@ -1,0 +1,5 @@
+1.mapper类无法注入到被static修饰的对象
+        @Autowired
+        private static SequenceValueItemMapper seqMapper;
+        @Autowired
+        private static OrganizationMapper orgMapper;

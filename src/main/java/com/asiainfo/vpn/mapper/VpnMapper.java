@@ -1,23 +1,27 @@
-package com.asiainfo.vpn.utils;
+package com.asiainfo.vpn.mapper;
+
 
 import com.asiainfo.vpn.bean.Organization;
 import com.asiainfo.vpn.bean.OrganizationExample;
 import com.asiainfo.vpn.bean.SequenceValueItem;
 import com.asiainfo.vpn.bean.SequenceValueItemExample;
-import com.asiainfo.vpn.mapper.OrganizationMapper;
-import com.asiainfo.vpn.mapper.SequenceValueItemMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 定义services层常用到的小方法,比如部门id和部门名字之间的转换...
+ * 自己写的dao类
+ * 封装常用到的小方法,比如部门id和部门名字之间的转换...
  */
-public class VpnDaoUtils {
-
-    private static SequenceValueItemMapper seqMapper;
-    private static OrganizationMapper orgMapper;
+@Repository
+public class VpnMapper {
+    @Autowired
+    private SequenceValueItemMapper seqMapper;
+    @Autowired
+    private OrganizationMapper orgMapper;
 
     /**
      * 根据名字拿到主键
@@ -26,7 +30,7 @@ public class VpnDaoUtils {
      * @return
      * @throws SQLException
      */
-    public static String getID(String name) throws SQLException {
+    public String getID(String name) throws SQLException {
         SequenceValueItemExample example = new SequenceValueItemExample();
         SequenceValueItemExample.Criteria criteria = example.createCriteria();
         criteria.andSeqNameEqualTo(name);
@@ -37,13 +41,14 @@ public class VpnDaoUtils {
         return list.get(0).getSeqId() + "";
     }
 
+
     /**
      * 根据名字更新主键表
      *
      * @param name
      * @throws SQLException
      */
-    public static void updateID(String name) throws SQLException {
+    public void updateID(String name) throws SQLException {
         // 先取出来
         SequenceValueItemExample example = new SequenceValueItemExample();
         SequenceValueItemExample.Criteria criteria = example.createCriteria();
@@ -67,16 +72,16 @@ public class VpnDaoUtils {
      * @param name
      * @return
      */
-    public static String getDepartmentID(String name) throws SQLException {
+    public String getDepartmentID(String name) throws SQLException {
         OrganizationExample example = new OrganizationExample();
         OrganizationExample.Criteria criteria = example.createCriteria();
         criteria.andNameEqualTo(name);
+        System.out.println(orgMapper);
         List<Organization> organizations = orgMapper.selectByExample(example);
         if (organizations.size() == 0) {
             throw new SQLException("部门不存在!!!");
         }
         return organizations.get(0).getId();
     }
-
 
 }

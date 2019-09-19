@@ -23,7 +23,7 @@ public class VpnDialPersonsController {
 
     @PostMapping("insert")
     @ApiOperation(value = "向VPN_DIAL_PERSONS和其对应的历史表插入一条数据", notes = "")
-    @ApiImplicitParams(@ApiImplicitParam(name = "persons", value = "", required = true, paramType = "header"))
+    //@ApiImplicitParams(@ApiImplicitParam(name = "persons", value = "", paramType = "header"))
     public OperationResult<Boolean> insert(VpnDialPersons persons) {
         OperationResult<Boolean> or = null;
         try {

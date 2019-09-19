@@ -2,9 +2,13 @@ package com.asiainfo.vpn.mapper;
 
 import com.asiainfo.vpn.bean.Organization;
 import com.asiainfo.vpn.bean.OrganizationExample;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface OrganizationMapper {
     long countByExample(OrganizationExample example);
 

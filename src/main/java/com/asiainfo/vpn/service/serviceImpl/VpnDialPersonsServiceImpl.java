@@ -3,11 +3,12 @@ package com.asiainfo.vpn.service.serviceImpl;
 import com.asiainfo.vpn.bean.*;
 import com.asiainfo.vpn.mapper.VpnDialPersonsHisMapper;
 import com.asiainfo.vpn.mapper.VpnDialPersonsMapper;
+import com.asiainfo.vpn.mapper.VpnMapper;
 import com.asiainfo.vpn.service.IVpnDialPersonsService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.PinyinUtils;
 import com.asiainfo.vpn.utils.StringUtil;
-import com.asiainfo.vpn.utils.VpnDaoUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -15,9 +16,13 @@ import java.util.Date;
 
 @Service
 public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
-
+    @Autowired
     private VpnDialPersonsMapper vpnMapper;
+    @Autowired
     private VpnDialPersonsHisMapper vpnHisMapper;
+
+    @Autowired
+    private VpnMapper mapper;
 
     @Override
     public OperationResult<Boolean> insertVpnDialPersonsService(VpnDialPersons persons) throws SQLException {
@@ -33,9 +38,9 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
             return or;
         }
         // 转换部门
-        String departmentId = VpnDaoUtils.getDepartmentID(persons.getDepartment());
+        String departmentId = mapper.getDepartmentID(persons.getDepartment());
         // 查出主键
-        String id = VpnDaoUtils.getID("VpnDialPersons");
+        String id = mapper.getID("VpnDialPersons");
         // 插入
         String firstChar = PinyinUtils.getPinYin(persons.getFirstName());
         persons.setFirstChar(firstChar);
@@ -48,7 +53,7 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
         persons.setLastUpdatedTxStamp(date);
         vpnMapper.insertSelective(persons);
         // 更新主键表
-        VpnDaoUtils.updateID("VpnDialPersons");
+        mapper.updateID("VpnDialPersons");
 
         // 同时向历史表插入一条数据
         VpnDialPersonsHis his = new VpnDialPersonsHis();
@@ -109,7 +114,7 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
 
     private void insertVpnDialPersonsHis(VpnDialPersonsHis his) throws SQLException {
         // 获取主键
-        String idHis = VpnDaoUtils.getID("VpnDialPersonsHistory");
+        String idHis = mapper.getID("VpnDialPersonsHistory");
 
         // 插入
         his.setHistoryId(idHis);
@@ -121,6 +126,6 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
         vpnHisMapper.insertSelective(his);
 
         // 更新主键
-        VpnDaoUtils.updateID("VpnDialPersonsHistory");
+        mapper.updateID("VpnDialPersonsHistory");
     }
 }
