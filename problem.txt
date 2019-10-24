@@ -8,3 +8,38 @@
 2.try catch一般在controller层;
 
 3.generatorCOnfig.xml：如果使用高版本的mysql驱动包[如8.0.0以上],mapper接口会少生成几个方法;少的都是根据主键进行'删','改','查';
+
+4.自动生成映射xml文件时使用PageHeleper插件分页;
+    依赖
+            <!-- mybatisPageHelper插件,解决分页问题 -->
+            <!-- <version>3.4.2</version>-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>1.1</version>
+            </dependency>
+
+          <!-- 这里的pagehelper插件需要使用4.0.0以上版本,不然会出现:
+             org.apache.ibatis.reflection.ReflectionException:
+                     There is no getter for property named '__frch_criterion_1' in 'class com.ai.toptea.doc.pojo.DocUpRecordExample'
+             网上找的原话：
+             	一模一样的问题，。解决了，原因是视频里面使用的pagehelper的版本是3.4.2-fix。
+             	这个是不支持带条件的查询的。官方的pagehelper4.0版本以后就支持了。
+             	所以在你的淘淘项目中，把pagehelper的版本升级成4.0的版本。亲测可行
+             	附上以下两个坐标坐标，放到pom.xml文件的dependency标签下引入即可：
+             	com.github.pagehelper-pagehelper-4.0.0
+             	com.github.jsqlparser-jsqlparser-1.1
+          -->
+
+    方法中:
+        PageHelper.startPage(size, pageSize);
+        // 这里是查询的代码
+
+        // xxx代表插叙后的结果,A代表pojo类
+        PageInfo<A> info = new PageInfo<A>(xxx);
+        info.getTotal(); // 该方法可以获取本次查询数据量
