@@ -19,7 +19,7 @@ public class VpnOADialPersonsHis {
 
     private String oldFirstChar;
 
-    private String oldDepartment;
+    private String oldDepartmentId;
 
     private String oldCreatedBy;
 
@@ -29,7 +29,7 @@ public class VpnOADialPersonsHis {
 
     private String oldModifiedBillId;
 
-    private String oldVpnTypeName;
+    private String oldVpnTypeId;
 
     private String firstName;
 
@@ -43,7 +43,7 @@ public class VpnOADialPersonsHis {
 
     private String firstChar;
 
-    private String department;
+    private String departmentId;
 
     private String createdBy;
 
@@ -55,7 +55,7 @@ public class VpnOADialPersonsHis {
 
     private String opType;
 
-    private String vpnTypeName;
+    private String vpnTypeId;
 
     private Date lastUpdatedStamp;
 
@@ -129,12 +129,12 @@ public class VpnOADialPersonsHis {
         this.oldFirstChar = oldFirstChar == null ? null : oldFirstChar.trim();
     }
 
-    public String getOldDepartment() {
-        return oldDepartment;
+    public String getOldDepartmentId() {
+        return oldDepartmentId;
     }
 
-    public void setOldDepartment(String oldDepartment) {
-        this.oldDepartment = oldDepartment == null ? null : oldDepartment.trim();
+    public void setOldDepartmentId(String oldDepartmentId) {
+        this.oldDepartmentId = oldDepartmentId == null ? null : oldDepartmentId.trim();
     }
 
     public String getOldCreatedBy() {
@@ -169,12 +169,12 @@ public class VpnOADialPersonsHis {
         this.oldModifiedBillId = oldModifiedBillId == null ? null : oldModifiedBillId.trim();
     }
 
-    public String getOldVpnTypeName() {
-        return oldVpnTypeName;
+    public String getOldVpnTypeId() {
+        return oldVpnTypeId;
     }
 
-    public void setOldVpnTypeName(String oldVpnTypeName) {
-        this.oldVpnTypeName = oldVpnTypeName == null ? null : oldVpnTypeName.trim();
+    public void setOldVpnTypeId(String oldVpnTypeId) {
+        this.oldVpnTypeId = oldVpnTypeId == null ? null : oldVpnTypeId.trim();
     }
 
     public String getFirstName() {
@@ -225,12 +225,12 @@ public class VpnOADialPersonsHis {
         this.firstChar = firstChar == null ? null : firstChar.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
     public String getCreatedBy() {
@@ -273,12 +273,12 @@ public class VpnOADialPersonsHis {
         this.opType = opType == null ? null : opType.trim();
     }
 
-    public String getVpnTypeName() {
-        return vpnTypeName;
+    public String getVpnTypeId() {
+        return vpnTypeId;
     }
 
-    public void setVpnTypeName(String vpnTypeName) {
-        this.vpnTypeName = vpnTypeName == null ? null : vpnTypeName.trim();
+    public void setVpnTypeId(String vpnTypeId) {
+        this.vpnTypeId = vpnTypeId == null ? null : vpnTypeId.trim();
     }
 
     public Date getLastUpdatedStamp() {

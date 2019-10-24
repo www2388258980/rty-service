@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.asiainfo.vpn.mapper.OrganizationMapper">
     <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Organization">
-        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
         <result column="NAME" jdbcType="VARCHAR" property="name"/>
         <result column="PARENTID" jdbcType="VARCHAR" property="parentid"/>
         <result column="STATUS" jdbcType="INTEGER" property="status"/>
@@ -86,6 +86,16 @@
             order by ${orderByClause}
         </if>
     </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from common_rd_organization
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from common_rd_organization
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample">
         delete from common_rd_organization
         <if test="_parameter != null">
@@ -187,4 +197,34 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.Organization">
+        update common_rd_organization
+        <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                PARENTID = #{parentid,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="sortnum != null">
+                SORTNUM = #{sortnum,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.Organization">
+    update common_rd_organization
+    set NAME = #{name,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      SORTNUM = #{sortnum,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
 </mapper>

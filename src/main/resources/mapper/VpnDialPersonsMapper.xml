@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.asiainfo.vpn.mapper.VpnDialPersonsMapper">
     <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.VpnDialPersons">
-        <result column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId"/>
+        <id column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId"/>
         <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName"/>
         <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber"/>
         <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
         <result column="FIRST_CHAR" jdbcType="VARCHAR" property="firstChar"/>
-        <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="department"/>
+        <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId"/>
         <result column="STATUS" jdbcType="VARCHAR" property="status"/>
         <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
         <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy"/>
@@ -99,6 +99,16 @@
             order by ${orderByClause}
         </if>
     </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from vpn_dial_persons
+        where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vpn_dial_persons
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsExample">
         delete from vpn_dial_persons
         <if test="_parameter != null">
@@ -113,7 +123,7 @@
       EFFECTIVE_DATE, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
       CREATED_STAMP, CREATED_TX_STAMP)
     values (#{dialPersonId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{telecomNumber,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, 
       #{billId,jdbcType=VARCHAR}, #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
       #{effectiveDate,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, 
@@ -137,7 +147,7 @@
             <if test="firstChar != null">
                 FIRST_CHAR,
             </if>
-            <if test="department != null">
+            <if test="departmentId != null">
                 DEPARTMENT_ID,
             </if>
             <if test="status != null">
@@ -190,8 +200,8 @@
             <if test="firstChar != null">
                 #{firstChar,jdbcType=VARCHAR},
             </if>
-            <if test="department != null">
-                #{department,jdbcType=VARCHAR},
+            <if test="departmentId != null">
+                #{departmentId,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
                 #{status,jdbcType=VARCHAR},
@@ -252,8 +262,8 @@
             <if test="record.firstChar != null">
                 FIRST_CHAR = #{record.firstChar,jdbcType=VARCHAR},
             </if>
-            <if test="record.department != null">
-                DEPARTMENT_ID = #{record.department,jdbcType=VARCHAR},
+            <if test="record.departmentId != null">
+                DEPARTMENT_ID = #{record.departmentId,jdbcType=VARCHAR},
             </if>
             <if test="record.status != null">
                 STATUS = #{record.status,jdbcType=VARCHAR},
@@ -300,7 +310,7 @@
         TELECOM_NUMBER = #{record.telecomNumber,jdbcType=VARCHAR},
         DESCRIPTION = #{record.description,jdbcType=VARCHAR},
         FIRST_CHAR = #{record.firstChar,jdbcType=VARCHAR},
-        DEPARTMENT_ID = #{record.department,jdbcType=VARCHAR},
+        DEPARTMENT_ID = #{record.departmentId,jdbcType=VARCHAR},
         STATUS = #{record.status,jdbcType=VARCHAR},
         CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
         MODIFIED_BY = #{record.modifiedBy,jdbcType=VARCHAR},
@@ -316,4 +326,78 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.VpnDialPersons">
+        update vpn_dial_persons
+        <set>
+            <if test="firstName != null">
+                FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+            </if>
+            <if test="telecomNumber != null">
+                TELECOM_NUMBER = #{telecomNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="firstChar != null">
+                FIRST_CHAR = #{firstChar,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentId != null">
+                DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="modifiedBy != null">
+                MODIFIED_BY = #{modifiedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="billId != null">
+                BILL_ID = #{billId,jdbcType=VARCHAR},
+            </if>
+            <if test="modifiedBillId != null">
+                MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
+            </if>
+            <if test="opType != null">
+                OP_TYPE = #{opType,jdbcType=VARCHAR},
+            </if>
+            <if test="effectiveDate != null">
+                EFFECTIVE_DATE = #{effectiveDate,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedTxStamp != null">
+                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdStamp != null">
+                CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdTxStamp != null">
+                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.VpnDialPersons">
+    update vpn_dial_persons
+    set FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+      TELECOM_NUMBER = #{telecomNumber,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      FIRST_CHAR = #{firstChar,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      MODIFIED_BY = #{modifiedBy,jdbcType=VARCHAR},
+      BILL_ID = #{billId,jdbcType=VARCHAR},
+      MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=VARCHAR},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=VARCHAR},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP}
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </update>
 </mapper>

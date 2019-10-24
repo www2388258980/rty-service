@@ -2,9 +2,7 @@ package com.asiainfo.vpn.bean;
 
 import java.util.Date;
 
-public class VpnDialPersonsHis {
-    private String historyId;
-
+public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
     private String dialPersonId;
 
     private String oldFirstName;
@@ -19,7 +17,7 @@ public class VpnDialPersonsHis {
 
     private String oldFirstChar;
 
-    private String oldDepartment;
+    private String oldDepartmentId;
 
     private String oldCreatedBy;
 
@@ -41,7 +39,7 @@ public class VpnDialPersonsHis {
 
     private String firstChar;
 
-    private String department;
+    private String departmentId;
 
     private String createdBy;
 
@@ -53,8 +51,6 @@ public class VpnDialPersonsHis {
 
     private String opType;
 
-    private Date lastUpdatedStamp;
-
     private Date lastUpdatedTxStamp;
 
     private Date createdStamp;
@@ -62,14 +58,6 @@ public class VpnDialPersonsHis {
     private Date createdTxStamp;
 
     private String effectiveDate;
-
-    public String getHistoryId() {
-        return historyId;
-    }
-
-    public void setHistoryId(String historyId) {
-        this.historyId = historyId == null ? null : historyId.trim();
-    }
 
     public String getDialPersonId() {
         return dialPersonId;
@@ -127,12 +115,12 @@ public class VpnDialPersonsHis {
         this.oldFirstChar = oldFirstChar == null ? null : oldFirstChar.trim();
     }
 
-    public String getOldDepartment() {
-        return oldDepartment;
+    public String getOldDepartmentId() {
+        return oldDepartmentId;
     }
 
-    public void setOldDepartment(String oldDepartment) {
-        this.oldDepartment = oldDepartment == null ? null : oldDepartment.trim();
+    public void setOldDepartmentId(String oldDepartmentId) {
+        this.oldDepartmentId = oldDepartmentId == null ? null : oldDepartmentId.trim();
     }
 
     public String getOldCreatedBy() {
@@ -215,12 +203,12 @@ public class VpnDialPersonsHis {
         this.firstChar = firstChar == null ? null : firstChar.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
     public String getCreatedBy() {
@@ -263,14 +251,6 @@ public class VpnDialPersonsHis {
         this.opType = opType == null ? null : opType.trim();
     }
 
-    public Date getLastUpdatedStamp() {
-        return lastUpdatedStamp;
-    }
-
-    public void setLastUpdatedStamp(Date lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
     public Date getLastUpdatedTxStamp() {
         return lastUpdatedTxStamp;
     }
@@ -300,6 +280,6 @@ public class VpnDialPersonsHis {
     }
 
     public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate;
+        this.effectiveDate = effectiveDate == null ? null : effectiveDate.trim();
     }
 }

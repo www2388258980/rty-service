@@ -10,13 +10,21 @@ public interface VpnDialRecordMapper {
 
     int deleteByExample(VpnDialRecordExample example);
 
+    int deleteByPrimaryKey(String vpnDialRecordId);
+
     int insert(VpnDialRecord record);
 
     int insertSelective(VpnDialRecord record);
 
     List<VpnDialRecord> selectByExample(VpnDialRecordExample example);
 
+    VpnDialRecord selectByPrimaryKey(String vpnDialRecordId);
+
     int updateByExampleSelective(@Param("record") VpnDialRecord record, @Param("example") VpnDialRecordExample example);
 
     int updateByExample(@Param("record") VpnDialRecord record, @Param("example") VpnDialRecordExample example);
+
+    int updateByPrimaryKeySelective(VpnDialRecord record);
+
+    int updateByPrimaryKey(VpnDialRecord record);
 }

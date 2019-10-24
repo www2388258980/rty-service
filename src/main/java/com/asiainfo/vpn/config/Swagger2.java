@@ -28,7 +28,7 @@ public class Swagger2 {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("swapgger")
+                .title("vpn模块后台接口")
                 .description("上海亚信，http://www.asiainfo.com")
                 .termsOfServiceUrl("http://www.asiainfo.com")
                 .version("1.0")

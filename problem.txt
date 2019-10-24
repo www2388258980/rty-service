@@ -3,3 +3,8 @@
         private static SequenceValueItemMapper seqMapper;
         @Autowired
         private static OrganizationMapper orgMapper;
+
+
+2.try catch一般在controller层;
+
+3.generatorCOnfig.xml：如果使用高版本的mysql驱动包[如8.0.0以上],mapper接口会少生成几个方法;少的都是根据主键进行'删','改','查';

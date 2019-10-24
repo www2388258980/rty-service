@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <!-- mybatis-generator的核心配置文件 -->
 <generatorConfiguration>
-    <classPathEntry location="D:\android\repository\mysql\mysql-connector-java\8.0.15\mysql-connector-java-8.0.15.jar"/>
+    <classPathEntry location="D:\android\repository\mysql\mysql-connector-java\5.1.36\mysql-connector-java-5.1.36.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!--
@@ -16,6 +16,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
+        <!---->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/vpn?serverTimezone=GMT%2B8"
                         userId="vpn"
@@ -46,26 +47,11 @@
 
 
         <!-- 映射配置 -->
-        <table tableName="vpn_dial_persons" domainObjectName="VpnDialPersons">
-            <columnOverride column="DEPARTMENT_ID" property="department"/>
-        </table>
-        <table tableName="VPN_DIAL_PERSONS_HISTORY" domainObjectName="VpnDialPersonsHis">
-            <columnOverride column="OLD_DEPARTMENT_ID" property="oldDepartment"/>
-            <columnOverride column="DEPARTMENT_ID" property="department"/>
-        </table>
-        <table tableName="VPN_DIAL_RECORD" domainObjectName="VpnDialRecord">
-            <columnOverride column="DEPARTMENT_ID" property="department"/>
-        </table>
-        <table tableName="VPN_OA_DIAL_PERSONS" domainObjectName="VpnOADialPersons">
-            <columnOverride column="VPN_TYPE_ID" property="vpnTypeName" />
-            <columnOverride column="DEPARTMENT_ID" property="department"/>
-        </table>
-        <table tableName="VPN_OA_DIAL_PERSONS_HISTORY" domainObjectName="VpnOADialPersonsHis">
-            <columnOverride column="VPN_TYPE_ID" property="vpnTypeName" />
-            <columnOverride column="DEPARTMENT_ID" property="department"/>
-            <columnOverride column="OLD_DEPARTMENT_ID" property="oldDepartment"/>
-            <columnOverride column="OLD_VPN_TYPE_ID" property="oldVpnTypeName" />
-        </table>
+        <table tableName="vpn_dial_persons" domainObjectName="VpnDialPersons"></table>
+        <table tableName="VPN_DIAL_PERSONS_HISTORY" domainObjectName="VpnDialPersonsHis"></table>
+        <table tableName="VPN_DIAL_RECORD" domainObjectName="VpnDialRecord"></table>
+        <table tableName="VPN_OA_DIAL_PERSONS" domainObjectName="VpnOADialPersons"></table>
+        <table tableName="VPN_OA_DIAL_PERSONS_HISTORY" domainObjectName="VpnOADialPersonsHis"></table>
         <table tableName="common_rd_organization" domainObjectName="Organization"></table>
         <table tableName="enumeration" domainObjectName="Enumeration"></table>
         <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>

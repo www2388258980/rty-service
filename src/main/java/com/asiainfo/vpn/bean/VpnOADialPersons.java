@@ -17,7 +17,7 @@ public class VpnOADialPersons {
 
     private String firstChar;
 
-    private String department;
+    private String departmentId;
 
     private String createdBy;
 
@@ -27,7 +27,7 @@ public class VpnOADialPersons {
 
     private String modifiedBillId;
 
-    private String vpnTypeName;
+    private String vpnTypeId;
 
     private String opType;
 
@@ -95,12 +95,12 @@ public class VpnOADialPersons {
         this.firstChar = firstChar == null ? null : firstChar.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
     public String getCreatedBy() {
@@ -135,12 +135,12 @@ public class VpnOADialPersons {
         this.modifiedBillId = modifiedBillId == null ? null : modifiedBillId.trim();
     }
 
-    public String getVpnTypeName() {
-        return vpnTypeName;
+    public String getVpnTypeId() {
+        return vpnTypeId;
     }
 
-    public void setVpnTypeName(String vpnTypeName) {
-        this.vpnTypeName = vpnTypeName == null ? null : vpnTypeName.trim();
+    public void setVpnTypeId(String vpnTypeId) {
+        this.vpnTypeId = vpnTypeId == null ? null : vpnTypeId.trim();
     }
 
     public String getOpType() {

@@ -27,7 +27,7 @@ public class VpnDialRecord {
 
     private String telecomNumber;
 
-    private String department;
+    private String departmentId;
 
     public String getVpnDialRecordId() {
         return vpnDialRecordId;
@@ -125,11 +125,11 @@ public class VpnDialRecord {
         this.telecomNumber = telecomNumber == null ? null : telecomNumber.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 }

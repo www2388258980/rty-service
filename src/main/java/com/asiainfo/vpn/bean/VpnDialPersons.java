@@ -13,7 +13,7 @@ public class VpnDialPersons {
 
     private String firstChar;
 
-    private String department;
+    private String departmentId;
 
     private String status;
 
@@ -77,12 +77,12 @@ public class VpnDialPersons {
         this.firstChar = firstChar == null ? null : firstChar.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 
     public String getStatus() {

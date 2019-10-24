@@ -4,12 +4,13 @@ import com.asiainfo.vpn.bean.VpnDialPersons;
 import com.asiainfo.vpn.bean.VpnDialPersonsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 public interface VpnDialPersonsMapper {
     long countByExample(VpnDialPersonsExample example);
 
     int deleteByExample(VpnDialPersonsExample example);
+
+    int deleteByPrimaryKey(String dialPersonId);
 
     int insert(VpnDialPersons record);
 
@@ -17,7 +18,13 @@ public interface VpnDialPersonsMapper {
 
     List<VpnDialPersons> selectByExample(VpnDialPersonsExample example);
 
+    VpnDialPersons selectByPrimaryKey(String dialPersonId);
+
     int updateByExampleSelective(@Param("record") VpnDialPersons record, @Param("example") VpnDialPersonsExample example);
 
     int updateByExample(@Param("record") VpnDialPersons record, @Param("example") VpnDialPersonsExample example);
+
+    int updateByPrimaryKeySelective(VpnDialPersons record);
+
+    int updateByPrimaryKey(VpnDialPersons record);
 }

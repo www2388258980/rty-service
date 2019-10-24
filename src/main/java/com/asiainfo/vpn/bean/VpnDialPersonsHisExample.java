@@ -175,6 +175,66 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
+        public Criteria andLastUpdatedStampIsNull() {
+            addCriterion("LAST_UPDATED_STAMP is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampIsNotNull() {
+            addCriterion("LAST_UPDATED_STAMP is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP =", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <>", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampGreaterThan(Date value) {
+            addCriterion("LAST_UPDATED_STAMP >", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampGreaterThanOrEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP >=", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampLessThan(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampLessThanOrEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <=", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampIn(List<Date> values) {
+            addCriterion("LAST_UPDATED_STAMP in", values, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotIn(List<Date> values) {
+            addCriterion("LAST_UPDATED_STAMP not in", values, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampBetween(Date value1, Date value2) {
+            addCriterion("LAST_UPDATED_STAMP between", value1, value2, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotBetween(Date value1, Date value2) {
+            addCriterion("LAST_UPDATED_STAMP not between", value1, value2, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
         public Criteria andDialPersonIdIsNull() {
             addCriterion("DIAL_PERSON_ID is null");
             return (Criteria) this;
@@ -665,73 +725,73 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentIsNull() {
+        public Criteria andOldDepartmentIdIsNull() {
             addCriterion("OLD_DEPARTMENT_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentIsNotNull() {
+        public Criteria andOldDepartmentIdIsNotNull() {
             addCriterion("OLD_DEPARTMENT_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentEqualTo(String value) {
-            addCriterion("OLD_DEPARTMENT_ID =", value, "oldDepartment");
+        public Criteria andOldDepartmentIdEqualTo(String value) {
+            addCriterion("OLD_DEPARTMENT_ID =", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentNotEqualTo(String value) {
-            addCriterion("OLD_DEPARTMENT_ID <>", value, "oldDepartment");
+        public Criteria andOldDepartmentIdNotEqualTo(String value) {
+            addCriterion("OLD_DEPARTMENT_ID <>", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentGreaterThan(String value) {
-            addCriterion("OLD_DEPARTMENT_ID >", value, "oldDepartment");
+        public Criteria andOldDepartmentIdGreaterThan(String value) {
+            addCriterion("OLD_DEPARTMENT_ID >", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("OLD_DEPARTMENT_ID >=", value, "oldDepartment");
+        public Criteria andOldDepartmentIdGreaterThanOrEqualTo(String value) {
+            addCriterion("OLD_DEPARTMENT_ID >=", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentLessThan(String value) {
-            addCriterion("OLD_DEPARTMENT_ID <", value, "oldDepartment");
+        public Criteria andOldDepartmentIdLessThan(String value) {
+            addCriterion("OLD_DEPARTMENT_ID <", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("OLD_DEPARTMENT_ID <=", value, "oldDepartment");
+        public Criteria andOldDepartmentIdLessThanOrEqualTo(String value) {
+            addCriterion("OLD_DEPARTMENT_ID <=", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentLike(String value) {
-            addCriterion("OLD_DEPARTMENT_ID like", value, "oldDepartment");
+        public Criteria andOldDepartmentIdLike(String value) {
+            addCriterion("OLD_DEPARTMENT_ID like", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentNotLike(String value) {
-            addCriterion("OLD_DEPARTMENT_ID not like", value, "oldDepartment");
+        public Criteria andOldDepartmentIdNotLike(String value) {
+            addCriterion("OLD_DEPARTMENT_ID not like", value, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentIn(List<String> values) {
-            addCriterion("OLD_DEPARTMENT_ID in", values, "oldDepartment");
+        public Criteria andOldDepartmentIdIn(List<String> values) {
+            addCriterion("OLD_DEPARTMENT_ID in", values, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentNotIn(List<String> values) {
-            addCriterion("OLD_DEPARTMENT_ID not in", values, "oldDepartment");
+        public Criteria andOldDepartmentIdNotIn(List<String> values) {
+            addCriterion("OLD_DEPARTMENT_ID not in", values, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentBetween(String value1, String value2) {
-            addCriterion("OLD_DEPARTMENT_ID between", value1, value2, "oldDepartment");
+        public Criteria andOldDepartmentIdBetween(String value1, String value2) {
+            addCriterion("OLD_DEPARTMENT_ID between", value1, value2, "oldDepartmentId");
             return (Criteria) this;
         }
 
-        public Criteria andOldDepartmentNotBetween(String value1, String value2) {
-            addCriterion("OLD_DEPARTMENT_ID not between", value1, value2, "oldDepartment");
+        public Criteria andOldDepartmentIdNotBetween(String value1, String value2) {
+            addCriterion("OLD_DEPARTMENT_ID not between", value1, value2, "oldDepartmentId");
             return (Criteria) this;
         }
 
@@ -1435,73 +1495,73 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNull() {
+        public Criteria andDepartmentIdIsNull() {
             addCriterion("DEPARTMENT_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNotNull() {
+        public Criteria andDepartmentIdIsNotNull() {
             addCriterion("DEPARTMENT_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID =", value, "department");
+        public Criteria andDepartmentIdEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID =", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID <>", value, "department");
+        public Criteria andDepartmentIdNotEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID <>", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThan(String value) {
-            addCriterion("DEPARTMENT_ID >", value, "department");
+        public Criteria andDepartmentIdGreaterThan(String value) {
+            addCriterion("DEPARTMENT_ID >", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID >=", value, "department");
+        public Criteria andDepartmentIdGreaterThanOrEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID >=", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThan(String value) {
-            addCriterion("DEPARTMENT_ID <", value, "department");
+        public Criteria andDepartmentIdLessThan(String value) {
+            addCriterion("DEPARTMENT_ID <", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID <=", value, "department");
+        public Criteria andDepartmentIdLessThanOrEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID <=", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLike(String value) {
-            addCriterion("DEPARTMENT_ID like", value, "department");
+        public Criteria andDepartmentIdLike(String value) {
+            addCriterion("DEPARTMENT_ID like", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotLike(String value) {
-            addCriterion("DEPARTMENT_ID not like", value, "department");
+        public Criteria andDepartmentIdNotLike(String value) {
+            addCriterion("DEPARTMENT_ID not like", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIn(List<String> values) {
-            addCriterion("DEPARTMENT_ID in", values, "department");
+        public Criteria andDepartmentIdIn(List<String> values) {
+            addCriterion("DEPARTMENT_ID in", values, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotIn(List<String> values) {
-            addCriterion("DEPARTMENT_ID not in", values, "department");
+        public Criteria andDepartmentIdNotIn(List<String> values) {
+            addCriterion("DEPARTMENT_ID not in", values, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentBetween(String value1, String value2) {
-            addCriterion("DEPARTMENT_ID between", value1, value2, "department");
+        public Criteria andDepartmentIdBetween(String value1, String value2) {
+            addCriterion("DEPARTMENT_ID between", value1, value2, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotBetween(String value1, String value2) {
-            addCriterion("DEPARTMENT_ID not between", value1, value2, "department");
+        public Criteria andDepartmentIdNotBetween(String value1, String value2) {
+            addCriterion("DEPARTMENT_ID not between", value1, value2, "departmentId");
             return (Criteria) this;
         }
 
@@ -1855,66 +1915,6 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedStampIsNull() {
-            addCriterion("LAST_UPDATED_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIsNotNull() {
-            addCriterion("LAST_UPDATED_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP =", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <>", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP not in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP not between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
         public Criteria andLastUpdatedTxStampIsNull() {
             addCriterion("LAST_UPDATED_TX_STAMP is null");
             return (Criteria) this;
@@ -2105,52 +2105,62 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateEqualTo(Date value) {
+        public Criteria andEffectiveDateEqualTo(String value) {
             addCriterion("EFFECTIVE_DATE =", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotEqualTo(Date value) {
+        public Criteria andEffectiveDateNotEqualTo(String value) {
             addCriterion("EFFECTIVE_DATE <>", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThan(Date value) {
+        public Criteria andEffectiveDateGreaterThan(String value) {
             addCriterion("EFFECTIVE_DATE >", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThanOrEqualTo(Date value) {
+        public Criteria andEffectiveDateGreaterThanOrEqualTo(String value) {
             addCriterion("EFFECTIVE_DATE >=", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThan(Date value) {
+        public Criteria andEffectiveDateLessThan(String value) {
             addCriterion("EFFECTIVE_DATE <", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThanOrEqualTo(Date value) {
+        public Criteria andEffectiveDateLessThanOrEqualTo(String value) {
             addCriterion("EFFECTIVE_DATE <=", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateIn(List<Date> values) {
+        public Criteria andEffectiveDateLike(String value) {
+            addCriterion("EFFECTIVE_DATE like", value, "effectiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEffectiveDateNotLike(String value) {
+            addCriterion("EFFECTIVE_DATE not like", value, "effectiveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEffectiveDateIn(List<String> values) {
             addCriterion("EFFECTIVE_DATE in", values, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotIn(List<Date> values) {
+        public Criteria andEffectiveDateNotIn(List<String> values) {
             addCriterion("EFFECTIVE_DATE not in", values, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateBetween(Date value1, Date value2) {
+        public Criteria andEffectiveDateBetween(String value1, String value2) {
             addCriterion("EFFECTIVE_DATE between", value1, value2, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotBetween(Date value1, Date value2) {
+        public Criteria andEffectiveDateNotBetween(String value1, String value2) {
             addCriterion("EFFECTIVE_DATE not between", value1, value2, "effectiveDate");
             return (Criteria) this;
         }

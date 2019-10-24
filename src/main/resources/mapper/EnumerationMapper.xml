@@ -1,102 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.asiainfo.vpn.mapper.EnumerationMapper">
-  <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Enumeration">
-    <result column="ENUM_ID" jdbcType="VARCHAR" property="enumId" />
-    <result column="ENUM_TYPE_ID" jdbcType="VARCHAR" property="enumTypeId" />
-    <result column="ENUM_CODE" jdbcType="VARCHAR" property="enumCode" />
-    <result column="SEQUENCE_ID" jdbcType="VARCHAR" property="sequenceId" />
-    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
-    <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp" />
-    <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp" />
-    <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp" />
-    <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp" />
-    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
-    <result column="ENUM_CODE_NUMBER" jdbcType="INTEGER" property="enumCodeNumber" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Enumeration">
+        <id column="ENUM_ID" jdbcType="VARCHAR" property="enumId"/>
+        <result column="ENUM_TYPE_ID" jdbcType="VARCHAR" property="enumTypeId"/>
+        <result column="ENUM_CODE" jdbcType="VARCHAR" property="enumCode"/>
+        <result column="SEQUENCE_ID" jdbcType="VARCHAR" property="sequenceId"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
+        <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
+        <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
+        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
+        <result column="COMMENTS" jdbcType="VARCHAR" property="comments"/>
+        <result column="ENUM_CODE_NUMBER" jdbcType="INTEGER" property="enumCodeNumber"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
     CREATED_STAMP, CREATED_TX_STAMP, COMMENTS, ENUM_CODE_NUMBER
   </sql>
-  <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from enumeration
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample">
+    <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from enumeration
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from enumeration
+        where ENUM_ID = #{enumId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from enumeration
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
+    where ENUM_ID = #{enumId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.asiainfo.vpn.bean.Enumeration">
+    <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample">
+        delete from enumeration
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.asiainfo.vpn.bean.Enumeration">
     insert into enumeration (ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, 
       SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_STAMP, 
       LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, 
@@ -106,141 +118,191 @@
       #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}, 
       #{comments,jdbcType=VARCHAR}, #{enumCodeNumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
-    insert into enumeration
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="enumId != null">
-        ENUM_ID,
-      </if>
-      <if test="enumTypeId != null">
-        ENUM_TYPE_ID,
-      </if>
-      <if test="enumCode != null">
-        ENUM_CODE,
-      </if>
-      <if test="sequenceId != null">
-        SEQUENCE_ID,
-      </if>
-      <if test="description != null">
-        DESCRIPTION,
-      </if>
-      <if test="lastUpdatedStamp != null">
-        LAST_UPDATED_STAMP,
-      </if>
-      <if test="lastUpdatedTxStamp != null">
-        LAST_UPDATED_TX_STAMP,
-      </if>
-      <if test="createdStamp != null">
-        CREATED_STAMP,
-      </if>
-      <if test="createdTxStamp != null">
-        CREATED_TX_STAMP,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-      <if test="enumCodeNumber != null">
-        ENUM_CODE_NUMBER,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="enumId != null">
-        #{enumId,jdbcType=VARCHAR},
-      </if>
-      <if test="enumTypeId != null">
-        #{enumTypeId,jdbcType=VARCHAR},
-      </if>
-      <if test="enumCode != null">
-        #{enumCode,jdbcType=VARCHAR},
-      </if>
-      <if test="sequenceId != null">
-        #{sequenceId,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="lastUpdatedStamp != null">
-        #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdatedTxStamp != null">
-        #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdStamp != null">
-        #{createdStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdTxStamp != null">
-        #{createdTxStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=VARCHAR},
-      </if>
-      <if test="enumCodeNumber != null">
-        #{enumCodeNumber,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultType="java.lang.Long">
-    select count(*) from enumeration
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update enumeration
-    <set>
-      <if test="record.enumId != null">
-        ENUM_ID = #{record.enumId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.enumTypeId != null">
+    <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
+        insert into enumeration
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enumId != null">
+                ENUM_ID,
+            </if>
+            <if test="enumTypeId != null">
+                ENUM_TYPE_ID,
+            </if>
+            <if test="enumCode != null">
+                ENUM_CODE,
+            </if>
+            <if test="sequenceId != null">
+                SEQUENCE_ID,
+            </if>
+            <if test="description != null">
+                DESCRIPTION,
+            </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP,
+            </if>
+            <if test="lastUpdatedTxStamp != null">
+                LAST_UPDATED_TX_STAMP,
+            </if>
+            <if test="createdStamp != null">
+                CREATED_STAMP,
+            </if>
+            <if test="createdTxStamp != null">
+                CREATED_TX_STAMP,
+            </if>
+            <if test="comments != null">
+                COMMENTS,
+            </if>
+            <if test="enumCodeNumber != null">
+                ENUM_CODE_NUMBER,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="enumId != null">
+                #{enumId,jdbcType=VARCHAR},
+            </if>
+            <if test="enumTypeId != null">
+                #{enumTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="enumCode != null">
+                #{enumCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sequenceId != null">
+                #{sequenceId,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdatedStamp != null">
+                #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedTxStamp != null">
+                #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdStamp != null">
+                #{createdStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdTxStamp != null">
+                #{createdTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null">
+                #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="enumCodeNumber != null">
+                #{enumCodeNumber,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultType="java.lang.Long">
+        select count(*) from enumeration
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update enumeration
+        <set>
+            <if test="record.enumId != null">
+                ENUM_ID = #{record.enumId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.enumTypeId != null">
+                ENUM_TYPE_ID = #{record.enumTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.enumCode != null">
+                ENUM_CODE = #{record.enumCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sequenceId != null">
+                SEQUENCE_ID = #{record.sequenceId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.description != null">
+                DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastUpdatedTxStamp != null">
+                LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createdStamp != null">
+                CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createdTxStamp != null">
+                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.comments != null">
+                COMMENTS = #{record.comments,jdbcType=VARCHAR},
+            </if>
+            <if test="record.enumCodeNumber != null">
+                ENUM_CODE_NUMBER = #{record.enumCodeNumber,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update enumeration
+        set ENUM_ID = #{record.enumId,jdbcType=VARCHAR},
         ENUM_TYPE_ID = #{record.enumTypeId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.enumCode != null">
         ENUM_CODE = #{record.enumCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sequenceId != null">
         SEQUENCE_ID = #{record.sequenceId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null">
         DESCRIPTION = #{record.description,jdbcType=VARCHAR},
-      </if>
-      <if test="record.lastUpdatedStamp != null">
         LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.lastUpdatedTxStamp != null">
         LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.createdStamp != null">
         CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.createdTxStamp != null">
         CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.comments != null">
         COMMENTS = #{record.comments,jdbcType=VARCHAR},
-      </if>
-      <if test="record.enumCodeNumber != null">
-        ENUM_CODE_NUMBER = #{record.enumCodeNumber,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
+        ENUM_CODE_NUMBER = #{record.enumCodeNumber,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
+        update enumeration
+        <set>
+            <if test="enumTypeId != null">
+                ENUM_TYPE_ID = #{enumTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="enumCode != null">
+                ENUM_CODE = #{enumCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sequenceId != null">
+                SEQUENCE_ID = #{sequenceId,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedTxStamp != null">
+                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdStamp != null">
+                CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdTxStamp != null">
+                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null">
+                COMMENTS = #{comments,jdbcType=VARCHAR},
+            </if>
+            <if test="enumCodeNumber != null">
+                ENUM_CODE_NUMBER = #{enumCodeNumber,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ENUM_ID = #{enumId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.Enumeration">
     update enumeration
-    set ENUM_ID = #{record.enumId,jdbcType=VARCHAR},
-      ENUM_TYPE_ID = #{record.enumTypeId,jdbcType=VARCHAR},
-      ENUM_CODE = #{record.enumCode,jdbcType=VARCHAR},
-      SEQUENCE_ID = #{record.sequenceId,jdbcType=VARCHAR},
-      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
-      LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-      LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
-      COMMENTS = #{record.comments,jdbcType=VARCHAR},
-      ENUM_CODE_NUMBER = #{record.enumCodeNumber,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    set ENUM_TYPE_ID = #{enumTypeId,jdbcType=VARCHAR},
+      ENUM_CODE = #{enumCode,jdbcType=VARCHAR},
+      SEQUENCE_ID = #{sequenceId,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      ENUM_CODE_NUMBER = #{enumCodeNumber,jdbcType=INTEGER}
+    where ENUM_ID = #{enumId,jdbcType=VARCHAR}
   </update>
 </mapper>

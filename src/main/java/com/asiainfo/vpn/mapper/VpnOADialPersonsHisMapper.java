@@ -10,13 +10,21 @@ public interface VpnOADialPersonsHisMapper {
 
     int deleteByExample(VpnOADialPersonsHisExample example);
 
+    int deleteByPrimaryKey(String historyId);
+
     int insert(VpnOADialPersonsHis record);
 
     int insertSelective(VpnOADialPersonsHis record);
 
     List<VpnOADialPersonsHis> selectByExample(VpnOADialPersonsHisExample example);
 
+    VpnOADialPersonsHis selectByPrimaryKey(String historyId);
+
     int updateByExampleSelective(@Param("record") VpnOADialPersonsHis record, @Param("example") VpnOADialPersonsHisExample example);
 
     int updateByExample(@Param("record") VpnOADialPersonsHis record, @Param("example") VpnOADialPersonsHisExample example);
+
+    int updateByPrimaryKeySelective(VpnOADialPersonsHis record);
+
+    int updateByPrimaryKey(VpnOADialPersonsHis record);
 }

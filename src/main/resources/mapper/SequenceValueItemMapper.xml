@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.asiainfo.vpn.mapper.SequenceValueItemMapper">
     <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.SequenceValueItem">
-        <result column="SEQ_NAME" jdbcType="VARCHAR" property="seqName"/>
+        <id column="SEQ_NAME" jdbcType="VARCHAR" property="seqName"/>
         <result column="SEQ_ID" jdbcType="INTEGER" property="seqId"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
         <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
@@ -87,6 +87,16 @@
             order by ${orderByClause}
         </if>
     </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sequence_value_item
+        where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sequence_value_item
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </delete>
     <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.SequenceValueItemExample">
         delete from sequence_value_item
         <if test="_parameter != null">
@@ -189,4 +199,34 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+        update sequence_value_item
+        <set>
+            <if test="seqId != null">
+                SEQ_ID = #{seqId,jdbcType=INTEGER},
+            </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdatedTxStamp != null">
+                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdStamp != null">
+                CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdTxStamp != null">
+                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+    update sequence_value_item
+    set SEQ_ID = #{seqId,jdbcType=INTEGER},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP}
+    where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
+  </update>
 </mapper>

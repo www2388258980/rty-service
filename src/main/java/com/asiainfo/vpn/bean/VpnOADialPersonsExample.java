@@ -595,73 +595,73 @@ public class VpnOADialPersonsExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNull() {
+        public Criteria andDepartmentIdIsNull() {
             addCriterion("DEPARTMENT_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNotNull() {
+        public Criteria andDepartmentIdIsNotNull() {
             addCriterion("DEPARTMENT_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID =", value, "department");
+        public Criteria andDepartmentIdEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID =", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID <>", value, "department");
+        public Criteria andDepartmentIdNotEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID <>", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThan(String value) {
-            addCriterion("DEPARTMENT_ID >", value, "department");
+        public Criteria andDepartmentIdGreaterThan(String value) {
+            addCriterion("DEPARTMENT_ID >", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID >=", value, "department");
+        public Criteria andDepartmentIdGreaterThanOrEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID >=", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThan(String value) {
-            addCriterion("DEPARTMENT_ID <", value, "department");
+        public Criteria andDepartmentIdLessThan(String value) {
+            addCriterion("DEPARTMENT_ID <", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("DEPARTMENT_ID <=", value, "department");
+        public Criteria andDepartmentIdLessThanOrEqualTo(String value) {
+            addCriterion("DEPARTMENT_ID <=", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLike(String value) {
-            addCriterion("DEPARTMENT_ID like", value, "department");
+        public Criteria andDepartmentIdLike(String value) {
+            addCriterion("DEPARTMENT_ID like", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotLike(String value) {
-            addCriterion("DEPARTMENT_ID not like", value, "department");
+        public Criteria andDepartmentIdNotLike(String value) {
+            addCriterion("DEPARTMENT_ID not like", value, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIn(List<String> values) {
-            addCriterion("DEPARTMENT_ID in", values, "department");
+        public Criteria andDepartmentIdIn(List<String> values) {
+            addCriterion("DEPARTMENT_ID in", values, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotIn(List<String> values) {
-            addCriterion("DEPARTMENT_ID not in", values, "department");
+        public Criteria andDepartmentIdNotIn(List<String> values) {
+            addCriterion("DEPARTMENT_ID not in", values, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentBetween(String value1, String value2) {
-            addCriterion("DEPARTMENT_ID between", value1, value2, "department");
+        public Criteria andDepartmentIdBetween(String value1, String value2) {
+            addCriterion("DEPARTMENT_ID between", value1, value2, "departmentId");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotBetween(String value1, String value2) {
-            addCriterion("DEPARTMENT_ID not between", value1, value2, "department");
+        public Criteria andDepartmentIdNotBetween(String value1, String value2) {
+            addCriterion("DEPARTMENT_ID not between", value1, value2, "departmentId");
             return (Criteria) this;
         }
 
@@ -945,73 +945,73 @@ public class VpnOADialPersonsExample {
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameIsNull() {
+        public Criteria andVpnTypeIdIsNull() {
             addCriterion("VPN_TYPE_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameIsNotNull() {
+        public Criteria andVpnTypeIdIsNotNull() {
             addCriterion("VPN_TYPE_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameEqualTo(String value) {
-            addCriterion("VPN_TYPE_ID =", value, "vpnTypeName");
+        public Criteria andVpnTypeIdEqualTo(String value) {
+            addCriterion("VPN_TYPE_ID =", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameNotEqualTo(String value) {
-            addCriterion("VPN_TYPE_ID <>", value, "vpnTypeName");
+        public Criteria andVpnTypeIdNotEqualTo(String value) {
+            addCriterion("VPN_TYPE_ID <>", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameGreaterThan(String value) {
-            addCriterion("VPN_TYPE_ID >", value, "vpnTypeName");
+        public Criteria andVpnTypeIdGreaterThan(String value) {
+            addCriterion("VPN_TYPE_ID >", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("VPN_TYPE_ID >=", value, "vpnTypeName");
+        public Criteria andVpnTypeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("VPN_TYPE_ID >=", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameLessThan(String value) {
-            addCriterion("VPN_TYPE_ID <", value, "vpnTypeName");
+        public Criteria andVpnTypeIdLessThan(String value) {
+            addCriterion("VPN_TYPE_ID <", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameLessThanOrEqualTo(String value) {
-            addCriterion("VPN_TYPE_ID <=", value, "vpnTypeName");
+        public Criteria andVpnTypeIdLessThanOrEqualTo(String value) {
+            addCriterion("VPN_TYPE_ID <=", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameLike(String value) {
-            addCriterion("VPN_TYPE_ID like", value, "vpnTypeName");
+        public Criteria andVpnTypeIdLike(String value) {
+            addCriterion("VPN_TYPE_ID like", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameNotLike(String value) {
-            addCriterion("VPN_TYPE_ID not like", value, "vpnTypeName");
+        public Criteria andVpnTypeIdNotLike(String value) {
+            addCriterion("VPN_TYPE_ID not like", value, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameIn(List<String> values) {
-            addCriterion("VPN_TYPE_ID in", values, "vpnTypeName");
+        public Criteria andVpnTypeIdIn(List<String> values) {
+            addCriterion("VPN_TYPE_ID in", values, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameNotIn(List<String> values) {
-            addCriterion("VPN_TYPE_ID not in", values, "vpnTypeName");
+        public Criteria andVpnTypeIdNotIn(List<String> values) {
+            addCriterion("VPN_TYPE_ID not in", values, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameBetween(String value1, String value2) {
-            addCriterion("VPN_TYPE_ID between", value1, value2, "vpnTypeName");
+        public Criteria andVpnTypeIdBetween(String value1, String value2) {
+            addCriterion("VPN_TYPE_ID between", value1, value2, "vpnTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andVpnTypeNameNotBetween(String value1, String value2) {
-            addCriterion("VPN_TYPE_ID not between", value1, value2, "vpnTypeName");
+        public Criteria andVpnTypeIdNotBetween(String value1, String value2) {
+            addCriterion("VPN_TYPE_ID not between", value1, value2, "vpnTypeId");
             return (Criteria) this;
         }
 
