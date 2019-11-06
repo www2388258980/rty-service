@@ -875,73 +875,73 @@ public class VpnOADialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdIsNull() {
-            addCriterion("OLDBILL_ID is null");
+        public Criteria andOldBillIdIsNull() {
+            addCriterion("OLD_BILL_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdIsNotNull() {
-            addCriterion("OLDBILL_ID is not null");
+        public Criteria andOldBillIdIsNotNull() {
+            addCriterion("OLD_BILL_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdEqualTo(String value) {
-            addCriterion("OLDBILL_ID =", value, "oldbillId");
+        public Criteria andOldBillIdEqualTo(String value) {
+            addCriterion("OLD_BILL_ID =", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdNotEqualTo(String value) {
-            addCriterion("OLDBILL_ID <>", value, "oldbillId");
+        public Criteria andOldBillIdNotEqualTo(String value) {
+            addCriterion("OLD_BILL_ID <>", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdGreaterThan(String value) {
-            addCriterion("OLDBILL_ID >", value, "oldbillId");
+        public Criteria andOldBillIdGreaterThan(String value) {
+            addCriterion("OLD_BILL_ID >", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdGreaterThanOrEqualTo(String value) {
-            addCriterion("OLDBILL_ID >=", value, "oldbillId");
+        public Criteria andOldBillIdGreaterThanOrEqualTo(String value) {
+            addCriterion("OLD_BILL_ID >=", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdLessThan(String value) {
-            addCriterion("OLDBILL_ID <", value, "oldbillId");
+        public Criteria andOldBillIdLessThan(String value) {
+            addCriterion("OLD_BILL_ID <", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdLessThanOrEqualTo(String value) {
-            addCriterion("OLDBILL_ID <=", value, "oldbillId");
+        public Criteria andOldBillIdLessThanOrEqualTo(String value) {
+            addCriterion("OLD_BILL_ID <=", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdLike(String value) {
-            addCriterion("OLDBILL_ID like", value, "oldbillId");
+        public Criteria andOldBillIdLike(String value) {
+            addCriterion("OLD_BILL_ID like", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdNotLike(String value) {
-            addCriterion("OLDBILL_ID not like", value, "oldbillId");
+        public Criteria andOldBillIdNotLike(String value) {
+            addCriterion("OLD_BILL_ID not like", value, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdIn(List<String> values) {
-            addCriterion("OLDBILL_ID in", values, "oldbillId");
+        public Criteria andOldBillIdIn(List<String> values) {
+            addCriterion("OLD_BILL_ID in", values, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdNotIn(List<String> values) {
-            addCriterion("OLDBILL_ID not in", values, "oldbillId");
+        public Criteria andOldBillIdNotIn(List<String> values) {
+            addCriterion("OLD_BILL_ID not in", values, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdBetween(String value1, String value2) {
-            addCriterion("OLDBILL_ID between", value1, value2, "oldbillId");
+        public Criteria andOldBillIdBetween(String value1, String value2) {
+            addCriterion("OLD_BILL_ID between", value1, value2, "oldBillId");
             return (Criteria) this;
         }
 
-        public Criteria andOldbillIdNotBetween(String value1, String value2) {
-            addCriterion("OLDBILL_ID not between", value1, value2, "oldbillId");
+        public Criteria andOldBillIdNotBetween(String value1, String value2) {
+            addCriterion("OLD_BILL_ID not between", value1, value2, "oldBillId");
             return (Criteria) this;
         }
 
@@ -2055,66 +2055,6 @@ public class VpnOADialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedTxStampIsNull() {
-            addCriterion("LAST_UPDATED_TX_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampIsNotNull() {
-            addCriterion("LAST_UPDATED_TX_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP =", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <>", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampGreaterThan(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP >", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP >=", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampLessThan(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampLessThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <=", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_TX_STAMP in", values, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_TX_STAMP not in", values, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_TX_STAMP between", value1, value2, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_TX_STAMP not between", value1, value2, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
         public Criteria andCreatedStampIsNull() {
             addCriterion("CREATED_STAMP is null");
             return (Criteria) this;
@@ -2172,66 +2112,6 @@ public class VpnOADialPersonsHisExample {
 
         public Criteria andCreatedStampNotBetween(Date value1, Date value2) {
             addCriterion("CREATED_STAMP not between", value1, value2, "createdStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNull() {
-            addCriterion("CREATED_TX_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNotNull() {
-            addCriterion("CREATED_TX_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP =", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <>", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThan(Date value) {
-            addCriterion("CREATED_TX_STAMP >", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP >=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThan(Date value) {
-            addCriterion("CREATED_TX_STAMP <", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP not in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP between", value1, value2, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP not between", value1, value2, "createdTxStamp");
             return (Criteria) this;
         }
     }

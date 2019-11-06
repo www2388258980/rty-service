@@ -25,7 +25,7 @@ public class VpnOADialPersonsHis {
 
     private String oldModifiedBy;
 
-    private String oldbillId;
+    private String oldBillId;
 
     private String oldModifiedBillId;
 
@@ -59,11 +59,7 @@ public class VpnOADialPersonsHis {
 
     private Date lastUpdatedStamp;
 
-    private Date lastUpdatedTxStamp;
-
     private Date createdStamp;
-
-    private Date createdTxStamp;
 
     public String getHistoryId() {
         return historyId;
@@ -153,12 +149,12 @@ public class VpnOADialPersonsHis {
         this.oldModifiedBy = oldModifiedBy == null ? null : oldModifiedBy.trim();
     }
 
-    public String getOldbillId() {
-        return oldbillId;
+    public String getOldBillId() {
+        return oldBillId;
     }
 
-    public void setOldbillId(String oldbillId) {
-        this.oldbillId = oldbillId == null ? null : oldbillId.trim();
+    public void setOldBillId(String oldBillId) {
+        this.oldBillId = oldBillId == null ? null : oldBillId.trim();
     }
 
     public String getOldModifiedBillId() {
@@ -289,27 +285,11 @@ public class VpnOADialPersonsHis {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
-    public Date getLastUpdatedTxStamp() {
-        return lastUpdatedTxStamp;
-    }
-
-    public void setLastUpdatedTxStamp(Date lastUpdatedTxStamp) {
-        this.lastUpdatedTxStamp = lastUpdatedTxStamp;
-    }
-
     public Date getCreatedStamp() {
         return createdStamp;
     }
 
     public void setCreatedStamp(Date createdStamp) {
         this.createdStamp = createdStamp;
-    }
-
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
     }
 }

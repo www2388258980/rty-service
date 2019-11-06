@@ -955,62 +955,52 @@ public class VpnDialPersonsExample {
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateEqualTo(String value) {
+        public Criteria andEffectiveDateEqualTo(Date value) {
             addCriterion("EFFECTIVE_DATE =", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotEqualTo(String value) {
+        public Criteria andEffectiveDateNotEqualTo(Date value) {
             addCriterion("EFFECTIVE_DATE <>", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThan(String value) {
+        public Criteria andEffectiveDateGreaterThan(Date value) {
             addCriterion("EFFECTIVE_DATE >", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateGreaterThanOrEqualTo(String value) {
+        public Criteria andEffectiveDateGreaterThanOrEqualTo(Date value) {
             addCriterion("EFFECTIVE_DATE >=", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThan(String value) {
+        public Criteria andEffectiveDateLessThan(Date value) {
             addCriterion("EFFECTIVE_DATE <", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLessThanOrEqualTo(String value) {
+        public Criteria andEffectiveDateLessThanOrEqualTo(Date value) {
             addCriterion("EFFECTIVE_DATE <=", value, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateLike(String value) {
-            addCriterion("EFFECTIVE_DATE like", value, "effectiveDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEffectiveDateNotLike(String value) {
-            addCriterion("EFFECTIVE_DATE not like", value, "effectiveDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEffectiveDateIn(List<String> values) {
+        public Criteria andEffectiveDateIn(List<Date> values) {
             addCriterion("EFFECTIVE_DATE in", values, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotIn(List<String> values) {
+        public Criteria andEffectiveDateNotIn(List<Date> values) {
             addCriterion("EFFECTIVE_DATE not in", values, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateBetween(String value1, String value2) {
+        public Criteria andEffectiveDateBetween(Date value1, Date value2) {
             addCriterion("EFFECTIVE_DATE between", value1, value2, "effectiveDate");
             return (Criteria) this;
         }
 
-        public Criteria andEffectiveDateNotBetween(String value1, String value2) {
+        public Criteria andEffectiveDateNotBetween(Date value1, Date value2) {
             addCriterion("EFFECTIVE_DATE not between", value1, value2, "effectiveDate");
             return (Criteria) this;
         }
@@ -1075,66 +1065,6 @@ public class VpnDialPersonsExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedTxStampIsNull() {
-            addCriterion("LAST_UPDATED_TX_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampIsNotNull() {
-            addCriterion("LAST_UPDATED_TX_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP =", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <>", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampGreaterThan(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP >", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP >=", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampLessThan(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampLessThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_TX_STAMP <=", value, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_TX_STAMP in", values, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_TX_STAMP not in", values, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_TX_STAMP between", value1, value2, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedTxStampNotBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_TX_STAMP not between", value1, value2, "lastUpdatedTxStamp");
-            return (Criteria) this;
-        }
-
         public Criteria andCreatedStampIsNull() {
             addCriterion("CREATED_STAMP is null");
             return (Criteria) this;
@@ -1192,66 +1122,6 @@ public class VpnDialPersonsExample {
 
         public Criteria andCreatedStampNotBetween(Date value1, Date value2) {
             addCriterion("CREATED_STAMP not between", value1, value2, "createdStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNull() {
-            addCriterion("CREATED_TX_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNotNull() {
-            addCriterion("CREATED_TX_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP =", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <>", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThan(Date value) {
-            addCriterion("CREATED_TX_STAMP >", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP >=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThan(Date value) {
-            addCriterion("CREATED_TX_STAMP <", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP not in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP between", value1, value2, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP not between", value1, value2, "createdTxStamp");
             return (Criteria) this;
         }
     }

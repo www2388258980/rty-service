@@ -27,15 +27,11 @@ public class VpnDialPersons {
 
     private String opType;
 
-    private String effectiveDate;
+    private Date effectiveDate;
 
     private Date lastUpdatedStamp;
 
-    private Date lastUpdatedTxStamp;
-
     private Date createdStamp;
-
-    private Date createdTxStamp;
 
     public String getDialPersonId() {
         return dialPersonId;
@@ -133,12 +129,12 @@ public class VpnDialPersons {
         this.opType = opType == null ? null : opType.trim();
     }
 
-    public String getEffectiveDate() {
+    public Date getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate == null ? null : effectiveDate.trim();
+    public void setEffectiveDate(Date effectiveDate) {
+        this.effectiveDate = effectiveDate;
     }
 
     public Date getLastUpdatedStamp() {
@@ -149,27 +145,11 @@ public class VpnDialPersons {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
-    public Date getLastUpdatedTxStamp() {
-        return lastUpdatedTxStamp;
-    }
-
-    public void setLastUpdatedTxStamp(Date lastUpdatedTxStamp) {
-        this.lastUpdatedTxStamp = lastUpdatedTxStamp;
-    }
-
     public Date getCreatedStamp() {
         return createdStamp;
     }
 
     public void setCreatedStamp(Date createdStamp) {
         this.createdStamp = createdStamp;
-    }
-
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
     }
 }

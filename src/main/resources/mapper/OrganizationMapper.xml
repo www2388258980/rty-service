@@ -4,10 +4,6 @@
     <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Organization">
         <id column="ID" jdbcType="VARCHAR" property="id"/>
         <result column="NAME" jdbcType="VARCHAR" property="name"/>
-        <result column="PARENTID" jdbcType="VARCHAR" property="parentid"/>
-        <result column="STATUS" jdbcType="INTEGER" property="status"/>
-        <result column="SORTNUM" jdbcType="INTEGER" property="sortnum"/>
-        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -70,7 +66,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ID, NAME, PARENTID, STATUS, SORTNUM, REMARK
+    ID, NAME
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample" resultMap="BaseResultMap">
         select
@@ -103,12 +99,8 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.asiainfo.vpn.bean.Organization">
-    insert into common_rd_organization (ID, NAME, PARENTID, 
-      STATUS, SORTNUM, REMARK
-      )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{sortnum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
-      )
+    insert into common_rd_organization (ID, NAME)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Organization">
         insert into common_rd_organization
@@ -119,18 +111,6 @@
             <if test="name != null">
                 NAME,
             </if>
-            <if test="parentid != null">
-                PARENTID,
-            </if>
-            <if test="status != null">
-                STATUS,
-            </if>
-            <if test="sortnum != null">
-                SORTNUM,
-            </if>
-            <if test="remark != null">
-                REMARK,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -138,18 +118,6 @@
             </if>
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="parentid != null">
-                #{parentid,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=INTEGER},
-            </if>
-            <if test="sortnum != null">
-                #{sortnum,jdbcType=INTEGER},
-            </if>
-            <if test="remark != null">
-                #{remark,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -168,18 +136,6 @@
             <if test="record.name != null">
                 NAME = #{record.name,jdbcType=VARCHAR},
             </if>
-            <if test="record.parentid != null">
-                PARENTID = #{record.parentid,jdbcType=VARCHAR},
-            </if>
-            <if test="record.status != null">
-                STATUS = #{record.status,jdbcType=INTEGER},
-            </if>
-            <if test="record.sortnum != null">
-                SORTNUM = #{record.sortnum,jdbcType=INTEGER},
-            </if>
-            <if test="record.remark != null">
-                REMARK = #{record.remark,jdbcType=VARCHAR},
-            </if>
         </set>
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -188,11 +144,7 @@
     <update id="updateByExample" parameterType="map">
         update common_rd_organization
         set ID = #{record.id,jdbcType=VARCHAR},
-        NAME = #{record.name,jdbcType=VARCHAR},
-        PARENTID = #{record.parentid,jdbcType=VARCHAR},
-        STATUS = #{record.status,jdbcType=INTEGER},
-        SORTNUM = #{record.sortnum,jdbcType=INTEGER},
-        REMARK = #{record.remark,jdbcType=VARCHAR}
+        NAME = #{record.name,jdbcType=VARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -203,28 +155,12 @@
             <if test="name != null">
                 NAME = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="parentid != null">
-                PARENTID = #{parentid,jdbcType=VARCHAR},
-            </if>
-            <if test="status != null">
-                STATUS = #{status,jdbcType=INTEGER},
-            </if>
-            <if test="sortnum != null">
-                SORTNUM = #{sortnum,jdbcType=INTEGER},
-            </if>
-            <if test="remark != null">
-                REMARK = #{remark,jdbcType=VARCHAR},
-            </if>
         </set>
         where ID = #{id,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.Organization">
     update common_rd_organization
-    set NAME = #{name,jdbcType=VARCHAR},
-      PARENTID = #{parentid,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=INTEGER},
-      SORTNUM = #{sortnum,jdbcType=INTEGER},
-      REMARK = #{remark,jdbcType=VARCHAR}
+    set NAME = #{name,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

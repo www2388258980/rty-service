@@ -9,9 +9,7 @@
         <result column="DIAL_DATE" jdbcType="TIMESTAMP" property="dialDate"/>
         <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
-        <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
-        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
         <result column="CREATED_BY_USER_LOGIN" jdbcType="VARCHAR" property="createdByUserLogin"/>
         <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber"/>
         <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId"/>
@@ -78,8 +76,7 @@
     </sql>
     <sql id="Base_Column_List">
     VPN_DIAL_RECORD_ID, FIRST_NAME, VPN_DIAL_CAUSE, DESCRIPTION, DIAL_DATE, CREATED_DATE, 
-    LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, CREATED_BY_USER_LOGIN, 
-    TELECOM_NUMBER, DEPARTMENT_ID
+    LAST_UPDATED_STAMP, CREATED_STAMP, CREATED_BY_USER_LOGIN, TELECOM_NUMBER, DEPARTMENT_ID
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.VpnDialRecordExample" resultMap="BaseResultMap">
         select
@@ -114,13 +111,11 @@
     <insert id="insert" parameterType="com.asiainfo.vpn.bean.VpnDialRecord">
     insert into vpn_dial_record (VPN_DIAL_RECORD_ID, FIRST_NAME, VPN_DIAL_CAUSE, 
       DESCRIPTION, DIAL_DATE, CREATED_DATE, 
-      LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
-      CREATED_STAMP, CREATED_TX_STAMP, CREATED_BY_USER_LOGIN, 
+      LAST_UPDATED_STAMP, CREATED_STAMP, CREATED_BY_USER_LOGIN, 
       TELECOM_NUMBER, DEPARTMENT_ID)
     values (#{vpnDialRecordId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{vpnDialCause,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{dialDate,jdbcType=TIMESTAMP}, #{createdDate,jdbcType=TIMESTAMP}, 
-      #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, 
-      #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}, #{createdByUserLogin,jdbcType=VARCHAR}, 
+      #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdByUserLogin,jdbcType=VARCHAR}, 
       #{telecomNumber,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.VpnDialRecord">
@@ -147,14 +142,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP,
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP,
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP,
             </if>
             <if test="createdByUserLogin != null">
                 CREATED_BY_USER_LOGIN,
@@ -188,14 +177,8 @@
             <if test="lastUpdatedStamp != null">
                 #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="createdByUserLogin != null">
                 #{createdByUserLogin,jdbcType=VARCHAR},
@@ -238,14 +221,8 @@
             <if test="record.lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createdTxStamp != null">
-                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="record.createdByUserLogin != null">
                 CREATED_BY_USER_LOGIN = #{record.createdByUserLogin,jdbcType=VARCHAR},
@@ -270,9 +247,7 @@
         DIAL_DATE = #{record.dialDate,jdbcType=TIMESTAMP},
         CREATED_DATE = #{record.createdDate,jdbcType=TIMESTAMP},
         LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
         CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
         CREATED_BY_USER_LOGIN = #{record.createdByUserLogin,jdbcType=VARCHAR},
         TELECOM_NUMBER = #{record.telecomNumber,jdbcType=VARCHAR},
         DEPARTMENT_ID = #{record.departmentId,jdbcType=VARCHAR}
@@ -301,14 +276,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="createdByUserLogin != null">
                 CREATED_BY_USER_LOGIN = #{createdByUserLogin,jdbcType=VARCHAR},
@@ -330,9 +299,7 @@
       DIAL_DATE = #{dialDate,jdbcType=TIMESTAMP},
       CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
       LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
       CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
       CREATED_BY_USER_LOGIN = #{createdByUserLogin,jdbcType=VARCHAR},
       TELECOM_NUMBER = #{telecomNumber,jdbcType=VARCHAR},
       DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}

@@ -455,66 +455,6 @@ public class EnumerationExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedStampIsNull() {
-            addCriterion("LAST_UPDATED_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIsNotNull() {
-            addCriterion("LAST_UPDATED_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP =", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <>", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP not in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP not between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
         public Criteria andLastUpdatedTxStampIsNull() {
             addCriterion("LAST_UPDATED_TX_STAMP is null");
             return (Criteria) this;
@@ -632,66 +572,6 @@ public class EnumerationExample {
 
         public Criteria andCreatedStampNotBetween(Date value1, Date value2) {
             addCriterion("CREATED_STAMP not between", value1, value2, "createdStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNull() {
-            addCriterion("CREATED_TX_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIsNotNull() {
-            addCriterion("CREATED_TX_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP =", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <>", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThan(Date value) {
-            addCriterion("CREATED_TX_STAMP >", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP >=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThan(Date value) {
-            addCriterion("CREATED_TX_STAMP <", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampLessThanOrEqualTo(Date value) {
-            addCriterion("CREATED_TX_STAMP <=", value, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotIn(List<Date> values) {
-            addCriterion("CREATED_TX_STAMP not in", values, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP between", value1, value2, "createdTxStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedTxStampNotBetween(Date value1, Date value2) {
-            addCriterion("CREATED_TX_STAMP not between", value1, value2, "createdTxStamp");
             return (Criteria) this;
         }
 

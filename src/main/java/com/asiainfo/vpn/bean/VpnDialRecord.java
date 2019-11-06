@@ -17,11 +17,7 @@ public class VpnDialRecord {
 
     private Date lastUpdatedStamp;
 
-    private Date lastUpdatedTxStamp;
-
     private Date createdStamp;
-
-    private Date createdTxStamp;
 
     private String createdByUserLogin;
 
@@ -85,28 +81,12 @@ public class VpnDialRecord {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
-    public Date getLastUpdatedTxStamp() {
-        return lastUpdatedTxStamp;
-    }
-
-    public void setLastUpdatedTxStamp(Date lastUpdatedTxStamp) {
-        this.lastUpdatedTxStamp = lastUpdatedTxStamp;
-    }
-
     public Date getCreatedStamp() {
         return createdStamp;
     }
 
     public void setCreatedStamp(Date createdStamp) {
         this.createdStamp = createdStamp;
-    }
-
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
     }
 
     public String getCreatedByUserLogin() {

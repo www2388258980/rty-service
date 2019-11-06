@@ -40,7 +40,6 @@ public class VPnDialRecordServiceImpl implements IVpnDialRecordService {
         record.setCreatedDate(d);
         record.setCreatedStamp(d);
         record.setLastUpdatedStamp(d);
-        record.setLastUpdatedTxStamp(d);
 
         vpnDialRecordMapper.insert(record);
 
@@ -48,7 +47,6 @@ public class VPnDialRecordServiceImpl implements IVpnDialRecordService {
         SequenceValueItem sequenceValueItem = new SequenceValueItem();
         sequenceValueItem.setSeqName("VpnDialRecord");
         sequenceValueItem.setLastUpdatedStamp(d);
-        sequenceValueItem.setLastUpdatedTxStamp(d);
         sequenceValueItemMapper.updateByPrimaryKey(sequenceValueItem);
 
         OperationResult<Boolean> or = new OperationResult<>();
@@ -76,7 +74,7 @@ public class VPnDialRecordServiceImpl implements IVpnDialRecordService {
             criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
         }
 
-        PageHelper.startPage(size,pageSize);
+        PageHelper.startPage(size, pageSize);
         List<VpnDialRecord> records = vpnDialRecordMapper.selectByExample(example);
         PageInfo<VpnDialRecord> info = new PageInfo<>();
 

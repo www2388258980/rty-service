@@ -43,3 +43,10 @@
         // xxx代表插叙后的结果,A代表pojo类
         PageInfo<A> info = new PageInfo<A>(xxx);
         info.getTotal(); // 该方法可以获取本次查询数据量
+
+5.解决'已拦截跨源请求：同源策略禁止读取位于xxx'问题：
+    1.在方法中加入response.setHeader("Access-Control-Allow-Origin", "*");表示允许网站接收服务器返回的资源。
+    2.使用"@CrossOrigin"注解，加在controller则对该controller下所有方法有效，加在具体方法则仅对该方法有效：
+
+6.如果表中存在外键,生成pojo类的时候,会单独给主键生成一份pojo类,xxxKey.java,然后在生成一份和表名相同的pojo类继承xxxKey.java
+                --- myBatis Generator 在mysql的情况下 --- ???

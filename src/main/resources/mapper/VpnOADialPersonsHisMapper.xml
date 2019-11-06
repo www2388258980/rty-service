@@ -13,7 +13,7 @@
         <result column="OLD_DEPARTMENT_ID" jdbcType="VARCHAR" property="oldDepartmentId"/>
         <result column="OLD_CREATED_BY" jdbcType="VARCHAR" property="oldCreatedBy"/>
         <result column="OLD_MODIFIED_BY" jdbcType="VARCHAR" property="oldModifiedBy"/>
-        <result column="OLDBILL_ID" jdbcType="VARCHAR" property="oldbillId"/>
+        <result column="OLD_BILL_ID" jdbcType="VARCHAR" property="oldBillId"/>
         <result column="OLD_MODIFIED_BILL_ID" jdbcType="VARCHAR" property="oldModifiedBillId"/>
         <result column="OLD_VPN_TYPE_ID" jdbcType="VARCHAR" property="oldVpnTypeId"/>
         <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName"/>
@@ -30,9 +30,7 @@
         <result column="OP_TYPE" jdbcType="VARCHAR" property="opType"/>
         <result column="VPN_TYPE_ID" jdbcType="VARCHAR" property="vpnTypeId"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
-        <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
-        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -97,10 +95,9 @@
     <sql id="Base_Column_List">
     HISTORY_ID, DIAL_PERSON_ID, OLD_FIRST_NAME, OLD_TELECOM_NUMBER, OLD_COUNT_NAME, OLD_STATUS, 
     OLD_DESCRIPTION, OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, OLD_CREATED_BY, OLD_MODIFIED_BY, 
-    OLDBILL_ID, OLD_MODIFIED_BILL_ID, OLD_VPN_TYPE_ID, FIRST_NAME, TELECOM_NUMBER, COUNT_NAME, 
+    OLD_BILL_ID, OLD_MODIFIED_BILL_ID, OLD_VPN_TYPE_ID, FIRST_NAME, TELECOM_NUMBER, COUNT_NAME, 
     STATUS, DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, CREATED_BY, MODIFIED_BY, BILL_ID, 
-    MODIFIED_BILL_ID, OP_TYPE, VPN_TYPE_ID, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
-    CREATED_STAMP, CREATED_TX_STAMP
+    MODIFIED_BILL_ID, OP_TYPE, VPN_TYPE_ID, LAST_UPDATED_STAMP, CREATED_STAMP
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.VpnOADialPersonsHisExample"
             resultMap="BaseResultMap">
@@ -137,25 +134,23 @@
     insert into vpn_oa_dial_persons_history (HISTORY_ID, DIAL_PERSON_ID, OLD_FIRST_NAME, 
       OLD_TELECOM_NUMBER, OLD_COUNT_NAME, OLD_STATUS, 
       OLD_DESCRIPTION, OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, 
-      OLD_CREATED_BY, OLD_MODIFIED_BY, OLDBILL_ID, 
+      OLD_CREATED_BY, OLD_MODIFIED_BY, OLD_BILL_ID, 
       OLD_MODIFIED_BILL_ID, OLD_VPN_TYPE_ID, FIRST_NAME, 
       TELECOM_NUMBER, COUNT_NAME, STATUS, 
       DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
       CREATED_BY, MODIFIED_BY, BILL_ID, 
       MODIFIED_BILL_ID, OP_TYPE, VPN_TYPE_ID, 
-      LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
-      CREATED_STAMP, CREATED_TX_STAMP)
+      LAST_UPDATED_STAMP, CREATED_STAMP)
     values (#{historyId,jdbcType=VARCHAR}, #{dialPersonId,jdbcType=VARCHAR}, #{oldFirstName,jdbcType=VARCHAR}, 
       #{oldTelecomNumber,jdbcType=VARCHAR}, #{oldCountName,jdbcType=VARCHAR}, #{oldStatus,jdbcType=VARCHAR}, 
       #{oldDescription,jdbcType=VARCHAR}, #{oldFirstChar,jdbcType=VARCHAR}, #{oldDepartmentId,jdbcType=VARCHAR}, 
-      #{oldCreatedBy,jdbcType=VARCHAR}, #{oldModifiedBy,jdbcType=VARCHAR}, #{oldbillId,jdbcType=VARCHAR}, 
+      #{oldCreatedBy,jdbcType=VARCHAR}, #{oldModifiedBy,jdbcType=VARCHAR}, #{oldBillId,jdbcType=VARCHAR}, 
       #{oldModifiedBillId,jdbcType=VARCHAR}, #{oldVpnTypeId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, 
       #{telecomNumber,jdbcType=VARCHAR}, #{countName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
       #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{billId,jdbcType=VARCHAR}, 
       #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, #{vpnTypeId,jdbcType=VARCHAR}, 
-      #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, 
-      #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP})
+      #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.VpnOADialPersonsHis">
         insert into vpn_oa_dial_persons_history
@@ -193,8 +188,8 @@
             <if test="oldModifiedBy != null">
                 OLD_MODIFIED_BY,
             </if>
-            <if test="oldbillId != null">
-                OLDBILL_ID,
+            <if test="oldBillId != null">
+                OLD_BILL_ID,
             </if>
             <if test="oldModifiedBillId != null">
                 OLD_MODIFIED_BILL_ID,
@@ -244,14 +239,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP,
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP,
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -288,8 +277,8 @@
             <if test="oldModifiedBy != null">
                 #{oldModifiedBy,jdbcType=VARCHAR},
             </if>
-            <if test="oldbillId != null">
-                #{oldbillId,jdbcType=VARCHAR},
+            <if test="oldBillId != null">
+                #{oldBillId,jdbcType=VARCHAR},
             </if>
             <if test="oldModifiedBillId != null">
                 #{oldModifiedBillId,jdbcType=VARCHAR},
@@ -339,14 +328,8 @@
             <if test="lastUpdatedStamp != null">
                 #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -393,8 +376,8 @@
             <if test="record.oldModifiedBy != null">
                 OLD_MODIFIED_BY = #{record.oldModifiedBy,jdbcType=VARCHAR},
             </if>
-            <if test="record.oldbillId != null">
-                OLDBILL_ID = #{record.oldbillId,jdbcType=VARCHAR},
+            <if test="record.oldBillId != null">
+                OLD_BILL_ID = #{record.oldBillId,jdbcType=VARCHAR},
             </if>
             <if test="record.oldModifiedBillId != null">
                 OLD_MODIFIED_BILL_ID = #{record.oldModifiedBillId,jdbcType=VARCHAR},
@@ -444,14 +427,8 @@
             <if test="record.lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createdTxStamp != null">
-                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         <if test="_parameter != null">
@@ -471,7 +448,7 @@
         OLD_DEPARTMENT_ID = #{record.oldDepartmentId,jdbcType=VARCHAR},
         OLD_CREATED_BY = #{record.oldCreatedBy,jdbcType=VARCHAR},
         OLD_MODIFIED_BY = #{record.oldModifiedBy,jdbcType=VARCHAR},
-        OLDBILL_ID = #{record.oldbillId,jdbcType=VARCHAR},
+        OLD_BILL_ID = #{record.oldBillId,jdbcType=VARCHAR},
         OLD_MODIFIED_BILL_ID = #{record.oldModifiedBillId,jdbcType=VARCHAR},
         OLD_VPN_TYPE_ID = #{record.oldVpnTypeId,jdbcType=VARCHAR},
         FIRST_NAME = #{record.firstName,jdbcType=VARCHAR},
@@ -488,9 +465,7 @@
         OP_TYPE = #{record.opType,jdbcType=VARCHAR},
         VPN_TYPE_ID = #{record.vpnTypeId,jdbcType=VARCHAR},
         LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP}
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -528,8 +503,8 @@
             <if test="oldModifiedBy != null">
                 OLD_MODIFIED_BY = #{oldModifiedBy,jdbcType=VARCHAR},
             </if>
-            <if test="oldbillId != null">
-                OLDBILL_ID = #{oldbillId,jdbcType=VARCHAR},
+            <if test="oldBillId != null">
+                OLD_BILL_ID = #{oldBillId,jdbcType=VARCHAR},
             </if>
             <if test="oldModifiedBillId != null">
                 OLD_MODIFIED_BILL_ID = #{oldModifiedBillId,jdbcType=VARCHAR},
@@ -579,14 +554,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
@@ -603,7 +572,7 @@
       OLD_DEPARTMENT_ID = #{oldDepartmentId,jdbcType=VARCHAR},
       OLD_CREATED_BY = #{oldCreatedBy,jdbcType=VARCHAR},
       OLD_MODIFIED_BY = #{oldModifiedBy,jdbcType=VARCHAR},
-      OLDBILL_ID = #{oldbillId,jdbcType=VARCHAR},
+      OLD_BILL_ID = #{oldBillId,jdbcType=VARCHAR},
       OLD_MODIFIED_BILL_ID = #{oldModifiedBillId,jdbcType=VARCHAR},
       OLD_VPN_TYPE_ID = #{oldVpnTypeId,jdbcType=VARCHAR},
       FIRST_NAME = #{firstName,jdbcType=VARCHAR},
@@ -620,9 +589,7 @@
       OP_TYPE = #{opType,jdbcType=VARCHAR},
       VPN_TYPE_ID = #{vpnTypeId,jdbcType=VARCHAR},
       LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP}
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP}
     where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
   </update>
 </mapper>

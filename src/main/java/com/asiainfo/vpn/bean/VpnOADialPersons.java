@@ -33,11 +33,7 @@ public class VpnOADialPersons {
 
     private Date lastUpdatedStamp;
 
-    private Date lastUpdatedTxStamp;
-
     private Date createdStamp;
-
-    private Date createdTxStamp;
 
     public String getDialPersonId() {
         return dialPersonId;
@@ -159,27 +155,11 @@ public class VpnOADialPersons {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
-    public Date getLastUpdatedTxStamp() {
-        return lastUpdatedTxStamp;
-    }
-
-    public void setLastUpdatedTxStamp(Date lastUpdatedTxStamp) {
-        this.lastUpdatedTxStamp = lastUpdatedTxStamp;
-    }
-
     public Date getCreatedStamp() {
         return createdStamp;
     }
 
     public void setCreatedStamp(Date createdStamp) {
         this.createdStamp = createdStamp;
-    }
-
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
     }
 }

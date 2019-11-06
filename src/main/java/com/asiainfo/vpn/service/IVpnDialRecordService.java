@@ -17,7 +17,7 @@ public interface IVpnDialRecordService {
     public OperationResult<Boolean> insertRecord(VpnDialRecord record) throws Exception;
 
     /**
-     * 插入拨入记录
+     * 获得拨入记录
      * 使用PageHelper插件分页
      *
      * @param record

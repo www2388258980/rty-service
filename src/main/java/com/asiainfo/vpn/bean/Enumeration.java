@@ -13,13 +13,9 @@ public class Enumeration {
 
     private String description;
 
-    private Date lastUpdatedStamp;
-
     private Date lastUpdatedTxStamp;
 
     private Date createdStamp;
-
-    private Date createdTxStamp;
 
     private String comments;
 
@@ -65,14 +61,6 @@ public class Enumeration {
         this.description = description == null ? null : description.trim();
     }
 
-    public Date getLastUpdatedStamp() {
-        return lastUpdatedStamp;
-    }
-
-    public void setLastUpdatedStamp(Date lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
     public Date getLastUpdatedTxStamp() {
         return lastUpdatedTxStamp;
     }
@@ -87,14 +75,6 @@ public class Enumeration {
 
     public void setCreatedStamp(Date createdStamp) {
         this.createdStamp = createdStamp;
-    }
-
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
     }
 
     public String getComments() {

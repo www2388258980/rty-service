@@ -9,8 +9,6 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     private String oldTelecomNumber;
 
-    private String oldCountName;
-
     private String oldStatus;
 
     private String oldDescription;
@@ -31,8 +29,6 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     private String telecomNumber;
 
-    private String countName;
-
     private String status;
 
     private String description;
@@ -51,13 +47,9 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     private String opType;
 
-    private Date lastUpdatedTxStamp;
-
     private Date createdStamp;
 
-    private Date createdTxStamp;
-
-    private String effectiveDate;
+    private Date effectiveDate;
 
     public String getDialPersonId() {
         return dialPersonId;
@@ -81,14 +73,6 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     public void setOldTelecomNumber(String oldTelecomNumber) {
         this.oldTelecomNumber = oldTelecomNumber == null ? null : oldTelecomNumber.trim();
-    }
-
-    public String getOldCountName() {
-        return oldCountName;
-    }
-
-    public void setOldCountName(String oldCountName) {
-        this.oldCountName = oldCountName == null ? null : oldCountName.trim();
     }
 
     public String getOldStatus() {
@@ -171,14 +155,6 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
         this.telecomNumber = telecomNumber == null ? null : telecomNumber.trim();
     }
 
-    public String getCountName() {
-        return countName;
-    }
-
-    public void setCountName(String countName) {
-        this.countName = countName == null ? null : countName.trim();
-    }
-
     public String getStatus() {
         return status;
     }
@@ -251,14 +227,6 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
         this.opType = opType == null ? null : opType.trim();
     }
 
-    public Date getLastUpdatedTxStamp() {
-        return lastUpdatedTxStamp;
-    }
-
-    public void setLastUpdatedTxStamp(Date lastUpdatedTxStamp) {
-        this.lastUpdatedTxStamp = lastUpdatedTxStamp;
-    }
-
     public Date getCreatedStamp() {
         return createdStamp;
     }
@@ -267,19 +235,11 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
         this.createdStamp = createdStamp;
     }
 
-    public Date getCreatedTxStamp() {
-        return createdTxStamp;
-    }
-
-    public void setCreatedTxStamp(Date createdTxStamp) {
-        this.createdTxStamp = createdTxStamp;
-    }
-
-    public String getEffectiveDate() {
+    public Date getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate == null ? null : effectiveDate.trim();
+    public void setEffectiveDate(Date effectiveDate) {
+        this.effectiveDate = effectiveDate;
     }
 }

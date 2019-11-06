@@ -5,9 +5,7 @@
         <id column="SEQ_NAME" jdbcType="VARCHAR" property="seqName"/>
         <result column="SEQ_ID" jdbcType="INTEGER" property="seqId"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
-        <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
-        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -70,7 +68,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP
+    SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, CREATED_STAMP
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.SequenceValueItemExample"
             resultMap="BaseResultMap">
@@ -105,11 +103,9 @@
     </delete>
     <insert id="insert" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
     insert into sequence_value_item (SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, 
-      LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP
-      )
+      CREATED_STAMP)
     values (#{seqName,jdbcType=VARCHAR}, #{seqId,jdbcType=INTEGER}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
-      #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}
-      )
+      #{createdStamp,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
         insert into sequence_value_item
@@ -123,14 +119,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP,
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP,
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -143,14 +133,8 @@
             <if test="lastUpdatedStamp != null">
                 #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -173,14 +157,8 @@
             <if test="record.lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createdTxStamp != null">
-                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         <if test="_parameter != null">
@@ -192,9 +170,7 @@
         set SEQ_NAME = #{record.seqName,jdbcType=VARCHAR},
         SEQ_ID = #{record.seqId,jdbcType=INTEGER},
         LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP}
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -208,14 +184,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
@@ -224,9 +194,7 @@
     update sequence_value_item
     set SEQ_ID = #{seqId,jdbcType=INTEGER},
       LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP}
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP}
     where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
   </update>
 </mapper>

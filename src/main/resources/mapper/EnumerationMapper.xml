@@ -7,10 +7,8 @@
         <result column="ENUM_CODE" jdbcType="VARCHAR" property="enumCode"/>
         <result column="SEQUENCE_ID" jdbcType="VARCHAR" property="sequenceId"/>
         <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
-        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
         <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
-        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
         <result column="COMMENTS" jdbcType="VARCHAR" property="comments"/>
         <result column="ENUM_CODE_NUMBER" jdbcType="INTEGER" property="enumCodeNumber"/>
     </resultMap>
@@ -75,8 +73,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
-    CREATED_STAMP, CREATED_TX_STAMP, COMMENTS, ENUM_CODE_NUMBER
+    ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_TX_STAMP, 
+    CREATED_STAMP, COMMENTS, ENUM_CODE_NUMBER
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultMap="BaseResultMap">
         select
@@ -110,13 +108,13 @@
     </delete>
     <insert id="insert" parameterType="com.asiainfo.vpn.bean.Enumeration">
     insert into enumeration (ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, 
-      SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_STAMP, 
-      LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, 
-      COMMENTS, ENUM_CODE_NUMBER)
+      SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_TX_STAMP, 
+      CREATED_STAMP, COMMENTS, ENUM_CODE_NUMBER
+      )
     values (#{enumId,jdbcType=VARCHAR}, #{enumTypeId,jdbcType=VARCHAR}, #{enumCode,jdbcType=VARCHAR}, 
-      #{sequenceId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
-      #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}, 
-      #{comments,jdbcType=VARCHAR}, #{enumCodeNumber,jdbcType=INTEGER})
+      #{sequenceId,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, 
+      #{createdStamp,jdbcType=TIMESTAMP}, #{comments,jdbcType=VARCHAR}, #{enumCodeNumber,jdbcType=INTEGER}
+      )
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
         insert into enumeration
@@ -136,17 +134,11 @@
             <if test="description != null">
                 DESCRIPTION,
             </if>
-            <if test="lastUpdatedStamp != null">
-                LAST_UPDATED_STAMP,
-            </if>
             <if test="lastUpdatedTxStamp != null">
                 LAST_UPDATED_TX_STAMP,
             </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP,
             </if>
             <if test="comments != null">
                 COMMENTS,
@@ -171,17 +163,11 @@
             <if test="description != null">
                 #{description,jdbcType=VARCHAR},
             </if>
-            <if test="lastUpdatedStamp != null">
-                #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdatedTxStamp != null">
                 #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="comments != null">
                 #{comments,jdbcType=VARCHAR},
@@ -215,17 +201,11 @@
             <if test="record.description != null">
                 DESCRIPTION = #{record.description,jdbcType=VARCHAR},
             </if>
-            <if test="record.lastUpdatedStamp != null">
-                LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.lastUpdatedTxStamp != null">
                 LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createdTxStamp != null">
-                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="record.comments != null">
                 COMMENTS = #{record.comments,jdbcType=VARCHAR},
@@ -245,10 +225,8 @@
         ENUM_CODE = #{record.enumCode,jdbcType=VARCHAR},
         SEQUENCE_ID = #{record.sequenceId,jdbcType=VARCHAR},
         DESCRIPTION = #{record.description,jdbcType=VARCHAR},
-        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
         LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
         CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
         COMMENTS = #{record.comments,jdbcType=VARCHAR},
         ENUM_CODE_NUMBER = #{record.enumCodeNumber,jdbcType=INTEGER}
         <if test="_parameter != null">
@@ -270,17 +248,11 @@
             <if test="description != null">
                 DESCRIPTION = #{description,jdbcType=VARCHAR},
             </if>
-            <if test="lastUpdatedStamp != null">
-                LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="lastUpdatedTxStamp != null">
                 LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="comments != null">
                 COMMENTS = #{comments,jdbcType=VARCHAR},
@@ -297,10 +269,8 @@
       ENUM_CODE = #{enumCode,jdbcType=VARCHAR},
       SEQUENCE_ID = #{sequenceId,jdbcType=VARCHAR},
       DESCRIPTION = #{description,jdbcType=VARCHAR},
-      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
       LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
       CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
       COMMENTS = #{comments,jdbcType=VARCHAR},
       ENUM_CODE_NUMBER = #{enumCodeNumber,jdbcType=INTEGER}
     where ENUM_ID = #{enumId,jdbcType=VARCHAR}

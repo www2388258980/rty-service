@@ -14,11 +14,9 @@
         <result column="BILL_ID" jdbcType="VARCHAR" property="billId"/>
         <result column="MODIFIED_BILL_ID" jdbcType="VARCHAR" property="modifiedBillId"/>
         <result column="OP_TYPE" jdbcType="VARCHAR" property="opType"/>
-        <result column="EFFECTIVE_DATE" jdbcType="VARCHAR" property="effectiveDate"/>
+        <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
-        <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
-        <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -83,7 +81,7 @@
     <sql id="Base_Column_List">
     DIAL_PERSON_ID, FIRST_NAME, TELECOM_NUMBER, DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
     STATUS, CREATED_BY, MODIFIED_BY, BILL_ID, MODIFIED_BILL_ID, OP_TYPE, EFFECTIVE_DATE, 
-    LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP
+    LAST_UPDATED_STAMP, CREATED_STAMP
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsExample" resultMap="BaseResultMap">
         select
@@ -120,14 +118,14 @@
       DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
       STATUS, CREATED_BY, MODIFIED_BY, 
       BILL_ID, MODIFIED_BILL_ID, OP_TYPE, 
-      EFFECTIVE_DATE, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
-      CREATED_STAMP, CREATED_TX_STAMP)
+      EFFECTIVE_DATE, LAST_UPDATED_STAMP, CREATED_STAMP
+      )
     values (#{dialPersonId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{telecomNumber,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, 
       #{billId,jdbcType=VARCHAR}, #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
-      #{effectiveDate,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, 
-      #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP})
+      #{effectiveDate,jdbcType=TIMESTAMP}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}
+      )
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.VpnDialPersons">
         insert into vpn_dial_persons
@@ -174,14 +172,8 @@
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP,
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP,
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -222,19 +214,13 @@
                 #{opType,jdbcType=VARCHAR},
             </if>
             <if test="effectiveDate != null">
-                #{effectiveDate,jdbcType=VARCHAR},
+                #{effectiveDate,jdbcType=TIMESTAMP},
             </if>
             <if test="lastUpdatedStamp != null">
                 #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -284,19 +270,13 @@
                 OP_TYPE = #{record.opType,jdbcType=VARCHAR},
             </if>
             <if test="record.effectiveDate != null">
-                EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=VARCHAR},
+                EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=TIMESTAMP},
             </if>
             <if test="record.lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="record.createdTxStamp != null">
-                CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         <if test="_parameter != null">
@@ -317,11 +297,9 @@
         BILL_ID = #{record.billId,jdbcType=VARCHAR},
         MODIFIED_BILL_ID = #{record.modifiedBillId,jdbcType=VARCHAR},
         OP_TYPE = #{record.opType,jdbcType=VARCHAR},
-        EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=VARCHAR},
+        EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=TIMESTAMP},
         LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
-        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
-        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP}
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -363,19 +341,13 @@
                 OP_TYPE = #{opType,jdbcType=VARCHAR},
             </if>
             <if test="effectiveDate != null">
-                EFFECTIVE_DATE = #{effectiveDate,jdbcType=VARCHAR},
+                EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
             </if>
             <if test="lastUpdatedStamp != null">
                 LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
-            <if test="lastUpdatedTxStamp != null">
-                LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-            </if>
-            <if test="createdTxStamp != null">
-                CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
             </if>
         </set>
         where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
@@ -393,11 +365,9 @@
       BILL_ID = #{billId,jdbcType=VARCHAR},
       MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
       OP_TYPE = #{opType,jdbcType=VARCHAR},
-      EFFECTIVE_DATE = #{effectiveDate,jdbcType=VARCHAR},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
       LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
-      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
-      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
-      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP}
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP}
     where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
   </update>
 </mapper>
