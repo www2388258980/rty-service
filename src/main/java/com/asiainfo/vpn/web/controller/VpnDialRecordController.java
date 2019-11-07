@@ -1,5 +1,6 @@
 package com.asiainfo.vpn.web.controller;
 
+import com.asiainfo.vpn.bean.VpnDialRecord;
 import com.asiainfo.vpn.service.IVpnDialRecordService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.StringUtil;

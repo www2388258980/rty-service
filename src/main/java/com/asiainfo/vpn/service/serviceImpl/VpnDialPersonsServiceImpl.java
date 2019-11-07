@@ -1,26 +1,27 @@
 package com.asiainfo.vpn.service.serviceImpl;
 
-import com.asiainfo.vpn.bean.SequenceValueItem;
-import com.asiainfo.vpn.bean.VpnDialPersons;
-import com.asiainfo.vpn.bean.VpnDialPersonsHis;
+import com.asiainfo.vpn.bean.*;
 import com.asiainfo.vpn.mapper.SequenceValueItemMapper;
 import com.asiainfo.vpn.mapper.VpnDialPersonsHisMapper;
 import com.asiainfo.vpn.mapper.VpnDialPersonsMapper;
 import com.asiainfo.vpn.service.IVpnDialPersonsService;
 import com.asiainfo.vpn.utils.OperationResult;
+import com.asiainfo.vpn.utils.StringUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
     @Autowired
     private SequenceValueItemMapper sequenceValueItemMapper;
-
     @Autowired
     private VpnDialPersonsMapper vpnDialPersonsMapper;
-
     @Autowired
     private VpnDialPersonsHisMapper vpnDialPersonsHisMapper;
 
@@ -28,52 +29,259 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
     @Override
     public OperationResult<Boolean> insert(VpnDialPersons persons) throws Exception {
         // 先拿到主键
-        SequenceValueItem seq = sequenceValueItemMapper.selectByPrimaryKey("VpnDialPersons");
-        persons.setDialPersonId(seq.getSeqId() + "");
+        Integer key = getPrimaryKey("VpnDialPersons");
+        persons.setDialPersonId(key + "");
         // 向VPN_DIAL_PERSONS插入数据
         vpnDialPersonsMapper.insert(persons);
         // 更新主键
-        SequenceValueItem seq2 = new SequenceValueItem();
-        seq2.setSeqName("VpnDialPersons");
-        seq2.setSeqId(seq.getSeqId() + 1);
-        Date date = new Date();
-        seq2.setLastUpdatedStamp(date);
-        sequenceValueItemMapper.updateByPrimaryKeySelective(seq2);
+        updatePrimaryKey("VpnDialPersons", key);
 
         /* 向其历史表插入一条数据
          * 先复制一遍persons属性
          * 由于是插入,所有old系列字段为空
          */
         // 先拿到历史表对应的主键
-        SequenceValueItem seq3 = sequenceValueItemMapper.selectByPrimaryKey("VpnDialPersonsHistory");
+        Integer key2 = getPrimaryKey("VpnDialPersonsHistory");
         VpnDialPersonsHis his = new VpnDialPersonsHis();
-        his.setHistoryId(seq3.getSeqId() + "");
-        his.setDialPersonId(seq.getSeqId() + "");
-        his.setFirstName(persons.getFirstName());
-        his.setFirstChar(persons.getFirstChar());
-        his.setTelecomNumber(persons.getTelecomNumber());
-        his.setStatus(persons.getStatus());
-        his.setDescription(persons.getDescription());
-        his.setDepartmentId(persons.getDepartmentId());
-        his.setCreatedBy(persons.getCreatedBy());
-        his.setBillId(persons.getBillId());
-        his.setOpType(persons.getOpType());
-        his.setEffectiveDate(persons.getEffectiveDate());
-        his.setCreatedStamp(persons.getCreatedStamp());
-        his.setLastUpdatedStamp(persons.getLastUpdatedStamp());
+        his.setHistoryId(key2 + "");
+        swap(persons, his);
         // 插入历史表
         vpnDialPersonsHisMapper.insert(his);
         // 更新历史主键表
-        SequenceValueItem seq4 = new SequenceValueItem();
-        seq4.setSeqName("VpnDialPersonsHistory");
-        seq4.setSeqId(seq.getSeqId() + 1);
-        seq4.setLastUpdatedStamp(date);
-        sequenceValueItemMapper.updateByPrimaryKeySelective(seq4);
+        updatePrimaryKey("VpnDialPersonsHistory", key2);
 
         OperationResult<Boolean> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
         or.setData(true);
 
         return or;
+    }
+
+    /**
+     * 根据表名拿取对应的主键,并将其返回
+     *
+     * @param name
+     * @return
+     */
+    private Integer getPrimaryKey(String name) throws Exception {
+        SequenceValueItem seq = sequenceValueItemMapper.selectByPrimaryKey(name);
+        return seq.getSeqId();
+    }
+
+    /**
+     * 根据表名将其对应的主键+1
+     *
+     * @param name
+     * @param id
+     */
+    private void updatePrimaryKey(String name, Integer id) throws Exception {
+        SequenceValueItem seq = new SequenceValueItem();
+        seq.setSeqName(name);
+        seq.setSeqId(id + 1);
+        seq.setLastUpdatedStamp(new Date());
+        sequenceValueItemMapper.updateByPrimaryKeySelective(seq);
+    }
+
+    /**
+     * 交换数据
+     *
+     * @param persons
+     * @param his
+     * @throws Exception
+     */
+    private void swap(VpnDialPersons persons, VpnDialPersonsHis his) {
+        if (!StringUtil.isEmpty(persons.getDialPersonId())) {
+            his.setDialPersonId(persons.getDialPersonId());
+        }
+        if (!StringUtil.isEmpty(persons.getFirstName())) {
+            his.setFirstName(persons.getFirstName());
+        }
+        if (!StringUtil.isEmpty(persons.getFirstChar())) {
+            his.setFirstChar(persons.getFirstChar());
+        }
+        if (!StringUtil.isEmpty(persons.getTelecomNumber())) {
+            his.setTelecomNumber(persons.getTelecomNumber());
+        }
+        if (!StringUtil.isEmpty(persons.getStatus())) {
+            his.setStatus(persons.getStatus());
+        }
+        if (!StringUtil.isEmpty(persons.getDescription())) {
+            his.setDescription(persons.getDescription());
+        }
+        if (!StringUtil.isEmpty(persons.getDepartmentId())) {
+            his.setDepartmentId(persons.getDepartmentId());
+        }
+        if (!StringUtil.isEmpty(persons.getCreatedBy())) {
+            his.setCreatedBy(persons.getCreatedBy());
+        }
+        if (!StringUtil.isEmpty(persons.getBillId())) {
+            his.setBillId(persons.getBillId());
+        }
+        if (!StringUtil.isEmpty(persons.getOpType())) {
+            his.setOpType(persons.getOpType());
+        }
+        if (persons.getEffectiveDate() != null) {
+            his.setEffectiveDate(persons.getEffectiveDate());
+        }
+        if (persons.getCreatedStamp() != null) {
+            his.setCreatedStamp(persons.getCreatedStamp());
+        }
+        if (persons.getLastUpdatedStamp() != null) {
+            his.setLastUpdatedStamp(persons.getLastUpdatedStamp());
+        }
+
+    }
+
+    @Override
+    public OperationResult<List<VpnDialPersons>> getVpnDailPersons(VpnDialPersons persons, Date startDate, Date endDate,
+                                                                   int size, int pageSize) throws Exception {
+        VpnDialPersonsExample example = new VpnDialPersonsExample();
+        // 根据最后更新时间降序
+        example.setOrderByClause("LAST_UPDATED_STAMP desc");
+        VpnDialPersonsExample.Criteria criteria = example.createCriteria();
+        if (!StringUtil.isEmpty(persons.getFirstName())) {
+            criteria.andFirstNameEqualTo(persons.getFirstName());
+        }
+        if (!StringUtil.isEmpty(persons.getFirstChar())) {
+            criteria.andFirstCharLike("%" + persons.getFirstChar() + "%");
+        }
+        if (!StringUtil.isEmpty(persons.getStatus())) {
+            criteria.andStatusEqualTo(persons.getStatus());
+        }
+        if (!StringUtil.isEmpty(persons.getCreatedBy())) {
+            criteria.andCreatedByEqualTo(persons.getCreatedBy());
+        }
+        if (startDate != null) {
+            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
+        }
+        if (endDate != null) {
+            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
+        }
+        // 分页
+        PageHelper.startPage(size, pageSize);
+        List<VpnDialPersons> vpnDialPersons = vpnDialPersonsMapper.selectByExample(example);
+        PageInfo<VpnDialPersons> info = new PageInfo<>(vpnDialPersons);
+
+        OperationResult<List<VpnDialPersons>> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setData(vpnDialPersons);
+        or.setTotal(info.getTotal());
+
+        return or;
+    }
+
+
+    @Override
+    public OperationResult<List<VpnDialPersonsHis>> getVpnDialPersonsHis(VpnDialPersonsHis his, Date startDate, Date endDate,
+                                                                         int size, int pageSize) throws Exception {
+        VpnDialPersonsHisExample example = new VpnDialPersonsHisExample();
+        // 根据最后更新时间降序
+        example.setOrderByClause("LAST_UPDATED_STAMP desc");
+        VpnDialPersonsHisExample.Criteria criteria = example.createCriteria();
+        if (!StringUtil.isEmpty(his.getFirstName())) {
+            criteria.andFirstNameEqualTo(his.getFirstName());
+        }
+        if (!StringUtil.isEmpty(his.getFirstChar())) {
+            criteria.andFirstCharLike("%" + his.getFirstChar() + "%");
+        }
+        if (!StringUtil.isEmpty(his.getStatus())) {
+            criteria.andStatusEqualTo(his.getStatus());
+        }
+        if (!StringUtil.isEmpty(his.getCreatedBy())) {
+            criteria.andCreatedByEqualTo(his.getCreatedBy());
+        }
+        if (startDate != null) {
+            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
+        }
+        if (endDate != null) {
+            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
+        }
+        // 分页
+        PageHelper.startPage(size, pageSize);
+        List<VpnDialPersonsHis> vpnDialPersonsHis = vpnDialPersonsHisMapper.selectByExample(example);
+        PageInfo<VpnDialPersonsHis> info = new PageInfo<>(vpnDialPersonsHis);
+        System.out.println("总数量：" + info.getTotal());
+//        System.out.println("当前页查询记录：" + info.getList().size());
+//        System.out.println("当前页码：" + info.getPageNum());
+//        System.out.println("每页显示数量：" + info.getPageSize());
+//        System.out.println("总页：" + info.getPages());
+
+
+        OperationResult<List<VpnDialPersonsHis>> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setData(vpnDialPersonsHis);
+        or.setTotal(info.getTotal());
+
+        return or;
+    }
+
+    @Override
+    public OperationResult<VpnDialPersons> getVpnDialPersonsByPrimaryKey(String id) throws Exception {
+        if (StringUtil.isEmpty(id)) {
+            throw new Exception("主键不可为空.");
+        }
+        VpnDialPersons vpnDialPersons = vpnDialPersonsMapper.selectByPrimaryKey(id);
+
+        OperationResult<VpnDialPersons> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setData(vpnDialPersons);
+        or.setMessage("查询成功.");
+
+        return or;
+    }
+
+    @Override
+    public OperationResult<Boolean> updateVpnDialPersons(VpnDialPersons persons) throws Exception {
+        if (StringUtil.isEmpty(persons.getDialPersonId())) {
+            throw new Exception("主键不可为空.");
+        }
+        // 更新之前先找出更新前的数据
+        VpnDialPersons old = vpnDialPersonsMapper.selectByPrimaryKey(persons.getDialPersonId());
+        if (old == null) {
+            throw new Exception("根据主键找不到对应的数据");
+        }
+        // 更新
+        vpnDialPersonsMapper.updateByPrimaryKeySelective(persons);
+        /**
+         * 同时生成一条历史记录
+         * old字段为上次记录
+         * 由于更新可能只更新某些字段,某些不更新的字段应当保留
+         */
+        Integer key = getPrimaryKey("VpnDialPersonsHistory");
+        VpnDialPersonsHis his = new VpnDialPersonsHis();
+        his.setHistoryId(key + "");
+        swap2(old, his);
+        swap(old, his);
+        swap(persons, his);
+
+        vpnDialPersonsHisMapper.insertSelective(his);
+        // 更新历史表主键
+        updatePrimaryKey("VpnDialPersonsHistory", key);
+
+        OperationResult<Boolean> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setMessage("更新成功.");
+        or.setData(true);
+
+        return or;
+    }
+
+    /**
+     * 把字段放到old上
+     *
+     * @param old
+     * @param his2
+     */
+    private void swap2(VpnDialPersons old, VpnDialPersonsHis his2) {
+        his2.setOldFirstName(old.getFirstName());
+        his2.setOldTelecomNumber(old.getTelecomNumber());
+        his2.setOldStatus(old.getStatus());
+        his2.setOldDescription(old.getDescription());
+        his2.setOldFirstChar(old.getFirstChar());
+        his2.setOldDepartmentId(old.getDepartmentId());
+        his2.setOldCreatedBy(old.getCreatedBy());
+        his2.setOldCreatedBy(old.getModifiedBy());
+        his2.setOldbillId(old.getBillId());
+        his2.setOldModifiedBillId(old.getModifiedBillId());
     }
 }

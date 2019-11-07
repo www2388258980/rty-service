@@ -44,6 +44,14 @@
         PageInfo<A> info = new PageInfo<A>(xxx);
         info.getTotal(); // 该方法可以获取本次查询数据量
 
+    ----------- 按照上述做无法在springboot项目中起作用,在springboot中,依赖导入应该是下面这种方式：
+     <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
+     </dependency>
+
+
 5.解决'已拦截跨源请求：同源策略禁止读取位于xxx'问题：
     1.在方法中加入response.setHeader("Access-Control-Allow-Origin", "*");表示允许网站接收服务器返回的资源。
     2.使用"@CrossOrigin"注解，加在controller则对该controller下所有方法有效，加在具体方法则仅对该方法有效：
