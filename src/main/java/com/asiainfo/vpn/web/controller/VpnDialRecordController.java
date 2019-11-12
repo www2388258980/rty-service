@@ -1,6 +1,7 @@
 package com.asiainfo.vpn.web.controller;
 
 import com.asiainfo.vpn.bean.VpnDialRecord;
+import com.asiainfo.vpn.bean.extend.VpnDialRecordExtend;
 import com.asiainfo.vpn.service.IVpnDialRecordService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.StringUtil;
@@ -9,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -41,23 +39,20 @@ public class VpnDialRecordController {
         return or;
     }
 
-    @RequestMapping("/getRecords")
-    @ApiOperation(value = "根据拨入人和拨入日期获得拨入记录")
-    @ApiImplicitParams(
-            value =
-                    {
-                            @ApiImplicitParam(name = "startDate", value = "拨入日期大于等于该值,前台传时间戳",
-                                    paramType = "query"),
-                            @ApiImplicitParam(name = "endDate", value = "拨入日期小于等于该值,前台传时间戳",
-                                    paramType = "query"),
-                            @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query", dataType = "Integer"),
-                            @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true, paramType = "query", dataType = "Integer")
 
-                    }
+    @RequestMapping(value = "/getRecords", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "根据拨入人和拨入日期获得拨入记录")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "startDate", value = "拨入日期大于等于该值,前台传时间戳",
+                    paramType = "query"),
+            @ApiImplicitParam(name = "endDate", value = "拨入日期小于等于该值,前台传时间戳",
+                    paramType = "query"),
+            @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query", dataType = "Integer"),
+            @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true, paramType = "query", dataType = "Integer")}
     )
-    public OperationResult<List<VpnDialRecord>> getRecords(VpnDialRecord record, String startDate, String endDate,
-                                                           Integer size, Integer pageSize) {
-        OperationResult<List<VpnDialRecord>> or = null;
+    public OperationResult<List<VpnDialRecordExtend>> getRecords(VpnDialRecord record, String startDate, String endDate,
+                                                                 Integer size, Integer pageSize) {
+        OperationResult<List<VpnDialRecordExtend>> or = null;
         try {
             Date date1 = null;
             if (!StringUtil.isEmpty(startDate)) {

@@ -3,6 +3,8 @@ package com.asiainfo.vpn.service;
 
 import com.asiainfo.vpn.bean.VpnDialPersons;
 import com.asiainfo.vpn.bean.VpnDialPersonsHis;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsExtend;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsHisExtend;
 import com.asiainfo.vpn.utils.OperationResult;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public interface IVpnDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<VpnDialPersons>> getVpnDailPersons(VpnDialPersons persons, Date startDate, Date endDate,
-                                                                   int size, int pageSize) throws Exception;
+    public OperationResult<List<VpnDialPersonsExtend>> getVpnDailPersons(VpnDialPersons persons, Date startDate, Date endDate,
+                                                                         int size, int pageSize) throws Exception;
 
     /**
      * 根据条件获取历史记录
@@ -44,8 +46,8 @@ public interface IVpnDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<VpnDialPersonsHis>> getVpnDialPersonsHis(VpnDialPersonsHis his, Date startDate, Date endDate,
-                                                                         int size, int pageSize) throws Exception;
+    public OperationResult<List<VpnDialPersonsHisExtend>> getVpnDialPersonsHis(VpnDialPersonsHis his, Date startDate, Date endDate,
+                                                                               int size, int pageSize) throws Exception;
 
     /**
      * 根据主键拿取数据

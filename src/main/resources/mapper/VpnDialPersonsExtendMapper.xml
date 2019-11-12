@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.vpn.mapper.extend.VpnDialPersonsExtendMapper">
+
+    <resultMap id="UserMap1" type="com.asiainfo.vpn.bean.User">
+        <id column="u_id" jdbcType="VARCHAR" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="UserMap2" type="com.asiainfo.vpn.bean.User">
+        <id column="m_id" jdbcType="VARCHAR" property="id"/>
+        <result column="m_name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="DepartmentMap" type="com.asiainfo.vpn.bean.Organization">
+        <id column="o_ID" jdbcType="VARCHAR" property="id"/>
+        <result column="o_NAME" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <resultMap id="VpnDialPersonsMap" type="com.asiainfo.vpn.bean.extend.VpnDialPersonsExtend">
+        <id column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId"/>
+        <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName"/>
+        <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="FIRST_CHAR" jdbcType="VARCHAR" property="firstChar"/>
+        <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy"/>
+        <result column="BILL_ID" jdbcType="VARCHAR" property="billId"/>
+        <result column="MODIFIED_BILL_ID" jdbcType="VARCHAR" property="modifiedBillId"/>
+        <result column="OP_TYPE" jdbcType="VARCHAR" property="opType"/>
+        <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate"/>
+        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
+        <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
+
+        <association property="createdUser" resultMap="UserMap1"/>
+        <association property="modifiedUser" resultMap="UserMap2"/>
+        <association property="department" resultMap="DepartmentMap"/>
+    </resultMap>
+
+    <!--    一对一嵌套结果映射   -->
+    <select id="selectVpnDialRecordsWithExtra" resultMap="VpnDialPersonsMap">
+        select vpn.*,m.id m_id,m.name m_name
+        from
+        (
+        select v.*,u.id u_id,u.name u_name,o.id o_id,o.name o_name
+        from vpn_dial_persons v,comman_user u ,common_rd_organization o
+        where v.CREATED_BY = u.id and v.DEPARTMENT_ID = o.id
+        <if test="param1.firstName != null">
+            and v.FIRST_NAME = #{param1.firstName}
+        </if>
+        <if test="param1.departmentId !=null">
+            and v.DEPARTMENT_ID = #{param1.departmentId}
+        </if>
+        <if test="param2 != null">
+            and v.LAST_UPDATED_STAMP &gt;= #{param2}
+        </if>
+        <if test="param3 != null">
+            and v.LAST_UPDATED_STAMP &lt;=#{parma3}
+        </if>
+        ) vpn left join comman_user m
+        on vpn.MODIFIED_BY=m.id
+        order by vpn.LAST_UPDATED_STAMP desc
+    </select>
+
+</mapper>

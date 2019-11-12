@@ -2,7 +2,9 @@ package com.asiainfo.vpn.bean;
 
 import java.util.Date;
 
-public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
+public class VpnDialPersonsHis {
+    private String historyId;
+
     private String dialPersonId;
 
     private String oldFirstName;
@@ -47,9 +49,19 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     private String opType;
 
+    private Date lastUpdatedStamp;
+
     private Date createdStamp;
 
     private Date effectiveDate;
+
+    public String getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(String historyId) {
+        this.historyId = historyId == null ? null : historyId.trim();
+    }
 
     public String getDialPersonId() {
         return dialPersonId;
@@ -225,6 +237,14 @@ public class VpnDialPersonsHis extends VpnDialPersonsHisKey {
 
     public void setOpType(String opType) {
         this.opType = opType == null ? null : opType.trim();
+    }
+
+    public Date getLastUpdatedStamp() {
+        return lastUpdatedStamp;
+    }
+
+    public void setLastUpdatedStamp(Date lastUpdatedStamp) {
+        this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
     public Date getCreatedStamp() {

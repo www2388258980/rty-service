@@ -3,7 +3,6 @@
 <mapper namespace="com.asiainfo.vpn.mapper.VpnDialPersonsHisMapper">
     <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.VpnDialPersonsHis">
         <id column="HISTORY_ID" jdbcType="VARCHAR" property="historyId"/>
-        <id column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
         <result column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId"/>
         <result column="OLD_FIRST_NAME" jdbcType="VARCHAR" property="oldFirstName"/>
         <result column="OLD_TELECOM_NUMBER" jdbcType="VARCHAR" property="oldTelecomNumber"/>
@@ -26,6 +25,7 @@
         <result column="BILL_ID" jdbcType="VARCHAR" property="billId"/>
         <result column="MODIFIED_BILL_ID" jdbcType="VARCHAR" property="modifiedBillId"/>
         <result column="OP_TYPE" jdbcType="VARCHAR" property="opType"/>
+        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
         <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
         <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate"/>
     </resultMap>
@@ -90,11 +90,11 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    HISTORY_ID, LAST_UPDATED_STAMP, DIAL_PERSON_ID, OLD_FIRST_NAME, OLD_TELECOM_NUMBER, 
-    OLD_STATUS, OLD_DESCRIPTION, OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, OLD_CREATED_BY, OLD_MODIFIED_BY, 
-    OLDBILL_ID, OLD_MODIFIED_BILL_ID, FIRST_NAME, TELECOM_NUMBER, STATUS, DESCRIPTION, 
-    FIRST_CHAR, DEPARTMENT_ID, CREATED_BY, MODIFIED_BY, BILL_ID, MODIFIED_BILL_ID, OP_TYPE, 
-    CREATED_STAMP, EFFECTIVE_DATE
+    HISTORY_ID, DIAL_PERSON_ID, OLD_FIRST_NAME, OLD_TELECOM_NUMBER, OLD_STATUS, OLD_DESCRIPTION, 
+    OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, OLD_CREATED_BY, OLD_MODIFIED_BY, OLDBILL_ID, OLD_MODIFIED_BILL_ID, 
+    FIRST_NAME, TELECOM_NUMBER, STATUS, DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, CREATED_BY, 
+    MODIFIED_BY, BILL_ID, MODIFIED_BILL_ID, OP_TYPE, LAST_UPDATED_STAMP, CREATED_STAMP, 
+    EFFECTIVE_DATE
   </sql>
     <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHisExample"
             resultMap="BaseResultMap">
@@ -111,18 +111,15 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHisKey"
-            resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from vpn_dial_persons_history
         where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
-        and LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHisKey">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from vpn_dial_persons_history
     where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
-      and LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP}
   </delete>
     <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHisExample">
         delete from vpn_dial_persons_history
@@ -131,23 +128,23 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHis">
-    insert into vpn_dial_persons_history (HISTORY_ID, LAST_UPDATED_STAMP, DIAL_PERSON_ID, 
-      OLD_FIRST_NAME, OLD_TELECOM_NUMBER, OLD_STATUS, 
-      OLD_DESCRIPTION, OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, 
-      OLD_CREATED_BY, OLD_MODIFIED_BY, OLDBILL_ID, 
-      OLD_MODIFIED_BILL_ID, FIRST_NAME, TELECOM_NUMBER, 
-      STATUS, DESCRIPTION, FIRST_CHAR, 
-      DEPARTMENT_ID, CREATED_BY, MODIFIED_BY, 
-      BILL_ID, MODIFIED_BILL_ID, OP_TYPE, 
+    insert into vpn_dial_persons_history (HISTORY_ID, DIAL_PERSON_ID, OLD_FIRST_NAME, 
+      OLD_TELECOM_NUMBER, OLD_STATUS, OLD_DESCRIPTION, 
+      OLD_FIRST_CHAR, OLD_DEPARTMENT_ID, OLD_CREATED_BY, 
+      OLD_MODIFIED_BY, OLDBILL_ID, OLD_MODIFIED_BILL_ID, 
+      FIRST_NAME, TELECOM_NUMBER, STATUS, 
+      DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
+      CREATED_BY, MODIFIED_BY, BILL_ID, 
+      MODIFIED_BILL_ID, OP_TYPE, LAST_UPDATED_STAMP, 
       CREATED_STAMP, EFFECTIVE_DATE)
-    values (#{historyId,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{dialPersonId,jdbcType=VARCHAR}, 
-      #{oldFirstName,jdbcType=VARCHAR}, #{oldTelecomNumber,jdbcType=VARCHAR}, #{oldStatus,jdbcType=VARCHAR}, 
-      #{oldDescription,jdbcType=VARCHAR}, #{oldFirstChar,jdbcType=VARCHAR}, #{oldDepartmentId,jdbcType=VARCHAR}, 
-      #{oldCreatedBy,jdbcType=VARCHAR}, #{oldModifiedBy,jdbcType=VARCHAR}, #{oldbillId,jdbcType=VARCHAR}, 
-      #{oldModifiedBillId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{telecomNumber,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, 
-      #{departmentId,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, 
-      #{billId,jdbcType=VARCHAR}, #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
+    values (#{historyId,jdbcType=VARCHAR}, #{dialPersonId,jdbcType=VARCHAR}, #{oldFirstName,jdbcType=VARCHAR}, 
+      #{oldTelecomNumber,jdbcType=VARCHAR}, #{oldStatus,jdbcType=VARCHAR}, #{oldDescription,jdbcType=VARCHAR}, 
+      #{oldFirstChar,jdbcType=VARCHAR}, #{oldDepartmentId,jdbcType=VARCHAR}, #{oldCreatedBy,jdbcType=VARCHAR}, 
+      #{oldModifiedBy,jdbcType=VARCHAR}, #{oldbillId,jdbcType=VARCHAR}, #{oldModifiedBillId,jdbcType=VARCHAR}, 
+      #{firstName,jdbcType=VARCHAR}, #{telecomNumber,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, #{billId,jdbcType=VARCHAR}, 
+      #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
       #{createdStamp,jdbcType=TIMESTAMP}, #{effectiveDate,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHis">
@@ -155,9 +152,6 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="historyId != null">
                 HISTORY_ID,
-            </if>
-            <if test="lastUpdatedStamp != null">
-                LAST_UPDATED_STAMP,
             </if>
             <if test="dialPersonId != null">
                 DIAL_PERSON_ID,
@@ -225,6 +219,9 @@
             <if test="opType != null">
                 OP_TYPE,
             </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP,
+            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP,
             </if>
@@ -235,9 +232,6 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="historyId != null">
                 #{historyId,jdbcType=VARCHAR},
-            </if>
-            <if test="lastUpdatedStamp != null">
-                #{lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="dialPersonId != null">
                 #{dialPersonId,jdbcType=VARCHAR},
@@ -305,6 +299,9 @@
             <if test="opType != null">
                 #{opType,jdbcType=VARCHAR},
             </if>
+            <if test="lastUpdatedStamp != null">
+                #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
             <if test="createdStamp != null">
                 #{createdStamp,jdbcType=TIMESTAMP},
             </if>
@@ -325,9 +322,6 @@
         <set>
             <if test="record.historyId != null">
                 HISTORY_ID = #{record.historyId,jdbcType=VARCHAR},
-            </if>
-            <if test="record.lastUpdatedStamp != null">
-                LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
             </if>
             <if test="record.dialPersonId != null">
                 DIAL_PERSON_ID = #{record.dialPersonId,jdbcType=VARCHAR},
@@ -395,6 +389,9 @@
             <if test="record.opType != null">
                 OP_TYPE = #{record.opType,jdbcType=VARCHAR},
             </if>
+            <if test="record.lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
             <if test="record.createdStamp != null">
                 CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
             </if>
@@ -409,7 +406,6 @@
     <update id="updateByExample" parameterType="map">
         update vpn_dial_persons_history
         set HISTORY_ID = #{record.historyId,jdbcType=VARCHAR},
-        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
         DIAL_PERSON_ID = #{record.dialPersonId,jdbcType=VARCHAR},
         OLD_FIRST_NAME = #{record.oldFirstName,jdbcType=VARCHAR},
         OLD_TELECOM_NUMBER = #{record.oldTelecomNumber,jdbcType=VARCHAR},
@@ -432,6 +428,7 @@
         BILL_ID = #{record.billId,jdbcType=VARCHAR},
         MODIFIED_BILL_ID = #{record.modifiedBillId,jdbcType=VARCHAR},
         OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
         CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
         EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
@@ -507,6 +504,9 @@
             <if test="opType != null">
                 OP_TYPE = #{opType,jdbcType=VARCHAR},
             </if>
+            <if test="lastUpdatedStamp != null">
+                LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+            </if>
             <if test="createdStamp != null">
                 CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
             </if>
@@ -515,7 +515,6 @@
             </if>
         </set>
         where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
-        and LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.VpnDialPersonsHis">
     update vpn_dial_persons_history
@@ -541,9 +540,9 @@
       BILL_ID = #{billId,jdbcType=VARCHAR},
       MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
       OP_TYPE = #{opType,jdbcType=VARCHAR},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
       CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
       EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP}
     where HISTORY_ID = #{historyId,jdbcType=VARCHAR}
-      and LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP}
   </update>
 </mapper>

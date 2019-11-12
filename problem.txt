@@ -58,3 +58,20 @@
 
 6.如果表中存在外键,生成pojo类的时候,会单独给主键生成一份pojo类,xxxKey.java,然后在生成一份和表名相同的pojo类继承xxxKey.java
                 --- myBatis Generator 在mysql的情况下 --- ???
+
+7.
+    select vpn.*,m.id m_id,m.name m_name
+    from
+        (select v.*,u.id u_id,u.name u_name,o.id o_id,o.name o_name
+        from vpn_dial_persons v,comman_user u ,common_rd_organization o
+        where v.CREATED_BY = u.id and v.DEPARTMENT_ID = o.id
+        ) vpn left join comman_user m
+    on vpn.MODIFIED_BY=m.id and vpn.FIRST_NAME='喜洋洋'
+
+    select vpn.*,m.id m_id,m.name m_name
+    from
+         (select v.*,u.id u_id,u.name u_name,o.id o_id,o.name o_name
+          from vpn_dial_persons v,comman_user u ,common_rd_organization o
+          where v.CREATED_BY = u.id and v.DEPARTMENT_ID = o.id and v.FIRST_NAME='喜洋洋'
+          ) vpn left join comman_user m
+    on vpn.MODIFIED_BY=m.id

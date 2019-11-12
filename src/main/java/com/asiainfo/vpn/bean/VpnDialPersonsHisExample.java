@@ -175,66 +175,6 @@ public class VpnDialPersonsHisExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedStampIsNull() {
-            addCriterion("LAST_UPDATED_STAMP is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIsNotNull() {
-            addCriterion("LAST_UPDATED_STAMP is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP =", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <>", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampGreaterThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP >=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThan(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampLessThanOrEqualTo(Date value) {
-            addCriterion("LAST_UPDATED_STAMP <=", value, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotIn(List<Date> values) {
-            addCriterion("LAST_UPDATED_STAMP not in", values, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedStampNotBetween(Date value1, Date value2) {
-            addCriterion("LAST_UPDATED_STAMP not between", value1, value2, "lastUpdatedStamp");
-            return (Criteria) this;
-        }
-
         public Criteria andDialPersonIdIsNull() {
             addCriterion("DIAL_PERSON_ID is null");
             return (Criteria) this;
@@ -1772,6 +1712,66 @@ public class VpnDialPersonsHisExample {
 
         public Criteria andOpTypeNotBetween(String value1, String value2) {
             addCriterion("OP_TYPE not between", value1, value2, "opType");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampIsNull() {
+            addCriterion("LAST_UPDATED_STAMP is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampIsNotNull() {
+            addCriterion("LAST_UPDATED_STAMP is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP =", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <>", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampGreaterThan(Date value) {
+            addCriterion("LAST_UPDATED_STAMP >", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampGreaterThanOrEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP >=", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampLessThan(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampLessThanOrEqualTo(Date value) {
+            addCriterion("LAST_UPDATED_STAMP <=", value, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampIn(List<Date> values) {
+            addCriterion("LAST_UPDATED_STAMP in", values, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotIn(List<Date> values) {
+            addCriterion("LAST_UPDATED_STAMP not in", values, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampBetween(Date value1, Date value2) {
+            addCriterion("LAST_UPDATED_STAMP between", value1, value2, "lastUpdatedStamp");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedStampNotBetween(Date value1, Date value2) {
+            addCriterion("LAST_UPDATED_STAMP not between", value1, value2, "lastUpdatedStamp");
             return (Criteria) this;
         }
 

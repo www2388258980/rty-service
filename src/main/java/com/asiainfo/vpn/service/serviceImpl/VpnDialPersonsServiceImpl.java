@@ -1,9 +1,13 @@
 package com.asiainfo.vpn.service.serviceImpl;
 
 import com.asiainfo.vpn.bean.*;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsExtend;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsHisExtend;
 import com.asiainfo.vpn.mapper.SequenceValueItemMapper;
 import com.asiainfo.vpn.mapper.VpnDialPersonsHisMapper;
 import com.asiainfo.vpn.mapper.VpnDialPersonsMapper;
+import com.asiainfo.vpn.mapper.extend.VpnDialPersonsExtendMapper;
+import com.asiainfo.vpn.mapper.extend.VpnDialPersonsHisExtendMapper;
 import com.asiainfo.vpn.service.IVpnDialPersonsService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.StringUtil;
@@ -12,7 +16,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +27,10 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
     private VpnDialPersonsMapper vpnDialPersonsMapper;
     @Autowired
     private VpnDialPersonsHisMapper vpnDialPersonsHisMapper;
+    @Autowired
+    private VpnDialPersonsExtendMapper vpnDialPersonsExtendMapper;
+    @Autowired
+    private VpnDialPersonsHisExtendMapper vpnDialPersonsHisExtendMapper;
 
 
     @Override
@@ -133,81 +140,33 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
     }
 
     @Override
-    public OperationResult<List<VpnDialPersons>> getVpnDailPersons(VpnDialPersons persons, Date startDate, Date endDate,
-                                                                   int size, int pageSize) throws Exception {
-        VpnDialPersonsExample example = new VpnDialPersonsExample();
-        // 根据最后更新时间降序
-        example.setOrderByClause("LAST_UPDATED_STAMP desc");
-        VpnDialPersonsExample.Criteria criteria = example.createCriteria();
-        if (!StringUtil.isEmpty(persons.getFirstName())) {
-            criteria.andFirstNameEqualTo(persons.getFirstName());
-        }
-        if (!StringUtil.isEmpty(persons.getFirstChar())) {
-            criteria.andFirstCharLike("%" + persons.getFirstChar() + "%");
-        }
-        if (!StringUtil.isEmpty(persons.getStatus())) {
-            criteria.andStatusEqualTo(persons.getStatus());
-        }
-        if (!StringUtil.isEmpty(persons.getCreatedBy())) {
-            criteria.andCreatedByEqualTo(persons.getCreatedBy());
-        }
-        if (startDate != null) {
-            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
-        }
-        if (endDate != null) {
-            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
-        }
+    public OperationResult<List<VpnDialPersonsExtend>> getVpnDailPersons(VpnDialPersons persons, Date startDate, Date endDate,
+                                                                         int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
-        List<VpnDialPersons> vpnDialPersons = vpnDialPersonsMapper.selectByExample(example);
-        PageInfo<VpnDialPersons> info = new PageInfo<>(vpnDialPersons);
+        List<VpnDialPersonsExtend> vpnDialPersons = vpnDialPersonsExtendMapper.selectVpnDialRecordsWithExtra(persons,
+                startDate, endDate);
+        PageInfo<VpnDialPersonsExtend> info = new PageInfo<>(vpnDialPersons);
 
-        OperationResult<List<VpnDialPersons>> or = new OperationResult<>();
+        OperationResult<List<VpnDialPersonsExtend>> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
         or.setData(vpnDialPersons);
         or.setTotal(info.getTotal());
+        or.setMessage("查询成功.");
 
         return or;
     }
 
 
     @Override
-    public OperationResult<List<VpnDialPersonsHis>> getVpnDialPersonsHis(VpnDialPersonsHis his, Date startDate, Date endDate,
-                                                                         int size, int pageSize) throws Exception {
-        VpnDialPersonsHisExample example = new VpnDialPersonsHisExample();
-        // 根据最后更新时间降序
-        example.setOrderByClause("LAST_UPDATED_STAMP desc");
-        VpnDialPersonsHisExample.Criteria criteria = example.createCriteria();
-        if (!StringUtil.isEmpty(his.getFirstName())) {
-            criteria.andFirstNameEqualTo(his.getFirstName());
-        }
-        if (!StringUtil.isEmpty(his.getFirstChar())) {
-            criteria.andFirstCharLike("%" + his.getFirstChar() + "%");
-        }
-        if (!StringUtil.isEmpty(his.getStatus())) {
-            criteria.andStatusEqualTo(his.getStatus());
-        }
-        if (!StringUtil.isEmpty(his.getCreatedBy())) {
-            criteria.andCreatedByEqualTo(his.getCreatedBy());
-        }
-        if (startDate != null) {
-            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
-        }
-        if (endDate != null) {
-            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
-        }
+    public OperationResult<List<VpnDialPersonsHisExtend>> getVpnDialPersonsHis(VpnDialPersonsHis his, Date startDate, Date endDate,
+                                                                               int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
-        List<VpnDialPersonsHis> vpnDialPersonsHis = vpnDialPersonsHisMapper.selectByExample(example);
-        PageInfo<VpnDialPersonsHis> info = new PageInfo<>(vpnDialPersonsHis);
-        System.out.println("总数量：" + info.getTotal());
-//        System.out.println("当前页查询记录：" + info.getList().size());
-//        System.out.println("当前页码：" + info.getPageNum());
-//        System.out.println("每页显示数量：" + info.getPageSize());
-//        System.out.println("总页：" + info.getPages());
+        List<VpnDialPersonsHisExtend> vpnDialPersonsHis = vpnDialPersonsHisExtendMapper.selectVpnDialPersonsHisWithExtra(his, startDate, endDate);
+        PageInfo<VpnDialPersonsHisExtend> info = new PageInfo<>(vpnDialPersonsHis);
 
-
-        OperationResult<List<VpnDialPersonsHis>> or = new OperationResult<>();
+        OperationResult<List<VpnDialPersonsHisExtend>> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
         or.setData(vpnDialPersonsHis);
         or.setTotal(info.getTotal());
@@ -280,7 +239,7 @@ public class VpnDialPersonsServiceImpl implements IVpnDialPersonsService {
         his2.setOldFirstChar(old.getFirstChar());
         his2.setOldDepartmentId(old.getDepartmentId());
         his2.setOldCreatedBy(old.getCreatedBy());
-        his2.setOldCreatedBy(old.getModifiedBy());
+        his2.setOldModifiedBy(old.getModifiedBy());
         his2.setOldbillId(old.getBillId());
         his2.setOldModifiedBillId(old.getModifiedBillId());
     }

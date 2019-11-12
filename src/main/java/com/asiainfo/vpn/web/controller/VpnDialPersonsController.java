@@ -2,6 +2,8 @@ package com.asiainfo.vpn.web.controller;
 
 import com.asiainfo.vpn.bean.VpnDialPersons;
 import com.asiainfo.vpn.bean.VpnDialPersonsHis;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsExtend;
+import com.asiainfo.vpn.bean.extend.VpnDialPersonsHisExtend;
 import com.asiainfo.vpn.service.IVpnDialPersonsService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.PinyinUtils;
@@ -58,9 +60,9 @@ public class VpnDialPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页几条", required = true, paramType = "query")
     })
-    public OperationResult<List<VpnDialPersons>> getVpnDialPersons(VpnDialPersons persons, Long startDate, Long endDate,
-                                                                   int size, int pageSize) {
-        OperationResult<List<VpnDialPersons>> or = null;
+    public OperationResult<List<VpnDialPersonsExtend>> getVpnDialPersons(VpnDialPersons persons, Long startDate, Long endDate,
+                                                                         int size, int pageSize) {
+        OperationResult<List<VpnDialPersonsExtend>> or = null;
         try {
             // 转换
             Date start = null;
@@ -92,9 +94,9 @@ public class VpnDialPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页几条", required = true, paramType = "query")
     })
-    public OperationResult<List<VpnDialPersonsHis>> getVpnDialPersonsHis(VpnDialPersonsHis his, Long startDate, Long endDate,
-                                                                         int size, int pageSize) {
-        OperationResult<List<VpnDialPersonsHis>> or = null;
+    public OperationResult<List<VpnDialPersonsHisExtend>> getVpnDialPersonsHis(VpnDialPersonsHis his, Long startDate, Long endDate,
+                                                                               int size, int pageSize) {
+        OperationResult<List<VpnDialPersonsHisExtend>> or = null;
         try {
             // 转换
             Date start = null;

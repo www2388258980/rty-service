@@ -1,6 +1,7 @@
 package com.asiainfo.vpn.service;
 
 import com.asiainfo.vpn.bean.VpnDialRecord;
+import com.asiainfo.vpn.bean.extend.VpnDialRecordExtend;
 import com.asiainfo.vpn.utils.OperationResult;
 
 import java.util.Date;
@@ -28,6 +29,8 @@ public interface IVpnDialRecordService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<VpnDialRecord>> getVpnDialRecord(VpnDialRecord record, Date startDate, Date endDate,
-                                                                 int size, int pageSize) throws Exception;
+    public OperationResult<List<VpnDialRecordExtend>> getVpnDialRecord(VpnDialRecord record, Date startDate, Date endDate,
+                                                                       int size, int pageSize) throws Exception;
+
+
 }

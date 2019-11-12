@@ -2,7 +2,6 @@ package com.asiainfo.vpn.mapper;
 
 import com.asiainfo.vpn.bean.VpnDialPersonsHis;
 import com.asiainfo.vpn.bean.VpnDialPersonsHisExample;
-import com.asiainfo.vpn.bean.VpnDialPersonsHisKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +10,7 @@ public interface VpnDialPersonsHisMapper {
 
     int deleteByExample(VpnDialPersonsHisExample example);
 
-    int deleteByPrimaryKey(VpnDialPersonsHisKey key);
+    int deleteByPrimaryKey(String historyId);
 
     int insert(VpnDialPersonsHis record);
 
@@ -19,7 +18,7 @@ public interface VpnDialPersonsHisMapper {
 
     List<VpnDialPersonsHis> selectByExample(VpnDialPersonsHisExample example);
 
-    VpnDialPersonsHis selectByPrimaryKey(VpnDialPersonsHisKey key);
+    VpnDialPersonsHis selectByPrimaryKey(String historyId);
 
     int updateByExampleSelective(@Param("record") VpnDialPersonsHis record, @Param("example") VpnDialPersonsHisExample example);
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.vpn.mapper.extend.VpnDialRecordExtendMapper">
+
+    <resultMap id="UserMap" type="com.asiainfo.vpn.bean.User">
+        <id column="u_id" jdbcType="VARCHAR" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="DepartmentMap" type="com.asiainfo.vpn.bean.Organization">
+        <id column="o_ID" jdbcType="VARCHAR" property="id"/>
+        <result column="o_NAME" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="VpnDialRecordMap" type="com.asiainfo.vpn.bean.extend.VpnDialRecordExtend">
+        <id column="VPN_DIAL_RECORD_ID" jdbcType="VARCHAR" property="vpnDialRecordId"/>
+        <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName"/>
+        <result column="VPN_DIAL_CAUSE" jdbcType="VARCHAR" property="vpnDialCause"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="DIAL_DATE" jdbcType="TIMESTAMP" property="dialDate"/>
+        <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate"/>
+        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
+        <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
+        <result column="CREATED_BY_USER_LOGIN" jdbcType="VARCHAR" property="createdByUserLogin"/>
+        <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber"/>
+        <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId"/>
+
+        <association property="user" resultMap="UserMap"/>
+        <association property="department" resultMap="DepartmentMap"/>
+    </resultMap>
+
+    <!--    一对一嵌套结果映射   -->
+    <select id="selectVpnDialRecordsWithExtra" resultMap="VpnDialRecordMap">
+        select vpn.*,u.id u_id,u.name u_name,o.id o_id,o.name o_name
+        from vpn_dial_record vpn,comman_user u,common_rd_organization o
+        where vpn.CREATED_BY_USER_LOGIN=u.id and vpn.DEPARTMENT_ID = o.id
+        <if test="param1.firstName != null">
+            and vpn.FIRST_NAME = #{param1.firstName}
+        </if>
+        <if test="param2 != null">
+            and vpn.LAST_UPDATED_STAMP &gt;= #{param2}
+        </if>
+        <if test="param3 != null">
+            and vpn.LAST_UPDATED_STAMP &lt;=#{parma3}
+        </if>
+        order by vpn.LAST_UPDATED_STAMP desc
+    </select>
+
+</mapper>

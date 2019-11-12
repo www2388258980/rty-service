@@ -55,6 +55,7 @@
         <table tableName="common_rd_organization" domainObjectName="Organization"></table>
         <table tableName="enumeration" domainObjectName="Enumeration"></table>
         <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>
+        <table tableName="comman_user" domainObjectName="User"/>
 
     </context>
 </generatorConfiguration>
