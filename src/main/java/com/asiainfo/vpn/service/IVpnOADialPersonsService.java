@@ -2,6 +2,8 @@ package com.asiainfo.vpn.service;
 
 import com.asiainfo.vpn.bean.VpnOADialPersons;
 import com.asiainfo.vpn.bean.VpnOADialPersonsHis;
+import com.asiainfo.vpn.bean.extend.VpnOADialPersonsExtend;
+import com.asiainfo.vpn.bean.extend.VpnOADialPersonsHisExtend;
 import com.asiainfo.vpn.utils.OperationResult;
 
 import java.util.List;
@@ -38,8 +40,8 @@ public interface IVpnOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<VpnOADialPersons>> getVpnOADialPersons(VpnOADialPersons persons, Date startDate, Date endDate,
-                                                                       int size, int pageSize) throws Exception;
+    public OperationResult<List<VpnOADialPersonsExtend>> getVpnOADialPersons(VpnOADialPersons persons, Date startDate, Date endDate,
+                                                                             int size, int pageSize) throws Exception;
 
     /**
      * 根据条件获取历史表数据
@@ -52,8 +54,8 @@ public interface IVpnOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<VpnOADialPersonsHis>> getVpnOADialPersonsHis(VpnOADialPersonsHis his, Date startDate, Date endDate,
-                                                                             int size, int pageSize) throws Exception;
+    public OperationResult<List<VpnOADialPersonsHisExtend>> getVpnOADialPersonsHis(VpnOADialPersonsHis his, Date startDate, Date endDate,
+                                                                                   int size, int pageSize) throws Exception;
 
     /**
      * @param persons

@@ -1,9 +1,12 @@
 package com.asiainfo.vpn.service.serviceImpl;
 
 import com.asiainfo.vpn.bean.*;
+import com.asiainfo.vpn.bean.extend.VpnOADialPersonsExtend;
+import com.asiainfo.vpn.bean.extend.VpnOADialPersonsHisExtend;
 import com.asiainfo.vpn.mapper.SequenceValueItemMapper;
 import com.asiainfo.vpn.mapper.VpnOADialPersonsHisMapper;
 import com.asiainfo.vpn.mapper.VpnOADialPersonsMapper;
+import com.asiainfo.vpn.mapper.extend.VpnOADialPersonsExtendMapper;
 import com.asiainfo.vpn.service.IVpnOADialPersonsService;
 import com.asiainfo.vpn.utils.OperationResult;
 import com.asiainfo.vpn.utils.StringUtil;
@@ -23,6 +26,8 @@ public class VpnOADialPersonsServiceImpl implements IVpnOADialPersonsService {
     private VpnOADialPersonsMapper vpnOADialPersonsMapper;
     @Autowired
     private VpnOADialPersonsHisMapper vpnOADialPersonsHisMapper;
+    @Autowired
+    private VpnOADialPersonsExtendMapper vpnOADialPersonsExtendMapper;
 
 
     @Override
@@ -145,42 +150,14 @@ public class VpnOADialPersonsServiceImpl implements IVpnOADialPersonsService {
     }
 
     @Override
-    public OperationResult<List<VpnOADialPersons>> getVpnOADialPersons(VpnOADialPersons persons, Date startDate, Date endDate,
-                                                                       int size, int pageSize) throws Exception {
-        VpnOADialPersonsExample example = new VpnOADialPersonsExample();
-        // 根据时间降序
-        example.setOrderByClause("LAST_UPDATED_STAMP desc");
-        VpnOADialPersonsExample.Criteria criteria = example.createCriteria();
-        if (startDate != null) {
-            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
-        }
-        if (endDate != null) {
-            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
-        }
-        if (!StringUtil.isEmpty(persons.getFirstName())) {
-            criteria.andFirstNameEqualTo(persons.getFirstName());
-        }
-        if (!StringUtil.isEmpty(persons.getStatus())) {
-            criteria.andStatusEqualTo(persons.getStatus());
-        }
-        if (!StringUtil.isEmpty(persons.getFirstChar())) {
-            criteria.andFirstCharEqualTo("%" + persons.getFirstChar() + "%");
-        }
-        if (!StringUtil.isEmpty(persons.getDepartmentId())) {
-            criteria.andDepartmentIdEqualTo(persons.getDepartmentId());
-        }
-        if (!StringUtil.isEmpty(persons.getCreatedBy())) {
-            criteria.andCreatedByEqualTo(persons.getCreatedBy());
-        }
-        if (!StringUtil.isEmpty(persons.getVpnTypeId())) {
-            criteria.andVpnTypeIdEqualTo(persons.getVpnTypeId());
-        }
-
+    public OperationResult<List<VpnOADialPersonsExtend>> getVpnOADialPersons(VpnOADialPersons persons, Date startDate, Date endDate,
+                                                                             int size, int pageSize) throws Exception {
         PageHelper.startPage(size, pageSize);
-        List<VpnOADialPersons> vpnOADialPersons = vpnOADialPersonsMapper.selectByExample(example);
-        PageInfo<VpnOADialPersons> info = new PageInfo<>(vpnOADialPersons);
+        List<VpnOADialPersonsExtend> vpnOADialPersons = vpnOADialPersonsExtendMapper.selectVpnOADialPersonsWithExtra(
+                persons, startDate, endDate);
+        PageInfo<VpnOADialPersonsExtend> info = new PageInfo<>(vpnOADialPersons);
 
-        OperationResult<List<VpnOADialPersons>> or = new OperationResult<>();
+        OperationResult<List<VpnOADialPersonsExtend>> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
         or.setData(vpnOADialPersons);
         or.setTotal(info.getTotal());
@@ -191,42 +168,15 @@ public class VpnOADialPersonsServiceImpl implements IVpnOADialPersonsService {
 
 
     @Override
-    public OperationResult<List<VpnOADialPersonsHis>> getVpnOADialPersonsHis(VpnOADialPersonsHis his, Date startDate, Date endDate,
-                                                                             int size, int pageSize) throws Exception {
-        VpnOADialPersonsHisExample example = new VpnOADialPersonsHisExample();
-        // 根据时间降序
-        example.setOrderByClause("LAST_UPDATED_STAMP desc");
-        VpnOADialPersonsHisExample.Criteria criteria = example.createCriteria();
-        if (startDate != null) {
-            criteria.andLastUpdatedStampGreaterThanOrEqualTo(startDate);
-        }
-        if (endDate != null) {
-            criteria.andLastUpdatedStampLessThanOrEqualTo(endDate);
-        }
-        if (!StringUtil.isEmpty(his.getFirstName())) {
-            criteria.andFirstNameEqualTo(his.getFirstName());
-        }
-        if (!StringUtil.isEmpty(his.getStatus())) {
-            criteria.andStatusEqualTo(his.getStatus());
-        }
-        if (!StringUtil.isEmpty(his.getFirstChar())) {
-            criteria.andFirstCharEqualTo("%" + his.getFirstChar() + "%");
-        }
-        if (!StringUtil.isEmpty(his.getDepartmentId())) {
-            criteria.andDepartmentIdEqualTo(his.getDepartmentId());
-        }
-        if (!StringUtil.isEmpty(his.getCreatedBy())) {
-            criteria.andCreatedByEqualTo(his.getCreatedBy());
-        }
-        if (!StringUtil.isEmpty(his.getVpnTypeId())) {
-            criteria.andVpnTypeIdEqualTo(his.getVpnTypeId());
-        }
+    public OperationResult<List<VpnOADialPersonsHisExtend>> getVpnOADialPersonsHis(VpnOADialPersonsHis his, Date startDate,
+                                                                                   Date endDate, int size, int pageSize) throws Exception {
 
         PageHelper.startPage(size, pageSize);
-        List<VpnOADialPersonsHis> vpnOADialPersons = vpnOADialPersonsHisMapper.selectByExample(example);
-        PageInfo<VpnOADialPersonsHis> info = new PageInfo<>(vpnOADialPersons);
+        List<VpnOADialPersonsHisExtend> vpnOADialPersons = vpnOADialPersonsExtendMapper.selectVpnOADialPersonsHisWithExtra(
+                his, startDate, endDate);
+        PageInfo<VpnOADialPersonsHisExtend> info = new PageInfo<>(vpnOADialPersons);
 
-        OperationResult<List<VpnOADialPersonsHis>> or = new OperationResult<>();
+        OperationResult<List<VpnOADialPersonsHisExtend>> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
         or.setData(vpnOADialPersons);
         or.setTotal(info.getTotal());
