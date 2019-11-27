@@ -11,7 +11,7 @@
     <groupId>com.asiainfo</groupId>
     <artifactId>vpn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>vpn</name>
+    <name>myFristProject</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -28,6 +28,7 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
