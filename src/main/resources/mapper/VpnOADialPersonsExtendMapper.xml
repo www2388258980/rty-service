@@ -51,13 +51,14 @@
     <select id="selectVpnOADialPersonsWithExtra" resultMap="VpnOADialPersonsMap">
         select vpn.*,u.id u_id,u.name u_name,e.ENUM_ID ENUM_ID,
         e.ENUM_TYPE_ID ENUM_TYPE_ID,e.ENUM_CODE ENUM_CODE,e.SEQUENCE_ID SEQUENCE_ID,
-        e.DESCRIPTION e_DESCRIPTION
+        e.DESCRIPTION e_DESCRIPTION,
+        o.id o_id,o.name o_name
         from (
         select v.*,m.id m_id,m.name m_name
         from vpn_oa_dial_persons v left join comman_user m
         on v.MODIFIED_BY=m.id
-        )vpn,comman_user u,enumeration e
-        where vpn.CREATED_BY=u.id and vpn.VPN_TYPE_ID=e.ENUM_ID
+        )vpn,comman_user u,enumeration e,common_rd_organization o
+        where vpn.CREATED_BY=u.id and vpn.VPN_TYPE_ID=e.ENUM_ID and vpn.DEPARTMENT_ID = o.id
         <if test="param1.firstName != null">
             and vpn.FIRST_NAME = #{param1.firstName}
         </if>
