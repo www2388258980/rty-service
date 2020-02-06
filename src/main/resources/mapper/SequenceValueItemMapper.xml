@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.asiainfo.vpn.mapper.SequenceValueItemMapper">
-    <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.SequenceValueItem">
+<mapper namespace="com.asiainfo.rty.mapper.SequenceValueItemMapper">
+    <resultMap id="BaseResultMap" type="com.asiainfo.rty.bean.SequenceValueItem">
         <id column="SEQ_NAME" jdbcType="VARCHAR" property="seqName"/>
         <result column="SEQ_ID" jdbcType="INTEGER" property="seqId"/>
         <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
@@ -70,7 +70,7 @@
     <sql id="Base_Column_List">
     SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, CREATED_STAMP
   </sql>
-    <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.SequenceValueItemExample"
+    <select id="selectByExample" parameterType="com.asiainfo.rty.bean.SequenceValueItemExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -95,19 +95,19 @@
     delete from sequence_value_item
     where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.SequenceValueItemExample">
+    <delete id="deleteByExample" parameterType="com.asiainfo.rty.bean.SequenceValueItemExample">
         delete from sequence_value_item
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+    <insert id="insert" parameterType="com.asiainfo.rty.bean.SequenceValueItem">
     insert into sequence_value_item (SEQ_NAME, SEQ_ID, LAST_UPDATED_STAMP, 
       CREATED_STAMP)
     values (#{seqName,jdbcType=VARCHAR}, #{seqId,jdbcType=INTEGER}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
       #{createdStamp,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+    <insert id="insertSelective" parameterType="com.asiainfo.rty.bean.SequenceValueItem">
         insert into sequence_value_item
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="seqName != null">
@@ -138,7 +138,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.asiainfo.vpn.bean.SequenceValueItemExample"
+    <select id="countByExample" parameterType="com.asiainfo.rty.bean.SequenceValueItemExample"
             resultType="java.lang.Long">
         select count(*) from sequence_value_item
         <if test="_parameter != null">
@@ -175,7 +175,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.rty.bean.SequenceValueItem">
         update sequence_value_item
         <set>
             <if test="seqId != null">
@@ -190,7 +190,7 @@
         </set>
         where SEQ_NAME = #{seqName,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.SequenceValueItem">
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.rty.bean.SequenceValueItem">
     update sequence_value_item
     set SEQ_ID = #{seqId,jdbcType=INTEGER},
       LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},

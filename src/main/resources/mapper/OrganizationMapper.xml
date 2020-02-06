@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.asiainfo.vpn.mapper.OrganizationMapper">
-    <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Organization">
+<mapper namespace="com.asiainfo.rty.mapper.OrganizationMapper">
+    <resultMap id="BaseResultMap" type="com.asiainfo.rty.bean.Organization">
         <id column="ID" jdbcType="VARCHAR" property="id"/>
         <result column="NAME" jdbcType="VARCHAR" property="name"/>
     </resultMap>
@@ -68,7 +68,7 @@
     <sql id="Base_Column_List">
     ID, NAME
   </sql>
-    <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.asiainfo.rty.bean.OrganizationExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -92,17 +92,17 @@
     delete from common_rd_organization
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample">
+    <delete id="deleteByExample" parameterType="com.asiainfo.rty.bean.OrganizationExample">
         delete from common_rd_organization
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.asiainfo.vpn.bean.Organization">
+    <insert id="insert" parameterType="com.asiainfo.rty.bean.Organization">
     insert into common_rd_organization (ID, NAME)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Organization">
+    <insert id="insertSelective" parameterType="com.asiainfo.rty.bean.Organization">
         insert into common_rd_organization
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -121,7 +121,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.asiainfo.vpn.bean.OrganizationExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.asiainfo.rty.bean.OrganizationExample" resultType="java.lang.Long">
         select count(*) from common_rd_organization
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -149,7 +149,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.Organization">
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.rty.bean.Organization">
         update common_rd_organization
         <set>
             <if test="name != null">
@@ -158,7 +158,7 @@
         </set>
         where ID = #{id,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.Organization">
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.rty.bean.Organization">
     update common_rd_organization
     set NAME = #{name,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}

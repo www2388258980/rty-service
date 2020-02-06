@@ -18,9 +18,9 @@
 
         <!---->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/vpn?serverTimezone=GMT%2B8"
-                        userId="vpn"
-                        password="123456">
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/rty?serverTimezone=GMT%2B8"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
         <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
@@ -29,7 +29,7 @@
         </javaTypeResolver>
 
         <!--自动生成的实体的存放包路径 -->
-        <javaModelGenerator targetPackage="com.asiainfo.vpn.bean" targetProject="./src/main/java">
+        <javaModelGenerator targetPackage="com.asiainfo.rty.bean" targetProject="./src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -40,22 +40,22 @@
         </sqlMapGenerator>
 
         <!--自动生成的*Mapper.java存放路径 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.asiainfo.vpn.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.asiainfo.rty.mapper"
                              targetProject="./src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
         <!-- 映射配置 -->
-        <table tableName="vpn_dial_persons" domainObjectName="VpnDialPersons"></table>
-        <table tableName="VPN_DIAL_PERSONS_HISTORY" domainObjectName="VpnDialPersonsHis"></table>
-        <table tableName="VPN_DIAL_RECORD" domainObjectName="VpnDialRecord"></table>
-        <table tableName="VPN_OA_DIAL_PERSONS" domainObjectName="VpnOADialPersons"></table>
-        <table tableName="VPN_OA_DIAL_PERSONS_HISTORY" domainObjectName="VpnOADialPersonsHis"></table>
-        <table tableName="common_rd_organization" domainObjectName="Organization"></table>
-        <table tableName="enumeration" domainObjectName="Enumeration"></table>
-        <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>
-        <table tableName="comman_user" domainObjectName="User"/>
+        <table tableName="Rty_dial_persons" domainObjectName="RtyDialPersons"></table>
+        <table tableName="Rty_DIAL_PERSONS_HISTORY" domainObjectName="RtyDialPersonsHis"></table>
+        <table tableName="Rty_DIAL_RECORD" domainObjectName="RtyDialRecord"></table>
+        <table tableName="Rty_OA_DIAL_PERSONS" domainObjectName="RtyOADialPersons"></table>
+        <table tableName="Rty_OA_DIAL_PERSONS_HISTORY" domainObjectName="RtyOADialPersonsHis"></table>
+        <!--        <table tableName="common_rd_organization" domainObjectName="Organization"></table>-->
+        <!--        <table tableName="enumeration" domainObjectName="Enumeration"></table>-->
+        <!--        <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>-->
+        <!--        <table tableName="comman_user" domainObjectName="User"/>-->
 
     </context>
 </generatorConfiguration>

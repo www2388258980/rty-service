@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.rty.mapper.RtyDialPersonsMapper">
+  <resultMap id="BaseResultMap" type="com.asiainfo.rty.bean.RtyDialPersons">
+    <id column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId" />
+    <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
+    <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="FIRST_CHAR" jdbcType="VARCHAR" property="firstChar" />
+    <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy" />
+    <result column="BILL_ID" jdbcType="VARCHAR" property="billId" />
+    <result column="MODIFIED_BILL_ID" jdbcType="VARCHAR" property="modifiedBillId" />
+    <result column="OP_TYPE" jdbcType="VARCHAR" property="opType" />
+    <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate" />
+    <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp" />
+    <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAL_PERSON_ID, FIRST_NAME, TELECOM_NUMBER, DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
+    STATUS, CREATED_BY, MODIFIED_BY, BILL_ID, MODIFIED_BILL_ID, OP_TYPE, EFFECTIVE_DATE, 
+    LAST_UPDATED_STAMP, CREATED_STAMP
+  </sql>
+  <select id="selectByExample" parameterType="com.asiainfo.rty.bean.RtyDialPersonsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rty_dial_persons
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rty_dial_persons
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rty_dial_persons
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.asiainfo.rty.bean.RtyDialPersonsExample">
+    delete from rty_dial_persons
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.asiainfo.rty.bean.RtyDialPersons">
+    insert into rty_dial_persons (DIAL_PERSON_ID, FIRST_NAME, TELECOM_NUMBER, 
+      DESCRIPTION, FIRST_CHAR, DEPARTMENT_ID, 
+      STATUS, CREATED_BY, MODIFIED_BY, 
+      BILL_ID, MODIFIED_BILL_ID, OP_TYPE, 
+      EFFECTIVE_DATE, LAST_UPDATED_STAMP, CREATED_STAMP
+      )
+    values (#{dialPersonId,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{telecomNumber,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{firstChar,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{modifiedBy,jdbcType=VARCHAR}, 
+      #{billId,jdbcType=VARCHAR}, #{modifiedBillId,jdbcType=VARCHAR}, #{opType,jdbcType=VARCHAR}, 
+      #{effectiveDate,jdbcType=TIMESTAMP}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.asiainfo.rty.bean.RtyDialPersons">
+    insert into rty_dial_persons
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dialPersonId != null">
+        DIAL_PERSON_ID,
+      </if>
+      <if test="firstName != null">
+        FIRST_NAME,
+      </if>
+      <if test="telecomNumber != null">
+        TELECOM_NUMBER,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="firstChar != null">
+        FIRST_CHAR,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="modifiedBy != null">
+        MODIFIED_BY,
+      </if>
+      <if test="billId != null">
+        BILL_ID,
+      </if>
+      <if test="modifiedBillId != null">
+        MODIFIED_BILL_ID,
+      </if>
+      <if test="opType != null">
+        OP_TYPE,
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE,
+      </if>
+      <if test="lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP,
+      </if>
+      <if test="createdStamp != null">
+        CREATED_STAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dialPersonId != null">
+        #{dialPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="telecomNumber != null">
+        #{telecomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null">
+        #{firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null">
+        #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="billId != null">
+        #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBillId != null">
+        #{modifiedBillId,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedStamp != null">
+        #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null">
+        #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.asiainfo.rty.bean.RtyDialPersonsExample" resultType="java.lang.Long">
+    select count(*) from rty_dial_persons
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rty_dial_persons
+    <set>
+      <if test="record.dialPersonId != null">
+        DIAL_PERSON_ID = #{record.dialPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstName != null">
+        FIRST_NAME = #{record.firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telecomNumber != null">
+        TELECOM_NUMBER = #{record.telecomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstChar != null">
+        FIRST_CHAR = #{record.firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentId != null">
+        DEPARTMENT_ID = #{record.departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifiedBy != null">
+        MODIFIED_BY = #{record.modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billId != null">
+        BILL_ID = #{record.billId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifiedBillId != null">
+        MODIFIED_BILL_ID = #{record.modifiedBillId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opType != null">
+        OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectiveDate != null">
+        EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdStamp != null">
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rty_dial_persons
+    set DIAL_PERSON_ID = #{record.dialPersonId,jdbcType=VARCHAR},
+      FIRST_NAME = #{record.firstName,jdbcType=VARCHAR},
+      TELECOM_NUMBER = #{record.telecomNumber,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      FIRST_CHAR = #{record.firstChar,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{record.departmentId,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      MODIFIED_BY = #{record.modifiedBy,jdbcType=VARCHAR},
+      BILL_ID = #{record.billId,jdbcType=VARCHAR},
+      MODIFIED_BILL_ID = #{record.modifiedBillId,jdbcType=VARCHAR},
+      OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+      EFFECTIVE_DATE = #{record.effectiveDate,jdbcType=TIMESTAMP},
+      LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.rty.bean.RtyDialPersons">
+    update rty_dial_persons
+    <set>
+      <if test="firstName != null">
+        FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="telecomNumber != null">
+        TELECOM_NUMBER = #{telecomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="firstChar != null">
+        FIRST_CHAR = #{firstChar,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null">
+        MODIFIED_BY = #{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="billId != null">
+        BILL_ID = #{billId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBillId != null">
+        MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        OP_TYPE = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null">
+        CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.asiainfo.rty.bean.RtyDialPersons">
+    update rty_dial_persons
+    set FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+      TELECOM_NUMBER = #{telecomNumber,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      FIRST_CHAR = #{firstChar,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      MODIFIED_BY = #{modifiedBy,jdbcType=VARCHAR},
+      BILL_ID = #{billId,jdbcType=VARCHAR},
+      MODIFIED_BILL_ID = #{modifiedBillId,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=VARCHAR},
+      EFFECTIVE_DATE = #{effectiveDate,jdbcType=TIMESTAMP},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP}
+    where DIAL_PERSON_ID = #{dialPersonId,jdbcType=VARCHAR}
+  </update>
+</mapper>

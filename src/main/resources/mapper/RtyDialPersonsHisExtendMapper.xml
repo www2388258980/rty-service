@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.rty.mapper.extend.RtyDialPersonsHisExtendMapper">
+
+    <resultMap id="UserMap1" type="com.asiainfo.rty.bean.User">
+        <id column="u_id" jdbcType="VARCHAR" property="id"/>
+        <result column="u_name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="UserMap2" type="com.asiainfo.rty.bean.User">
+        <id column="m_id" jdbcType="VARCHAR" property="id"/>
+        <result column="m_name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+    <resultMap id="DepartmentMap" type="com.asiainfo.rty.bean.Organization">
+        <id column="o_ID" jdbcType="VARCHAR" property="id"/>
+        <result column="o_NAME" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <resultMap id="RtyDialPersonsHisMap" type="com.asiainfo.rty.bean.extend.RtyDialPersonsHisExtend">
+        <id column="HISTORY_ID" jdbcType="VARCHAR" property="historyId"/>
+        <result column="DIAL_PERSON_ID" jdbcType="VARCHAR" property="dialPersonId"/>
+        <result column="OLD_TELECOM_NUMBER" jdbcType="VARCHAR" property="oldTelecomNumber"/>
+        <result column="OLD_STATUS" jdbcType="VARCHAR" property="oldStatus"/>
+        <result column="OLD_DESCRIPTION" jdbcType="VARCHAR" property="oldDescription"/>
+        <result column="OLD_FIRST_CHAR" jdbcType="VARCHAR" property="oldFirstChar"/>
+        <result column="OLD_DEPARTMENT_ID" jdbcType="VARCHAR" property="oldDepartmentId"/>
+        <result column="OLD_CREATED_BY" jdbcType="VARCHAR" property="oldCreatedBy"/>
+        <result column="OLD_MODIFIED_BY" jdbcType="VARCHAR" property="oldModifiedBy"/>
+        <result column="OLDBILL_ID" jdbcType="VARCHAR" property="oldbillId"/>
+        <result column="OLD_MODIFIED_BILL_ID" jdbcType="VARCHAR" property="oldModifiedBillId"/>
+        <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName"/>
+        <result column="TELECOM_NUMBER" jdbcType="VARCHAR" property="telecomNumber"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="description"/>
+        <result column="FIRST_CHAR" jdbcType="VARCHAR" property="firstChar"/>
+        <result column="DEPARTMENT_ID" jdbcType="VARCHAR" property="departmentId"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="MODIFIED_BY" jdbcType="VARCHAR" property="modifiedBy"/>
+        <result column="BILL_ID" jdbcType="VARCHAR" property="billId"/>
+        <result column="MODIFIED_BILL_ID" jdbcType="VARCHAR" property="modifiedBillId"/>
+        <result column="OP_TYPE" jdbcType="VARCHAR" property="opType"/>
+        <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp"/>
+        <result column="EFFECTIVE_DATE" jdbcType="TIMESTAMP" property="effectiveDate"/>
+        <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp"/>
+
+        <association property="createdByUser" resultMap="UserMap1"/>
+        <association property="modifiedByUser" resultMap="UserMap2"/>
+        <association property="department" resultMap="DepartmentMap"/>
+    </resultMap>
+
+    <!--    一对一嵌套结果映射   -->
+    <select id="selectVpnDialPersonsHisWithExtra" resultMap="RtyDialPersonsHisMap">
+        select rty.*,m.id m_id,m.name m_name
+        from
+        (
+        select r.*,u.id u_id,u.name u_name,o.id o_id,o.name o_name
+        from rty_dial_persons_history r,comman_user u ,common_rd_organization o
+        where r.CREATED_BY = u.id and r.DEPARTMENT_ID = o.id
+        <if test="param1.firstName != null">
+            and r.FIRST_NAME = #{param1.firstName}
+        </if>
+        <if test="param1.departmentId !=null">
+            and r.DEPARTMENT_ID = #{param1.departmentId}
+        </if>
+        <if test="param1.status !=null">
+            and r.STATUS = #{param1.status}
+        </if>
+        <if test="param2 != null">
+            and r.LAST_UPDATED_STAMP &gt;= #{param2}
+        </if>
+        <if test="param3 != null">
+            and r.LAST_UPDATED_STAMP &lt;=#{parma3}
+        </if>
+        ) rty left join comman_user m
+        on rty.MODIFIED_BY=m.id
+        order by rty.LAST_UPDATED_STAMP desc
+    </select>
+
+</mapper>

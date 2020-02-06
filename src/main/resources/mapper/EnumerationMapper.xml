@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.asiainfo.vpn.mapper.EnumerationMapper">
-    <resultMap id="BaseResultMap" type="com.asiainfo.vpn.bean.Enumeration">
+<mapper namespace="com.asiainfo.rty.mapper.EnumerationMapper">
+    <resultMap id="BaseResultMap" type="com.asiainfo.rty.bean.Enumeration">
         <id column="ENUM_ID" jdbcType="VARCHAR" property="enumId"/>
         <result column="ENUM_TYPE_ID" jdbcType="VARCHAR" property="enumTypeId"/>
         <result column="ENUM_CODE" jdbcType="VARCHAR" property="enumCode"/>
@@ -76,7 +76,7 @@
     ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_TX_STAMP, 
     CREATED_STAMP, COMMENTS, ENUM_CODE_NUMBER
   </sql>
-    <select id="selectByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.asiainfo.rty.bean.EnumerationExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -100,13 +100,13 @@
     delete from enumeration
     where ENUM_ID = #{enumId,jdbcType=VARCHAR}
   </delete>
-    <delete id="deleteByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample">
+    <delete id="deleteByExample" parameterType="com.asiainfo.rty.bean.EnumerationExample">
         delete from enumeration
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.asiainfo.vpn.bean.Enumeration">
+    <insert id="insert" parameterType="com.asiainfo.rty.bean.Enumeration">
     insert into enumeration (ENUM_ID, ENUM_TYPE_ID, ENUM_CODE, 
       SEQUENCE_ID, DESCRIPTION, LAST_UPDATED_TX_STAMP, 
       CREATED_STAMP, COMMENTS, ENUM_CODE_NUMBER
@@ -116,7 +116,7 @@
       #{createdStamp,jdbcType=TIMESTAMP}, #{comments,jdbcType=VARCHAR}, #{enumCodeNumber,jdbcType=INTEGER}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
+    <insert id="insertSelective" parameterType="com.asiainfo.rty.bean.Enumeration">
         insert into enumeration
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="enumId != null">
@@ -177,7 +177,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.asiainfo.vpn.bean.EnumerationExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.asiainfo.rty.bean.EnumerationExample" resultType="java.lang.Long">
         select count(*) from enumeration
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -233,7 +233,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.vpn.bean.Enumeration">
+    <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.rty.bean.Enumeration">
         update enumeration
         <set>
             <if test="enumTypeId != null">
@@ -263,7 +263,7 @@
         </set>
         where ENUM_ID = #{enumId,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.asiainfo.vpn.bean.Enumeration">
+    <update id="updateByPrimaryKey" parameterType="com.asiainfo.rty.bean.Enumeration">
     update enumeration
     set ENUM_TYPE_ID = #{enumTypeId,jdbcType=VARCHAR},
       ENUM_CODE = #{enumCode,jdbcType=VARCHAR},
