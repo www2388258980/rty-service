@@ -256,7 +256,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
         if (StringUtil.isEmpty(fristChar)) {
             rtyDialPersons = rtyDialPersonsMapper.selectByExample(example);
         } else {
-            criteria.andFirstCharEqualTo(PinyinUtils.getPinYin(fristChar));
+            criteria.andFirstCharLike("%" + PinyinUtils.getPinYin(fristChar) + "%");
             rtyDialPersons = rtyDialPersonsMapper.selectByExample(example);
         }
         OperationResult<List<RtyDialPersons>> or = new OperationResult<>();
