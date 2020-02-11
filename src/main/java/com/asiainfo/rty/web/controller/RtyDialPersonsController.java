@@ -4,6 +4,7 @@ import com.asiainfo.rty.bean.RtyDialPersons;
 import com.asiainfo.rty.bean.RtyDialPersonsHis;
 import com.asiainfo.rty.bean.extend.RtyDialPersonsExtend;
 import com.asiainfo.rty.bean.extend.RtyDialPersonsHisExtend;
+import com.asiainfo.rty.config.DateConverterConfig;
 import com.asiainfo.rty.service.IRtyDialPersonsService;
 import com.asiainfo.rty.utils.OperationResult;
 import com.asiainfo.rty.utils.PinyinUtils;
@@ -13,8 +14,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +31,22 @@ import java.util.List;
 public class RtyDialPersonsController {
 
     @Autowired
-    private IRtyDialPersonsService vpnDialPersonsService;
+    private IRtyDialPersonsService rtyDialPersonsService;
+    @Autowired
+    private RequestMappingHandlerAdapter handlerAdapter;
+
+
+    @PostConstruct
+    public void initEditableAvlidation() {
+
+        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
+        if (initializer.getConversionService() != null) {
+            GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
+
+            genericConversionService.addConverter(new DateConverterConfig());
+
+        }
+    }
 
     @PostMapping("/insert")
     @ApiOperation(value = "插入一条数据,同时向其历史表也插入一条数据", notes = "中文名对应的拼音后台生成,创建时间,最后更新时间后台生成.")
@@ -39,7 +59,7 @@ public class RtyDialPersonsController {
             persons.setLastUpdatedStamp(date);
             persons.setFirstChar(PinyinUtils.getPinYin(persons.getFirstName()));
 
-            or = vpnDialPersonsService.insert(persons);
+            or = rtyDialPersonsService.insert(persons);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -50,7 +70,7 @@ public class RtyDialPersonsController {
         return or;
     }
 
-    @RequestMapping(value = "/getVpnDialPersons", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRtyDialPersons", method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "根据条件查询数据,根据时间降序", notes = "根据姓名,拼音模糊,状态,创建人")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "startDate", value = "最后更新时间>=,时间戳", paramType = "query"),
@@ -72,7 +92,7 @@ public class RtyDialPersonsController {
                 end = new Date(endDate);
             }
 
-            or = vpnDialPersonsService.getVpnDailPersons(persons, start, end, size, pageSize);
+            or = rtyDialPersonsService.getRtyDailPersons(persons, start, end, size, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -84,7 +104,7 @@ public class RtyDialPersonsController {
 
     }
 
-    @RequestMapping(value = "/getVpnDialPersonsHis", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRtyDialPersonsHis", method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "根据条件查询数据[历史数据],根据时间降序", notes = "根据姓名,拼音模糊,状态,创建人")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "startDate", value = "最后更新时间>=,时间戳", paramType = "query"),
@@ -106,7 +126,7 @@ public class RtyDialPersonsController {
                 end = new Date(endDate);
             }
 
-            or = vpnDialPersonsService.getVpnDialPersonsHis(his, start, end, size, pageSize);
+            or = rtyDialPersonsService.getRtyDialPersonsHis(his, start, end, size, pageSize);
             System.out.println("total：" + or.getTotal());
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,7 +139,7 @@ public class RtyDialPersonsController {
 
     }
 
-    @RequestMapping(value = "/getVpnDialPersonsByKey", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRtyDialPersonsByKey", method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "根据主键拿取数据", notes = "主键为空抛出异常")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true)
@@ -127,7 +147,7 @@ public class RtyDialPersonsController {
     public OperationResult<RtyDialPersons> getVpnDailPersonsBykey(String id) {
         OperationResult<RtyDialPersons> or = null;
         try {
-            or = vpnDialPersonsService.getVpnDialPersonsByPrimaryKey(id);
+            or = rtyDialPersonsService.getRtyDialPersonsByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -138,7 +158,7 @@ public class RtyDialPersonsController {
         return or;
     }
 
-    @RequestMapping(value = "/updateVpnDialPersons", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/updateRtyDialPersons", method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "根据主键更新数据", notes = "需要更新那些字段就将其传入")
     public OperationResult<Boolean> updateVpnDialPersons(RtyDialPersons persons) {
         OperationResult<Boolean> or = null;
@@ -151,7 +171,7 @@ public class RtyDialPersonsController {
             persons.setLastUpdatedStamp(d);
             persons.setOpType("更新");
 
-            or = vpnDialPersonsService.updateVpnDialPersons(persons);
+            or = rtyDialPersonsService.updateRtyDialPersons(persons);
 
         } catch (Exception e) {
             e.printStackTrace();

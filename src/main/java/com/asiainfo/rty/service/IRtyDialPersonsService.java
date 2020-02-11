@@ -32,7 +32,7 @@ public interface IRtyDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<RtyDialPersonsExtend>> getVpnDailPersons(RtyDialPersons persons, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialPersonsExtend>> getRtyDailPersons(RtyDialPersons persons, Date startDate, Date endDate,
                                                                          int size, int pageSize) throws Exception;
 
     /**
@@ -46,7 +46,7 @@ public interface IRtyDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<RtyDialPersonsHisExtend>> getVpnDialPersonsHis(RtyDialPersonsHis his, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialPersonsHisExtend>> getRtyDialPersonsHis(RtyDialPersonsHis his, Date startDate, Date endDate,
                                                                                int size, int pageSize) throws Exception;
 
     /**
@@ -56,7 +56,7 @@ public interface IRtyDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<RtyDialPersons> getVpnDialPersonsByPrimaryKey(String id) throws Exception;
+    public OperationResult<RtyDialPersons> getRtyDialPersonsByPrimaryKey(String id) throws Exception;
 
     /**
      * 根据主键更改数据
@@ -66,5 +66,5 @@ public interface IRtyDialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<Boolean> updateVpnDialPersons(RtyDialPersons persons) throws Exception;
+    public OperationResult<Boolean> updateRtyDialPersons(RtyDialPersons persons) throws Exception;
 }

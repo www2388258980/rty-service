@@ -24,9 +24,9 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
     @Autowired
     private SequenceValueItemMapper sequenceValueItemMapper;
     @Autowired
-    private RtyDialPersonsMapper vpnDialPersonsMapper;
+    private RtyDialPersonsMapper rtyDialPersonsMapper;
     @Autowired
-    private RtyDialPersonsHisMapper vpnDialPersonsHisMapper;
+    private RtyDialPersonsHisMapper rtyDialPersonsHisMapper;
     @Autowired
     private RtyDialPersonsExtendMapper rtyDialPersonsExtendMapper;
     @Autowired
@@ -39,7 +39,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
         Integer key = getPrimaryKey("RtyDialPersons");
         persons.setDialPersonId(key + "");
         // 向VPN_DIAL_PERSONS插入数据
-        vpnDialPersonsMapper.insert(persons);
+        rtyDialPersonsMapper.insert(persons);
         // 更新主键
         updatePrimaryKey("RtyDialPersons", key);
 
@@ -48,14 +48,14 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
          * 由于是插入,所有old系列字段为空
          */
         // 先拿到历史表对应的主键
-        Integer key2 = getPrimaryKey("VpnDialPersonsHistory");
+        Integer key2 = getPrimaryKey("RtyDialPersonsHistory");
         RtyDialPersonsHis his = new RtyDialPersonsHis();
         his.setHistoryId(key2 + "");
         swap(persons, his);
         // 插入历史表
-        vpnDialPersonsHisMapper.insert(his);
+        rtyDialPersonsHisMapper.insert(his);
         // 更新历史主键表
-        updatePrimaryKey("VpnDialPersonsHistory", key2);
+        updatePrimaryKey("RtyDialPersonsHistory", key2);
 
         OperationResult<Boolean> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
@@ -140,7 +140,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
     }
 
     @Override
-    public OperationResult<List<RtyDialPersonsExtend>> getVpnDailPersons(RtyDialPersons persons, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialPersonsExtend>> getRtyDailPersons(RtyDialPersons persons, Date startDate, Date endDate,
                                                                          int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
@@ -159,7 +159,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
 
 
     @Override
-    public OperationResult<List<RtyDialPersonsHisExtend>> getVpnDialPersonsHis(RtyDialPersonsHis his, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialPersonsHisExtend>> getRtyDialPersonsHis(RtyDialPersonsHis his, Date startDate, Date endDate,
                                                                                int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
@@ -175,11 +175,11 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
     }
 
     @Override
-    public OperationResult<RtyDialPersons> getVpnDialPersonsByPrimaryKey(String id) throws Exception {
+    public OperationResult<RtyDialPersons> getRtyDialPersonsByPrimaryKey(String id) throws Exception {
         if (StringUtil.isEmpty(id)) {
             throw new Exception("主键不可为空.");
         }
-        RtyDialPersons RtyDialPersons = vpnDialPersonsMapper.selectByPrimaryKey(id);
+        RtyDialPersons RtyDialPersons = rtyDialPersonsMapper.selectByPrimaryKey(id);
 
         OperationResult<RtyDialPersons> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
@@ -190,32 +190,32 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
     }
 
     @Override
-    public OperationResult<Boolean> updateVpnDialPersons(RtyDialPersons persons) throws Exception {
+    public OperationResult<Boolean> updateRtyDialPersons(RtyDialPersons persons) throws Exception {
         if (StringUtil.isEmpty(persons.getDialPersonId())) {
             throw new Exception("主键不可为空.");
         }
         // 更新之前先找出更新前的数据
-        RtyDialPersons old = vpnDialPersonsMapper.selectByPrimaryKey(persons.getDialPersonId());
+        RtyDialPersons old = rtyDialPersonsMapper.selectByPrimaryKey(persons.getDialPersonId());
         if (old == null) {
             throw new Exception("根据主键找不到对应的数据");
         }
         // 更新
-        vpnDialPersonsMapper.updateByPrimaryKeySelective(persons);
+        rtyDialPersonsMapper.updateByPrimaryKeySelective(persons);
         /**
          * 同时生成一条历史记录
          * old字段为上次记录
          * 由于更新可能只更新某些字段,某些不更新的字段应当保留
          */
-        Integer key = getPrimaryKey("VpnDialPersonsHistory");
+        Integer key = getPrimaryKey("RtyDialPersonsHistory");
         RtyDialPersonsHis his = new RtyDialPersonsHis();
         his.setHistoryId(key + "");
         swap2(old, his);
         swap(old, his);
         swap(persons, his);
 
-        vpnDialPersonsHisMapper.insertSelective(his);
+        rtyDialPersonsHisMapper.insertSelective(his);
         // 更新历史表主键
-        updatePrimaryKey("VpnDialPersonsHistory", key);
+        updatePrimaryKey("RtyDialPersonsHistory", key);
 
         OperationResult<Boolean> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
