@@ -67,4 +67,13 @@ public interface IRtyDialPersonsService {
      * @throws Exception
      */
     public OperationResult<Boolean> updateRtyDialPersons(RtyDialPersons persons) throws Exception;
+
+    /**
+     * 根据拼音获取数据
+     *
+     * @param fristChar
+     * @return
+     * @throws Exception
+     */
+    public OperationResult<List<RtyDialPersons>> getRtyDialPersonsByFirstChar(String fristChar) throws Exception;
 }

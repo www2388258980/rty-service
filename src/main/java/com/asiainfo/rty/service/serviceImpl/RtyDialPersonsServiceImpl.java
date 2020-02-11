@@ -10,6 +10,7 @@ import com.asiainfo.rty.mapper.extend.RtyDialPersonsExtendMapper;
 import com.asiainfo.rty.mapper.extend.RtyDialPersonsHisExtendMapper;
 import com.asiainfo.rty.service.IRtyDialPersonsService;
 import com.asiainfo.rty.utils.OperationResult;
+import com.asiainfo.rty.utils.PinyinUtils;
 import com.asiainfo.rty.utils.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -242,5 +243,27 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
         his2.setOldModifiedBy(old.getModifiedBy());
         his2.setOldbillId(old.getBillId());
         his2.setOldModifiedBillId(old.getModifiedBillId());
+    }
+
+    @Override
+    public OperationResult<List<RtyDialPersons>> getRtyDialPersonsByFirstChar(String fristChar) throws Exception {
+        RtyDialPersonsExample example = new RtyDialPersonsExample();
+        example.setOrderByClause("LAST_UPDATED_STAMP desc");
+        RtyDialPersonsExample.Criteria criteria = example.createCriteria();
+        // 默认状态为'是'
+        criteria.andStatusEqualTo("是");
+        List<RtyDialPersons> rtyDialPersons = null;
+        if (StringUtil.isEmpty(fristChar)) {
+            rtyDialPersons = rtyDialPersonsMapper.selectByExample(example);
+        } else {
+            criteria.andFirstCharEqualTo(PinyinUtils.getPinYin(fristChar));
+            rtyDialPersons = rtyDialPersonsMapper.selectByExample(example);
+        }
+        OperationResult<List<RtyDialPersons>> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setData(rtyDialPersons);
+        or.setMessage("查询成功.");
+
+        return or;
     }
 }

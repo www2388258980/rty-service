@@ -183,4 +183,23 @@ public class RtyDialPersonsController {
 
         return or;
     }
+
+    @RequestMapping(value = "/getRtyDialPersonsByFirstChar", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "根据拼音查数据", notes = "中文也可以，后台默认将中文转成拼音")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "firstChar", value = "拼音or中文", paramType = "query")
+    })
+    public OperationResult<List<RtyDialPersons>> getRtyDialPersonsByFirstChar(String firstChar) {
+        OperationResult<List<RtyDialPersons>> or = null;
+        try {
+            or = rtyDialPersonsService.getRtyDialPersonsByFirstChar(firstChar);
+        } catch (Exception e) {
+            e.printStackTrace();
+            or = new OperationResult<>();
+            or.setStatus(OperationResult.STATUS_FAILURE);
+            or.setMessage(e.getMessage());
+        }
+
+        return or;
+    }
 }
