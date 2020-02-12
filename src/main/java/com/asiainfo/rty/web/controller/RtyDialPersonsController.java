@@ -192,6 +192,7 @@ public class RtyDialPersonsController {
     public OperationResult<List<RtyDialPersons>> getRtyDialPersonsByFirstChar(String firstChar) {
         OperationResult<List<RtyDialPersons>> or = null;
         try {
+            System.out.println("firstChar: " + firstChar);
             or = rtyDialPersonsService.getRtyDialPersonsByFirstChar(firstChar);
         } catch (Exception e) {
             e.printStackTrace();

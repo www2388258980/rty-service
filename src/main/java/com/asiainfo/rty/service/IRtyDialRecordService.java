@@ -29,7 +29,7 @@ public interface IRtyDialRecordService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<RtyDialRecordExtend>> getVpnDialRecord(RtyDialRecord record, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialRecordExtend>> getRtyDialRecord(RtyDialRecord record, Date startDate, Date endDate,
                                                                        int size, int pageSize) throws Exception;
 
 

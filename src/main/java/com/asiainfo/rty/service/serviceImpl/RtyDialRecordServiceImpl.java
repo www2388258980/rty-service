@@ -23,7 +23,7 @@ public class RtyDialRecordServiceImpl implements IRtyDialRecordService {
     private SequenceValueItemMapper sequenceValueItemMapper;
 
     @Autowired
-    private RtyDialRecordMapper vpnDialRecordMapper;
+    private RtyDialRecordMapper rtyDialRecordMapper;
 
     @Autowired
     private RtyDialRecordExtendMapper rtyDialRecordExtendMapper;
@@ -40,7 +40,7 @@ public class RtyDialRecordServiceImpl implements IRtyDialRecordService {
         record.setCreatedStamp(d);
         record.setLastUpdatedStamp(d);
 
-        vpnDialRecordMapper.insert(record);
+        rtyDialRecordMapper.insert(record);
 
         // 更新主键
         SequenceValueItem sequenceValueItem = new SequenceValueItem();
@@ -59,11 +59,11 @@ public class RtyDialRecordServiceImpl implements IRtyDialRecordService {
 
 
     @Override
-    public OperationResult<List<RtyDialRecordExtend>> getVpnDialRecord(RtyDialRecord record, Date startDate, Date endDate,
+    public OperationResult<List<RtyDialRecordExtend>> getRtyDialRecord(RtyDialRecord record, Date startDate, Date endDate,
                                                                        int size, int pageSize) throws Exception {
 
         PageHelper.startPage(size, pageSize);
-//        List<RtyDialRecord> records = vpnDialRecordMapper.selectByExample(example);
+//        List<RtyDialRecord> records = rtyDialRecordMapper.selectByExample(example);
         List<RtyDialRecordExtend> records = rtyDialRecordExtendMapper.selectVpnDialRecordsWithExtra(record, startDate, endDate);
         PageInfo<RtyDialRecordExtend> info = new PageInfo<>(records);
 

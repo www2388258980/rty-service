@@ -22,14 +22,14 @@ import java.util.List;
 public class RtyDialRecordController {
 
     @Autowired
-    private IRtyDialRecordService vpnDialRecordService;
+    private IRtyDialRecordService rtyDialRecordService;
 
     @PostMapping("/insert")
     @ApiOperation(value = "插入一条数据", notes = "主键,时间后台生成;数据前台准备好传过来.拨入日期前台需要传时间戳.")
     public OperationResult<Boolean> insert(RtyDialRecord record) {
         OperationResult<Boolean> or = new OperationResult<>();
         try {
-            or = vpnDialRecordService.insertRecord(record);
+            or = rtyDialRecordService.insertRecord(record);
         } catch (Exception e) {
             e.printStackTrace();
             or.setStatus(OperationResult.STATUS_FAILURE);
@@ -62,7 +62,7 @@ public class RtyDialRecordController {
             if (!StringUtil.isEmpty(endDate)) {
                 date2 = new Date(Long.parseLong(endDate));
             }
-            or = vpnDialRecordService.getVpnDialRecord(record, date1, date2, size, pageSize);
+            or = rtyDialRecordService.getRtyDialRecord(record, date1, date2, size, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
