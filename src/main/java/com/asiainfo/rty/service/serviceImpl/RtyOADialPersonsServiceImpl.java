@@ -9,6 +9,7 @@ import com.asiainfo.rty.mapper.SequenceValueItemMapper;
 import com.asiainfo.rty.mapper.extend.RtyOADialPersonsExtendMapper;
 import com.asiainfo.rty.service.IRtyOADialPersonsService;
 import com.asiainfo.rty.utils.OperationResult;
+import com.asiainfo.rty.utils.PinyinUtils;
 import com.asiainfo.rty.utils.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,7 +24,7 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
     @Autowired
     private SequenceValueItemMapper sequenceValueItemMapper;
     @Autowired
-    private RtyOADialPersonsMapper rtynOADialPersonsMapper;
+    private RtyOADialPersonsMapper rtyOADialPersonsMapper;
     @Autowired
     private RtyOADialPersonsHisMapper rtyOADialPersonsHisMapper;
     @Autowired
@@ -36,13 +37,13 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
         Integer key = getPrimaryKey("RtyOADialPersons");
         persons.setDialPersonId(key + "");
 
-        rtynOADialPersonsMapper.insertSelective(persons);
+        rtyOADialPersonsMapper.insertSelective(persons);
 
         // 更新主键
         updatePrimaryKey("RtyOADialPersons", key);
         // 历史表也插入一条数据
         RtyOADialPersonsHis his = new RtyOADialPersonsHis();
-        Integer key2 = getPrimaryKey("VpnOADialPersonsHistory");
+        Integer key2 = getPrimaryKey("RtyOADialPersonsHistory");
         his.setHistoryId(key2 + "");
         his.setDialPersonId(key + "");
         swap(persons, his);
@@ -50,7 +51,7 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
         rtyOADialPersonsHisMapper.insertSelective(his);
 
         // 更新历史表主键
-        updatePrimaryKey("VpnOADialPersonsHistory", key2);
+        updatePrimaryKey("RtyOADialPersonsHistory", key2);
 
         OperationResult<Boolean> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
@@ -135,11 +136,11 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
 
 
     @Override
-    public OperationResult<RtyOADialPersons> getVpnOADialPersonsBykey(String id) throws Exception {
+    public OperationResult<RtyOADialPersons> getRtyOADialPersonsBykey(String id) throws Exception {
         if (StringUtil.isEmpty(id)) {
             throw new Exception("主键不可为空.");
         }
-        RtyOADialPersons RtyOADialPersons = rtynOADialPersonsMapper.selectByPrimaryKey(id);
+        RtyOADialPersons RtyOADialPersons = rtyOADialPersonsMapper.selectByPrimaryKey(id);
 
         OperationResult<RtyOADialPersons> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
@@ -150,10 +151,10 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
     }
 
     @Override
-    public OperationResult<List<RtyOADialPersonsExtend>> getVpnOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
+    public OperationResult<List<RtyOADialPersonsExtend>> getRtyOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
                                                                              int size, int pageSize) throws Exception {
         PageHelper.startPage(size, pageSize);
-        List<RtyOADialPersonsExtend> RtyOADialPersons = rtyOADialPersonsExtendMapper.selectVpnOADialPersonsWithExtra(
+        List<RtyOADialPersonsExtend> RtyOADialPersons = rtyOADialPersonsExtendMapper.selectRtyOADialPersonsWithExtra(
                 persons, startDate, endDate);
         PageInfo<RtyOADialPersonsExtend> info = new PageInfo<>(RtyOADialPersons);
 
@@ -168,11 +169,11 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
 
 
     @Override
-    public OperationResult<List<RtyOADialPersonsHisExtend>> getVpnOADialPersonsHis(RtyOADialPersonsHis his, Date startDate,
+    public OperationResult<List<RtyOADialPersonsHisExtend>> getRtyOADialPersonsHis(RtyOADialPersonsHis his, Date startDate,
                                                                                    Date endDate, int size, int pageSize) throws Exception {
 
         PageHelper.startPage(size, pageSize);
-        List<RtyOADialPersonsHisExtend> RtyOADialPersons = rtyOADialPersonsExtendMapper.selectVpnOADialPersonsHisWithExtra(
+        List<RtyOADialPersonsHisExtend> RtyOADialPersons = rtyOADialPersonsExtendMapper.selectRtyOADialPersonsHisWithExtra(
                 his, startDate, endDate);
         PageInfo<RtyOADialPersonsHisExtend> info = new PageInfo<>(RtyOADialPersons);
 
@@ -187,23 +188,23 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
 
 
     @Override
-    public OperationResult<Boolean> updateVpnOADialPersons(RtyOADialPersons persons) throws Exception {
+    public OperationResult<Boolean> updateRtyOADialPersons(RtyOADialPersons persons) throws Exception {
         if (StringUtil.isEmpty(persons.getDialPersonId())) {
             throw new Exception("主键不可为空.");
         }
         // 更新之前先找出更新前的数据
-        RtyOADialPersons old = rtynOADialPersonsMapper.selectByPrimaryKey(persons.getDialPersonId());
+        RtyOADialPersons old = rtyOADialPersonsMapper.selectByPrimaryKey(persons.getDialPersonId());
         if (old == null) {
             throw new Exception("根据主键找不到对应的数据");
         }
         // 更新
-        rtynOADialPersonsMapper.updateByPrimaryKeySelective(persons);
+        rtyOADialPersonsMapper.updateByPrimaryKeySelective(persons);
         /**
          * 同时生成一条历史记录
          * old字段为上次记录
          * 由于更新可能只更新某些字段,某些不更新的字段应当保留
          */
-        Integer key = getPrimaryKey("VpnOADialPersonsHistory");
+        Integer key = getPrimaryKey("RtyOADialPersonsHistory");
         RtyOADialPersonsHis his = new RtyOADialPersonsHis();
         his.setHistoryId(key + "");
         swap2(old, his);
@@ -212,7 +213,7 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
 
         rtyOADialPersonsHisMapper.insertSelective(his);
         // 更新历史表主键
-        updatePrimaryKey("VpnOADialPersonsHistory", key);
+        updatePrimaryKey("RtyOADialPersonsHistory", key);
 
         OperationResult<Boolean> or = new OperationResult<>();
         or.setStatus(OperationResult.STATUS_SUCCESS);
@@ -242,5 +243,25 @@ public class RtyOADialPersonsServiceImpl implements IRtyOADialPersonsService {
         his2.setOldBillId(old.getBillId());
         his2.setOldModifiedBillId(old.getModifiedBillId());
         his2.setOldVpnTypeId(old.getVpnTypeId());
+    }
+
+    @Override
+    public OperationResult<List<RtyOADialPersons>> getRtyOADialPersonsByFirstChar(String firstChar) throws Exception {
+        RtyOADialPersonsExample example = new RtyOADialPersonsExample();
+        RtyOADialPersonsExample.Criteria criteria = example.createCriteria();
+        // 默认状态为'是'
+        criteria.andStatusEqualTo("是");
+        List<RtyOADialPersons> rtyOADialPersons = null;
+        if (StringUtil.isEmpty(firstChar)) {
+            rtyOADialPersons = rtyOADialPersonsMapper.selectByExample(example);
+        } else {
+            criteria.andFirstCharLike("%" + PinyinUtils.getPinYin(firstChar) + "%");
+            rtyOADialPersons = rtyOADialPersonsMapper.selectByExample(example);
+        }
+        OperationResult<List<RtyOADialPersons>> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_SUCCESS);
+        or.setData(rtyOADialPersons);
+        or.setMessage("查询成功.");
+        return or;
     }
 }

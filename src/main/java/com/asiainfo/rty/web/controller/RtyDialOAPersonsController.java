@@ -18,12 +18,12 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rtyDialOAPersons")
+@RequestMapping("/rtyOADialPersons")
 @Api(tags = "操控RTY_DIAL_OA_PERSONS和RTY_DIAL_OA_PERSONS_HISTORY")
 @CrossOrigin
 public class RtyDialOAPersonsController {
     @Autowired
-    private IRtyOADialPersonsService vpnOADialPersonsService;
+    private IRtyOADialPersonsService rtyOADialPersonsService;
 
     @PostMapping("/insert")
     @ApiOperation(value = "向rty_oa_dial_persons插入数据,同时向其对应历史表生成一条数据.", notes = "创建和最后更新时间由后台生成.")
@@ -36,7 +36,7 @@ public class RtyDialOAPersonsController {
             persons.setOpType("新增");
             persons.setCreatedStamp(date);
             persons.setLastUpdatedStamp(date);
-            or = vpnOADialPersonsService.insert(persons);
+            or = rtyOADialPersonsService.insert(persons);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -54,10 +54,10 @@ public class RtyDialOAPersonsController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "key", value = "必须传入,key对应的数据为空也行.", required = true, paramType = "query")
     })
-    public OperationResult<RtyOADialPersons> getVpnOADialPersonsBykey(String key) {
+    public OperationResult<RtyOADialPersons> getRtyOADialPersonsBykey(String key) {
         OperationResult<RtyOADialPersons> or = null;
         try {
-            or = vpnOADialPersonsService.getVpnOADialPersonsBykey(key);
+            or = rtyOADialPersonsService.getRtyOADialPersonsBykey(key);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -77,11 +77,11 @@ public class RtyDialOAPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页数量>=", paramType = "query", required = true)
     })
-    public OperationResult<List<RtyOADialPersonsExtend>> getVpnOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
+    public OperationResult<List<RtyOADialPersonsExtend>> getRtyOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
                                                                              int size, int pageSize) {
         OperationResult<List<RtyOADialPersonsExtend>> or = null;
         try {
-            or = vpnOADialPersonsService.getVpnOADialPersons(persons, startDate, endDate, size, pageSize);
+            or = rtyOADialPersonsService.getRtyOADialPersons(persons, startDate, endDate, size, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -100,11 +100,11 @@ public class RtyDialOAPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页数量>=", paramType = "query", required = true)
     })
-    public OperationResult<List<RtyOADialPersonsHisExtend>> getVpnOADialPersonsHis(RtyOADialPersonsHis his, Date startDate,
+    public OperationResult<List<RtyOADialPersonsHisExtend>> getRtyOADialPersonsHis(RtyOADialPersonsHis his, Date startDate,
                                                                                    Date endDate, int size, int pageSize) {
         OperationResult<List<RtyOADialPersonsHisExtend>> or = null;
         try {
-            or = vpnOADialPersonsService.getVpnOADialPersonsHis(his, startDate, endDate, size, pageSize);
+            or = rtyOADialPersonsService.getRtyOADialPersonsHis(his, startDate, endDate, size, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
@@ -117,15 +117,34 @@ public class RtyDialOAPersonsController {
 
     @PostMapping("/update")
     @ApiOperation(value = "根据主键更新数据,需要更新啥属性将就其实例字段设值.", notes = "更新的同时会向历史表插入数据.")
-    public OperationResult<Boolean> updateVpnOADialPersons(RtyOADialPersons persons) {
+    public OperationResult<Boolean> updateRtyOADialPersons(RtyOADialPersons persons) {
         OperationResult<Boolean> or = null;
         try {
-            or = vpnOADialPersonsService.updateVpnOADialPersons(persons);
+            or = rtyOADialPersonsService.updateRtyOADialPersons(persons);
         } catch (Exception e) {
             e.printStackTrace();
             or = new OperationResult<>();
             or.setStatus(OperationResult.STATUS_FAILURE);
             or.setMessage("更新失败: " + e.getMessage());
+        }
+
+        return or;
+    }
+
+    @RequestMapping(value = "/getRtyOADialPersonsByFirstChar", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "根据拼音查数据", notes = "中文也可以，后台默认将中文转成拼音")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "firstChar", value = "拼音or中文", paramType = "query")
+    })
+    public OperationResult<List<RtyOADialPersons>> getRtyOADialPersonsByFirstChar(String firstChar) {
+        OperationResult<List<RtyOADialPersons>> or = null;
+        try {
+            or = rtyOADialPersonsService.getRtyOADialPersonsByFirstChar(firstChar);
+        } catch (Exception e) {
+            e.printStackTrace();
+            or = new OperationResult<>();
+            or.setStatus(OperationResult.STATUS_FAILURE);
+            or.setMessage(e.getMessage());
         }
 
         return or;

@@ -27,7 +27,7 @@ public interface IRtyOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<RtyOADialPersons> getVpnOADialPersonsBykey(String id) throws Exception;
+    public OperationResult<RtyOADialPersons> getRtyOADialPersonsBykey(String id) throws Exception;
 
     /**
      * 根据条件获取数据
@@ -40,7 +40,7 @@ public interface IRtyOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<RtyOADialPersonsExtend>> getVpnOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
+    public OperationResult<List<RtyOADialPersonsExtend>> getRtyOADialPersons(RtyOADialPersons persons, Date startDate, Date endDate,
                                                                              int size, int pageSize) throws Exception;
 
     /**
@@ -54,7 +54,7 @@ public interface IRtyOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<List<RtyOADialPersonsHisExtend>> getVpnOADialPersonsHis(RtyOADialPersonsHis his, Date startDate, Date endDate,
+    public OperationResult<List<RtyOADialPersonsHisExtend>> getRtyOADialPersonsHis(RtyOADialPersonsHis his, Date startDate, Date endDate,
                                                                                    int size, int pageSize) throws Exception;
 
     /**
@@ -62,5 +62,7 @@ public interface IRtyOADialPersonsService {
      * @return
      * @throws Exception
      */
-    public OperationResult<Boolean> updateVpnOADialPersons(RtyOADialPersons persons) throws Exception;
+    public OperationResult<Boolean> updateRtyOADialPersons(RtyOADialPersons persons) throws Exception;
+
+    OperationResult<List<RtyOADialPersons>> getRtyOADialPersonsByFirstChar(String firstChar) throws Exception;
 }

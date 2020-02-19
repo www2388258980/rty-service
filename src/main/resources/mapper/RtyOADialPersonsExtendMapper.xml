@@ -48,7 +48,7 @@
     </resultMap>
 
     <!--    一对一嵌套结果映射   -->
-    <select id="selectVpnOADialPersonsWithExtra" resultMap="RtyOADialPersonsMap">
+    <select id="selectRtyOADialPersonsWithExtra" resultMap="RtyOADialPersonsMap">
         select rty.*,u.id u_id,u.name u_name,e.ENUM_ID ENUM_ID,
         e.ENUM_TYPE_ID ENUM_TYPE_ID,e.ENUM_CODE ENUM_CODE,e.SEQUENCE_ID SEQUENCE_ID,
         e.DESCRIPTION e_DESCRIPTION,
@@ -112,7 +112,7 @@
         <association property="vpnType" resultMap="VpnTypeMap"/>
 
     </resultMap>
-    <select id="selectVpnOADialPersonsHisWithExtra" resultMap="RtyOADialPersonsMap">
+    <select id="selectRtyOADialPersonsHisWithExtra" resultMap="RtyOADialPersonsMap">
         select rty.*,u.id u_id,u.name u_name,e.ENUM_ID ENUM_ID,
         e.ENUM_TYPE_ID ENUM_TYPE_ID,e.ENUM_CODE ENUM_CODE,e.SEQUENCE_ID SEQUENCE_ID,
         e.DESCRIPTION e_DESCRIPTION

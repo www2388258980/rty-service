@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface RtyOADialPersonsExtendMapper {
 
-    List<RtyOADialPersonsExtend> selectVpnOADialPersonsWithExtra(RtyOADialPersons persons, Date startDate, Date endDate);
+    List<RtyOADialPersonsExtend> selectRtyOADialPersonsWithExtra(RtyOADialPersons persons, Date startDate, Date endDate);
 
-    List<RtyOADialPersonsHisExtend> selectVpnOADialPersonsHisWithExtra(RtyOADialPersonsHis his, Date startDate, Date endDate);
+    List<RtyOADialPersonsHisExtend> selectRtyOADialPersonsHisWithExtra(RtyOADialPersonsHis his, Date startDate, Date endDate);
 }

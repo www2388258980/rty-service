@@ -78,7 +78,7 @@ public class RtyDialPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页几条", required = true, paramType = "query")
     })
-    public OperationResult<List<RtyDialPersonsExtend>> getVpnDialPersons(RtyDialPersons persons, Long startDate, Long endDate,
+    public OperationResult<List<RtyDialPersonsExtend>> getRtyDialPersons(RtyDialPersons persons, Long startDate, Long endDate,
                                                                          int size, int pageSize) {
         OperationResult<List<RtyDialPersonsExtend>> or = null;
         try {
@@ -112,7 +112,7 @@ public class RtyDialPersonsController {
             @ApiImplicitParam(name = "size", value = "第几页", required = true, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页几条", required = true, paramType = "query")
     })
-    public OperationResult<List<RtyDialPersonsHisExtend>> getVpnDialPersonsHis(RtyDialPersonsHis his, Long startDate, Long endDate,
+    public OperationResult<List<RtyDialPersonsHisExtend>> getRtyDialPersonsHis(RtyDialPersonsHis his, Long startDate, Long endDate,
                                                                                int size, int pageSize) {
         OperationResult<List<RtyDialPersonsHisExtend>> or = null;
         try {
@@ -144,7 +144,7 @@ public class RtyDialPersonsController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true)
     })
-    public OperationResult<RtyDialPersons> getVpnDailPersonsBykey(String id) {
+    public OperationResult<RtyDialPersons> getRtyDailPersonsBykey(String id) {
         OperationResult<RtyDialPersons> or = null;
         try {
             or = rtyDialPersonsService.getRtyDialPersonsByPrimaryKey(id);
@@ -160,7 +160,7 @@ public class RtyDialPersonsController {
 
     @RequestMapping(value = "/updateRtyDialPersons", method = {RequestMethod.GET, RequestMethod.POST})
     @ApiOperation(value = "根据主键更新数据", notes = "需要更新那些字段就将其传入")
-    public OperationResult<Boolean> updateVpnDialPersons(RtyDialPersons persons) {
+    public OperationResult<Boolean> updateRtyDialPersons(RtyDialPersons persons) {
         OperationResult<Boolean> or = null;
         try {
             // 转换
