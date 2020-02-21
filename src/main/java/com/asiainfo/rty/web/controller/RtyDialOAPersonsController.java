@@ -8,6 +8,7 @@ import com.asiainfo.rty.config.DateConverterConfig;
 import com.asiainfo.rty.service.IRtyOADialPersonsService;
 import com.asiainfo.rty.utils.OperationResult;
 import com.asiainfo.rty.utils.PinyinUtils;
+import com.asiainfo.rty.utils.StringUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -139,6 +140,13 @@ public class RtyDialOAPersonsController {
     public OperationResult<Boolean> updateRtyOADialPersons(RtyOADialPersons persons) {
         OperationResult<Boolean> or = null;
         try {
+            // 转换
+            if (!StringUtil.isEmpty(persons.getFirstName())) {
+                persons.setFirstChar(PinyinUtils.getPinYin(persons.getFirstName()));
+            }
+            Date d = new Date();
+            persons.setLastUpdatedStamp(d);
+            persons.setOpType("更新");
             or = rtyOADialPersonsService.updateRtyOADialPersons(persons);
         } catch (Exception e) {
             e.printStackTrace();

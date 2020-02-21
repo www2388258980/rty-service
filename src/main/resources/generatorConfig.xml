@@ -47,15 +47,15 @@
 
 
         <!-- 映射配置 -->
-        <table tableName="Rty_dial_persons" domainObjectName="RtyDialPersons"></table>
-        <table tableName="Rty_DIAL_PERSONS_HISTORY" domainObjectName="RtyDialPersonsHis"></table>
-        <table tableName="Rty_DIAL_RECORD" domainObjectName="RtyDialRecord"></table>
-        <table tableName="Rty_OA_DIAL_PERSONS" domainObjectName="RtyOADialPersons"></table>
-        <table tableName="Rty_OA_DIAL_PERSONS_HISTORY" domainObjectName="RtyOADialPersonsHis"></table>
+        <!--        <table tableName="Rty_dial_persons" domainObjectName="RtyDialPersons"></table>-->
+        <!--        <table tableName="Rty_DIAL_PERSONS_HISTORY" domainObjectName="RtyDialPersonsHis"></table>-->
+        <!--        <table tableName="Rty_DIAL_RECORD" domainObjectName="RtyDialRecord"></table>-->
+        <!--        <table tableName="Rty_OA_DIAL_PERSONS" domainObjectName="RtyOADialPersons"></table>-->
+        <!--        <table tableName="Rty_OA_DIAL_PERSONS_HISTORY" domainObjectName="RtyOADialPersonsHis"></table>-->
         <!--        <table tableName="common_rd_organization" domainObjectName="Organization"></table>-->
         <!--        <table tableName="enumeration" domainObjectName="Enumeration"></table>-->
         <!--        <table tableName="sequence_value_item" domainObjectName="SequenceValueItem"></table>-->
-        <!--        <table tableName="comman_user" domainObjectName="User"/>-->
+        <table tableName="comman_user" domainObjectName="User"/>
 
     </context>
 </generatorConfiguration>

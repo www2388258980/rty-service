@@ -115,13 +115,13 @@
     <select id="selectRtyOADialPersonsHisWithExtra" resultMap="RtyOADialPersonsMap">
         select rty.*,u.id u_id,u.name u_name,e.ENUM_ID ENUM_ID,
         e.ENUM_TYPE_ID ENUM_TYPE_ID,e.ENUM_CODE ENUM_CODE,e.SEQUENCE_ID SEQUENCE_ID,
-        e.DESCRIPTION e_DESCRIPTION
+        e.DESCRIPTION e_DESCRIPTION,o.id o_ID,o.name o_name
         from (
         select v.*,m.id m_id,m.name m_name
         from rty_oa_dial_persons_history v left join comman_user m
         on v.MODIFIED_BY=m.id
-        )rty,comman_user u,enumeration e
-        where rty.CREATED_BY=u.id and rty.VPN_TYPE_ID=e.ENUM_ID
+        )rty,comman_user u,enumeration e,common_rd_organization o
+        where rty.CREATED_BY=u.id and rty.VPN_TYPE_ID=e.ENUM_ID and rty.DEPARTMENT_ID = o.id
         <if test="param1.firstName != null">
             and rty.FIRST_NAME = #{param1.firstName}
         </if>
@@ -132,12 +132,12 @@
             and rty.STATUS = #{param1.status}
         </if>
         <if test="param2 != null">
-            and rty.LAST_UPDATED_STAMP &gt;= #{param2}
+            and rty.CREATED_STAMP &gt;= #{param2}
         </if>
         <if test="param3 != null">
-            and rty.LAST_UPDATED_STAMP &lt;=#{parma3}
+            and rty.CREATED_STAMP &lt;= #{param3}
         </if>
-        order by rty.LAST_UPDATED_STAMP desc
+        order by rty.CREATED_STAMP desc
     </select>
 
 </mapper>

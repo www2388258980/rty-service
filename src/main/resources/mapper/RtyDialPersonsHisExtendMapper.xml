@@ -65,14 +65,14 @@
             and r.STATUS = #{param1.status}
         </if>
         <if test="param2 != null">
-            and r.LAST_UPDATED_STAMP &gt;= #{param2}
+            and r.CREATED_STAMP &gt;= #{param2}
         </if>
         <if test="param3 != null">
-            and r.LAST_UPDATED_STAMP &lt;=#{param3}
+            and r.CREATED_STAMP &lt;=#{param3}
         </if>
         ) rty left join comman_user m
         on rty.MODIFIED_BY=m.id
-        order by rty.LAST_UPDATED_STAMP desc
+        order by rty.CREATED_STAMP desc
     </select>
 
 </mapper>
