@@ -32,5 +32,7 @@ public interface IRtyDialRecordService {
     public OperationResult<List<RtyDialRecordExtend>> getRtyDialRecord(RtyDialRecord record, Date startDate, Date endDate,
                                                                        int size, int pageSize) throws Exception;
 
+    OperationResult<Boolean> deleteDialRecordById(String id) throws Exception;
+
 
 }

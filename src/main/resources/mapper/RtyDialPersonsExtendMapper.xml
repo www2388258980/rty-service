@@ -38,7 +38,7 @@
     </resultMap>
 
     <!--    一对一嵌套结果映射   -->
-    <select id="selectVpnDialRecordsWithExtra" resultMap="RtyDialPersonsMap">
+    <select id="selectRtyDialRecordsWithExtra" resultMap="RtyDialPersonsMap">
         select rty.*,m.id m_id,m.name m_name
         from
         (

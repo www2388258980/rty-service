@@ -39,7 +39,7 @@
             and rty.LAST_UPDATED_STAMP &gt;= #{param2}
         </if>
         <if test="param3 != null">
-            and rty.LAST_UPDATED_STAMP &lt;=#{parma3}
+            and rty.LAST_UPDATED_STAMP &lt;= #{param3}
         </if>
         order by rty.LAST_UPDATED_STAMP desc
     </select>

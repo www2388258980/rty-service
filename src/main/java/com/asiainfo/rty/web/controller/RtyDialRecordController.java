@@ -75,4 +75,22 @@ public class RtyDialRecordController {
         return or;
     }
 
+    @RequestMapping(value = "/deleteDialRecord", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "根据主键删除记录.")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "id", value = "主键", paramType = "query", required = true)
+    })
+    public OperationResult<Boolean> deleteDialRecord(String id) {
+        OperationResult<Boolean> or = null;
+        try {
+            or = rtyDialRecordService.deleteDialRecordById(id);
+        } catch (Exception e) {
+            or = new OperationResult<>();
+            or.setStatus(OperationResult.STATUS_FAILURE);
+            or.setData(false);
+            or.setMessage(e.getMessage());
+        }
+        return or;
+    }
+
 }

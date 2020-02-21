@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RtyDialPersonsHisExtendMapper {
 
-    List<RtyDialPersonsHisExtend> selectVpnDialPersonsHisWithExtra(RtyDialPersonsHis his, Date startDate, Date endDate);
+    List<RtyDialPersonsHisExtend> selectRtyDialPersonsHisWithExtra(RtyDialPersonsHis his, Date startDate, Date endDate);
 }

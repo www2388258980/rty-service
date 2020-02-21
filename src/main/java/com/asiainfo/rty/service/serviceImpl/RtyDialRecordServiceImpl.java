@@ -8,6 +8,7 @@ import com.asiainfo.rty.mapper.SequenceValueItemMapper;
 import com.asiainfo.rty.mapper.extend.RtyDialRecordExtendMapper;
 import com.asiainfo.rty.service.IRtyDialRecordService;
 import com.asiainfo.rty.utils.OperationResult;
+import com.asiainfo.rty.utils.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,20 @@ public class RtyDialRecordServiceImpl implements IRtyDialRecordService {
         or.setTotal(info.getTotal());
         or.setMessage("查询成功.");
 
+        return or;
+    }
+
+    @Override
+    public OperationResult<Boolean> deleteDialRecordById(String id) throws Exception {
+        if (StringUtil.isEmpty(id)) {
+            throw new Exception("主键不能为空.");
+        }
+        rtyDialRecordMapper.deleteByPrimaryKey(id);
+
+        OperationResult<Boolean> or = new OperationResult<>();
+        or.setStatus(OperationResult.STATUS_FAILURE);
+        or.setMessage("删除记录成功.");
+        or.setData(true);
         return or;
     }
 }

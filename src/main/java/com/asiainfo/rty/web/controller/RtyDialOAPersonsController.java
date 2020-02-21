@@ -4,6 +4,7 @@ import com.asiainfo.rty.bean.RtyOADialPersons;
 import com.asiainfo.rty.bean.RtyOADialPersonsHis;
 import com.asiainfo.rty.bean.extend.RtyOADialPersonsExtend;
 import com.asiainfo.rty.bean.extend.RtyOADialPersonsHisExtend;
+import com.asiainfo.rty.config.DateConverterConfig;
 import com.asiainfo.rty.service.IRtyOADialPersonsService;
 import com.asiainfo.rty.utils.OperationResult;
 import com.asiainfo.rty.utils.PinyinUtils;
@@ -12,8 +13,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +29,20 @@ import java.util.List;
 public class RtyDialOAPersonsController {
     @Autowired
     private IRtyOADialPersonsService rtyOADialPersonsService;
+    @Autowired
+    private RequestMappingHandlerAdapter handlerAdapter;
+
+    @PostConstruct
+    public void initEditableAvlidation() {
+
+        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
+        if (initializer.getConversionService() != null) {
+            GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
+
+            genericConversionService.addConverter(new DateConverterConfig());
+
+        }
+    }
 
     @PostMapping("/insert")
     @ApiOperation(value = "向rty_oa_dial_persons插入数据,同时向其对应历史表生成一条数据.", notes = "创建和最后更新时间由后台生成.")

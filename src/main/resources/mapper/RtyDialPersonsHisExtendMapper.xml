@@ -48,7 +48,7 @@
     </resultMap>
 
     <!--    一对一嵌套结果映射   -->
-    <select id="selectVpnDialPersonsHisWithExtra" resultMap="RtyDialPersonsHisMap">
+    <select id="selectRtyDialPersonsHisWithExtra" resultMap="RtyDialPersonsHisMap">
         select rty.*,m.id m_id,m.name m_name
         from
         (
@@ -68,7 +68,7 @@
             and r.LAST_UPDATED_STAMP &gt;= #{param2}
         </if>
         <if test="param3 != null">
-            and r.LAST_UPDATED_STAMP &lt;=#{parma3}
+            and r.LAST_UPDATED_STAMP &lt;=#{param3}
         </if>
         ) rty left join comman_user m
         on rty.MODIFIED_BY=m.id

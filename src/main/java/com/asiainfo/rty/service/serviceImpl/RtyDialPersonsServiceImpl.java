@@ -122,6 +122,9 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
         if (!StringUtil.isEmpty(persons.getCreatedBy())) {
             his.setCreatedBy(persons.getCreatedBy());
         }
+        if (!StringUtil.isEmpty(persons.getModifiedBy())) {
+            his.setModifiedBy(persons.getModifiedBy());
+        }
         if (!StringUtil.isEmpty(persons.getBillId())) {
             his.setBillId(persons.getBillId());
         }
@@ -145,7 +148,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
                                                                          int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
-        List<RtyDialPersonsExtend> RtyDialPersons = rtyDialPersonsExtendMapper.selectVpnDialRecordsWithExtra(persons,
+        List<RtyDialPersonsExtend> RtyDialPersons = rtyDialPersonsExtendMapper.selectRtyDialRecordsWithExtra(persons,
                 startDate, endDate);
         PageInfo<RtyDialPersonsExtend> info = new PageInfo<>(RtyDialPersons);
 
@@ -164,7 +167,7 @@ public class RtyDialPersonsServiceImpl implements IRtyDialPersonsService {
                                                                                int size, int pageSize) throws Exception {
         // 分页
         PageHelper.startPage(size, pageSize);
-        List<RtyDialPersonsHisExtend> RtyDialPersonsHis = rtyDialPersonsHisExtendMapper.selectVpnDialPersonsHisWithExtra(his, startDate, endDate);
+        List<RtyDialPersonsHisExtend> RtyDialPersonsHis = rtyDialPersonsHisExtendMapper.selectRtyDialPersonsHisWithExtra(his, startDate, endDate);
         PageInfo<RtyDialPersonsHisExtend> info = new PageInfo<>(RtyDialPersonsHis);
 
         OperationResult<List<RtyDialPersonsHisExtend>> or = new OperationResult<>();

@@ -32,21 +32,9 @@ public class RtyDialPersonsController {
 
     @Autowired
     private IRtyDialPersonsService rtyDialPersonsService;
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
 
 
-    @PostConstruct
-    public void initEditableAvlidation() {
 
-        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
-        if (initializer.getConversionService() != null) {
-            GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
-
-            genericConversionService.addConverter(new DateConverterConfig());
-
-        }
-    }
 
     @PostMapping("/insert")
     @ApiOperation(value = "插入一条数据,同时向其历史表也插入一条数据", notes = "中文名对应的拼音后台生成,创建时间,最后更新时间后台生成.")
