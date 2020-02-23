@@ -10,16 +10,16 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-09-11 14:44:22
+Date: 2020-02-23 11:44:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for vpn_dial_persons_history
+-- Table structure for rty_dial_persons_history
 -- ----------------------------
-DROP TABLE IF EXISTS `vpn_dial_persons_history`;
-CREATE TABLE `vpn_dial_persons_history` (
+DROP TABLE IF EXISTS `rty_dial_persons_history`;
+CREATE TABLE `rty_dial_persons_history` (
   `HISTORY_ID` varchar(20) NOT NULL,
   `DIAL_PERSON_ID` varchar(20) DEFAULT NULL,
   `OLD_FIRST_NAME` varchar(255) DEFAULT NULL,
@@ -47,6 +47,5 @@ CREATE TABLE `vpn_dial_persons_history` (
   `CREATED_STAMP` datetime DEFAULT NULL,
   `EFFECTIVE_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`HISTORY_ID`),
-  KEY `DIAL_PERSON_ID` (`DIAL_PERSON_ID`),
-  CONSTRAINT `vpn_dial_persons_history_ibfk_1` FOREIGN KEY (`DIAL_PERSON_ID`) REFERENCES `vpn_dial_persons` (`DIAL_PERSON_ID`)
+  KEY `DIAL_PERSON_ID` (`DIAL_PERSON_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

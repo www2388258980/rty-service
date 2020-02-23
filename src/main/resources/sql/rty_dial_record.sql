@@ -10,16 +10,16 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-09-11 14:49:23
+Date: 2020-02-23 11:44:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for vpn_dial_record
+-- Table structure for rty_dial_record
 -- ----------------------------
-DROP TABLE IF EXISTS `vpn_dial_record`;
-CREATE TABLE `vpn_dial_record` (
+DROP TABLE IF EXISTS `rty_dial_record`;
+CREATE TABLE `rty_dial_record` (
   `VPN_DIAL_RECORD_ID` varchar(20) NOT NULL,
   `FIRST_NAME` varchar(100) DEFAULT NULL,
   `VPN_DIAL_CAUSE` varchar(4000) DEFAULT NULL,
